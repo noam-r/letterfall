@@ -12,6 +12,12 @@ LetterFall is a browser-friendly, topic-based falling-letters word game. Catch l
 
 ## Getting Started
 
+### Play Online
+
+The latest version is automatically deployed and available at: **[https://noam-r.github.io/letterfall/](https://noam-r.github.io/letterfall/)**
+
+### Local Development
+
 Prerequisites: recent LTS Node.js (>=18) and npm.
 
 ```bash
@@ -26,6 +32,16 @@ npm run preview
 ```
 
 The Vite dev server prints the local URL (typically <http://localhost:5173>). Avoid opening `index.html` via `file://`; module imports require an HTTP server.
+
+### Deployment
+
+The game is automatically deployed to GitHub Pages on every push to the `master` branch using GitHub Actions. The deployment workflow:
+
+1. Builds the application using `npm run build`
+2. Deploys the `dist/` folder to GitHub Pages
+3. Makes it available at the homepage URL listed in `package.json`
+
+To manually trigger a deployment, you can use the "Run workflow" option in the Actions tab of the GitHub repository.
 
 ## Project Structure
 
