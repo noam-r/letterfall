@@ -1,0 +1,4158 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title></title>
+	<meta name="generator" content="LibreOffice 24.2.7.2 (Linux)"/>
+	<meta name="created" content="2025-09-29T13:28:28.935689026"/>
+	<meta name="changed" content="2025-09-29T13:29:18.535760969"/>
+	<style type="text/css">
+		@page { size: 21cm 29.7cm; margin: 2cm }
+		p { line-height: 115%; margin-bottom: 0.25cm; background: transparent }
+		h3 { margin-top: 0.25cm; margin-bottom: 0.21cm; background: transparent; page-break-after: avoid }
+		h3.western { font-family: "Liberation Serif", serif; font-size: 14pt; font-weight: bold }
+		h3.cjk { font-family: "Noto Serif CJK SC"; font-size: 14pt; font-weight: bold }
+		h3.ctl { font-family: "Noto Sans Devanagari"; font-size: 14pt; font-weight: bold }
+		h1 { margin-bottom: 0.21cm; background: transparent; page-break-after: avoid }
+		h1.western { font-family: "Liberation Serif", serif; font-size: 24pt; font-weight: bold }
+		h1.cjk { font-family: "Noto Serif CJK SC"; font-size: 24pt; font-weight: bold }
+		h1.ctl { font-family: "Noto Sans Devanagari"; font-size: 24pt; font-weight: bold }
+		h2 { margin-top: 0.35cm; margin-bottom: 0.21cm; background: transparent; page-break-after: avoid }
+		h2.western { font-family: "Liberation Serif", serif; font-size: 18pt; font-weight: bold }
+		h2.cjk { font-family: "Noto Serif CJK SC"; font-size: 18pt; font-weight: bold }
+		h2.ctl { font-family: "Noto Sans Devanagari"; font-size: 18pt; font-weight: bold }
+		pre { background: transparent }
+		pre.western { font-family: "Liberation Mono", monospace; font-size: 10pt }
+		pre.cjk { font-family: "Noto Sans Mono CJK SC", monospace; font-size: 10pt }
+		pre.ctl { font-family: "Liberation Mono", monospace; font-size: 10pt }
+		td p { orphans: 0; widows: 0; background: transparent }
+		th p { font-weight: bold; text-align: center; orphans: 0; widows: 0; background: transparent }
+		strong { font-weight: bold }
+		code.western { font-family: "Liberation Mono", monospace }
+		code.cjk { font-family: "Noto Sans Mono CJK SC", monospace }
+		code.ctl { font-family: "Liberation Mono", monospace }
+		em { font-style: italic }
+		a:link { color: #000080; text-decoration: underline }
+		a:visited { color: #800000; text-decoration: underline }
+	</style>
+</head>
+<body lang="en-IL" link="#000080" vlink="#800000" dir="ltr"><h1 class="western">
+🎯 Product Overview</h1>
+<div id="section-0199949d-c9a9-7102-9ef1-6d9104231b6d" dir="ltr"><h2 class="western">
+	Working Title</h2>
+	<p><strong>LetterFall — Topic-Based Falling-Letters Word Game</strong></p>
+	<h2 class="western">One&#8209;Line Mission</h2>
+	<p>Help players enter a flow state by catching falling letters to
+	complete 10 topic&#8209;themed words before their credits hit zero.</p>
+	<h2 class="western">Core Loop</h2>
+	<ol>
+		<li><p style="margin-bottom: 0cm">Tap Start → game auto&#8209;selects
+		a random topic (no friction). 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">10 words are randomly sampled
+		from a larger topic pool (e.g., 50+ words per topic). 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Letters fall with a higher
+		probability for in&#8209;topic letters plus noise characters. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Player taps letters to construct
+		one word at a time; completed words are crossed off. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Each letter that hits the bottom
+		reduces credits by 1; start with 100 credits. 
+		</p></li>
+		<li><p>Win when all 10 words are completed; lose at 0 credits. On
+		win, require tap to restart. 
+		</p></li>
+	</ol>
+	<h2 class="western">Why It’s Different</h2>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Topic&#8209;based replayability;
+		each session samples words from larger pools. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Zero&#8209;friction start: one
+		tap to play, with optional Settings for difficulty and speed. 
+		</p></li>
+		<li><p>Skill ramp via difficulty presets affecting fall speed,
+		spawn rate, and noise. 
+		</p></li>
+	</ul>
+	<h2 class="western">Views (Three&#8209;Pane Layout)</h2>
+	<ul>
+		<li><p style="margin-bottom: 0cm"><strong>Main Area (center):</strong>
+		Falling letters and gameplay. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm"><strong>Right Sidebar:</strong>
+		The 10&#8209;word list (tick/cross as completed). 
+		</p></li>
+		<li><p><strong>Bottom Bar:</strong> Word construction tray showing
+		the current word being built. 
+		</p></li>
+	</ul>
+	<h2 class="western">MVP Scope</h2>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Client&#8209;only implementation
+		(no server). Persist lightweight preferences in local storage. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Topics: initial 10 topics, each
+		with ~50&#8209;word pools (select 10 per session). 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Difficulty presets: Standard,
+		Hard (noise % tunable post&#8209;MVP). 
+		</p></li>
+		<li><p>Help and About screens. 
+		</p></li>
+	</ul>
+	<h2 class="western">Key Constraints</h2>
+	<ul>
+		<li><p style="margin-bottom: 0cm">No backend dependency; assets and
+		logic shipped as static files. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Performance: smooth animation at
+		60 fps on mid&#8209;range mobile and desktop. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Accessibility: readable fonts,
+		color&#8209;safe feedback, optional reduced motion. 
+		</p></li>
+		<li><p>Offline&#8209;friendly (PWA optional in v1.1). 
+		</p></li>
+	</ul>
+	<h2 class="western">Success Metrics (Directional)</h2>
+	<ul>
+		<li><p style="margin-bottom: 0cm">FTUE completion rate (Start →
+		first word completed) &gt; 80%. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Average session length 3–6
+		minutes. 
+		</p></li>
+		<li><p>Retention proxy: % of players who start a second session &gt;
+		30% in early tests. 
+		</p></li>
+	</ul>
+</div>
+<div id="section-019994a1-08ca-7e61-99b2-b07fe6cac24a" dir="ltr"><h3 class="western">
+	2. 👥 Product Personas</h3>
+	<h1 class="western">👥 Product Personas</h1>
+	<p>Below are four core personas representing the primary audiences
+	for LetterFall. Each persona includes context, goals, frustrations,
+	and a success definition in their own words.</p>
+	<h2 class="western">🎓 Riley the Classroom Coach (Teacher, Grades
+	5–8)</h2>
+	<p><strong>Role &amp; Demographics</strong></p>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Middle&#8209;school ELA/Science
+		teacher, 28–45, public school 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Devices: Chromebooks, iPads; uses
+		web apps and lightweight installs 
+		</p></li>
+		<li><p>Session style: 5–10 minute warm&#8209;ups or
+		early&#8209;finisher activities 
+		</p></li>
+	</ul>
+	<p><strong>Goals</strong></p>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Primary: Keep students engaged
+		with themed vocabulary practice without setup overhead 
+		</p></li>
+		<li><p>Secondary: Track which words or topics are mastered vs.
+		tricky 
+		</p></li>
+	</ul>
+	<p><strong>Frustrations / Pain Points</strong></p>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Classroom time is tight;
+		convoluted onboarding kills adoption 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Content mismatch: topics too hard
+		or too childish 
+		</p></li>
+		<li><p>Sound and ads disrupt the class; needs quick mute and
+		ad&#8209;free flow 
+		</p></li>
+	</ul>
+	<p><strong>Success Definition</strong><br/>
+“Kids are actually
+	excited to review vocabulary, and I can launch a round in under a
+	minute.”</p>
+	<hr/>
+
+	<h2 class="western">🎮 Alex the On&#8209;the&#8209;Go Player
+	(Casual Commuter)</h2>
+	<p><strong>Role &amp; Demographics</strong></p>
+	<ul>
+		<li><p style="margin-bottom: 0cm">22–38, plays in short bursts on
+		phone during commute or breaks 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Devices: Mobile first; sometimes
+		desktop at lunch 
+		</p></li>
+		<li><p>Prefers games that respect time and feel fair 
+		</p></li>
+	</ul>
+	<p><strong>Goals</strong></p>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Primary: Quick 2–4 minute
+		sessions that feel skillful, not random 
+		</p></li>
+		<li><p>Secondary: Variety via topics; light sense of progression or
+		streaks 
+		</p></li>
+	</ul>
+	<p><strong>Frustrations / Pain Points</strong></p>
+	<ul>
+		<li><p style="margin-bottom: 0cm">RNG that withholds needed letters
+		feels unfair 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Long tutorials, slow start
+		speeds, or paywalls block fun 
+		</p></li>
+		<li><p>Visual clutter and tiny tap targets on small screens 
+		</p></li>
+	</ul>
+	<p><strong>Success Definition</strong><br/>
+“I can jump in, finish
+	a topic in a couple minutes, and feel clever doing it.”</p>
+	<hr/>
+
+	<h2 class="western">🧩 Dana the Word&#8209;Game Enthusiast (Puzzle
+	Aficionado)</h2>
+	<p><strong>Role &amp; Demographics</strong></p>
+	<ul>
+		<li><p style="margin-bottom: 0cm">35–65, avid player of
+		crosswords and word puzzles 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Plays daily; enjoys stats and
+		personal bests 
+		</p></li>
+		<li><p>Often uses tablet; appreciates accessibility options 
+		</p></li>
+	</ul>
+	<p><strong>Goals</strong></p>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Primary: A fair challenge with
+		clear strategy, not pure reflexes 
+		</p></li>
+		<li><p>Secondary: Track performance (wins, losses, average credits
+		left) 
+		</p></li>
+	</ul>
+	<p><strong>Frustrations / Pain Points</strong></p>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Overly twitchy gameplay that
+		punishes slower reflexes 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">No transparency on letter
+		distribution or difficulty tuning 
+		</p></li>
+		<li><p>Lack of optional assistive features (colorblind modes, text
+		size) 
+		</p></li>
+	</ul>
+	<p><strong>Success Definition</strong><br/>
+“I can plan my moves,
+	understand the drop logic, and steadily improve my stats.”</p>
+	<hr/>
+
+	<h2 class="western">👨‍👧 Priya and Aarav (Parent with
+	9&#8209;year&#8209;old)</h2>
+	<p><strong>Role &amp; Demographics</strong></p>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Parent 30–45 playing alongside
+		child aged 8–10 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Devices: Shared tablet at home,
+		occasional phone play 
+		</p></li>
+		<li><p>Seeks light learning, bonding, and safe content 
+		</p></li>
+	</ul>
+	<p><strong>Goals</strong></p>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Primary: Age&#8209;appropriate
+		topics that build vocabulary without frustration 
+		</p></li>
+		<li><p>Secondary: Positive feedback, adjustable difficulty, and no
+		surprise content 
+		</p></li>
+	</ul>
+	<p><strong>Frustrations / Pain Points</strong></p>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Words that exceed reading level
+		or are too niche 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Loud SFX or complex UI
+		overwhelming for kids 
+		</p></li>
+		<li><p>No way to slow down or pause between rounds 
+		</p></li>
+	</ul>
+	<p><strong>Success Definition</strong><br/>
+“We can pick a topic
+	my kid loves, finish most words, and celebrate wins without
+	meltdowns.”</p>
+	<hr/>
+
+	<h3 class="western">Persona Implications for Design</h3>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Difficulty and pacing should be
+		adjustable or auto&#8209;tuned for fairness. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Topic curation needs tiers (easy,
+		standard, advanced) and clear labeling. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Sessions must be snappy to
+		launch, with optional muted SFX by default in shared spaces. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Accessibility: larger tap
+		targets, color&#8209;safe cues, readable fonts, and text scaling. 
+		</p></li>
+		<li><p>Light progression and stats support enthusiasts without
+		burdening casuals. 
+		</p></li>
+	</ul>
+</div>
+<div id="section-019994a1-0b2f-7751-be00-fcfda2804a42" dir="ltr"><h3 class="western">
+	3. 📝 User Stories</h3>
+	<h1 class="western">📝 User Stories</h1>
+	<p>A concise, INVEST&#8209;compliant backlog for LetterFall. Each
+	story maps to an existing persona: 🎮 Alex, 🎓 Riley, 🧩 Dana,
+	👨‍👧 Priya.</p>
+	<hr/>
+
+	<h2 class="western">TD&#8209;001 — One&#8209;tap Quick Start
+	selects a random topic and shows 10 words (🎮 Alex)</h2>
+	<p><strong>As a casual player, I want a single Start button that
+	begins a round with a random topic so that I can play immediately.</strong></p>
+	<p><strong>Acceptance Criteria</strong></p>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Given I am on the opening screen,
+		when I press Start, then a random curated topic is selected and the
+		round begins without additional prompts. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Given the round begins, when
+		gameplay starts, then the right sidebar shows a list of exactly 10
+		target words. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Given the round begins, when the
+		10 target words are shown, then they are sampled at random without
+		replacement from the selected topic’s larger word pool
+		approximately 50 words for MVP. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Given the 10 target words are
+		sampled, when the list is displayed, then there are no duplicate
+		target words within the round’s list. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Given I play consecutive rounds
+		on the same topic, when a new round begins, then recently used
+		words are deprioritized via recency avoidance so back&#8209;to&#8209;back
+		repeats are uncommon. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Given I press Start, when
+		measuring perceived delay, then letters begin falling
+		near&#8209;immediately on typical devices. 
+		</p></li>
+		<li><p>Given the MVP build, when a topic is selected on Start, then
+		it is chosen from the set of <strong>10 curated topics</strong>. 
+		</p></li>
+	</ul>
+	<hr/>
+
+	<h2 class="western">TD&#8209;002 — Choose current word to build
+	(🎮 Alex)</h2>
+	<p><strong>As a player, I want to tap a word in the list to set it
+	as my current target so that my collected letters build that word.</strong></p>
+	<p><strong>Acceptance Criteria</strong></p>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Given the word list is visible,
+		when I tap a word, then it is highlighted as selected. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Given a word is selected, when I
+		collect letters, then progress applies to that selected word only. 
+		</p></li>
+		<li><p>Given I switch to a different word, when I return later,
+		then my prior progress on the first word is preserved. 
+		</p></li>
+	</ul>
+	<hr/>
+
+	<h2 class="western">TD&#8209;003 — Falling letters with weighted
+	distribution (🧩 Dana)</h2>
+	<p><strong>As a puzzle enthusiast, I want most falling letters drawn
+	from the round’s 10 sampled words so that skillful selection
+	matters more than luck.</strong></p>
+	<p><strong>Acceptance Criteria</strong></p>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Given a round has started, when
+		letters fall, then a configurable noise percentage controls
+		non&#8209;sampled letters. 
+		</p></li>
+		<li><p>Given letters are spawning, when spawn weighting is applied,
+		then letters from the 10 sampled target words appear the majority
+		of the time over a typical 60&#8209;second span at default
+		settings. 
+		</p></li>
+	</ul>
+	<hr/>
+
+	<h2 class="western">TD&#8209;004 — Click&#8209;to&#8209;collect in
+	correct order (🧩 Dana)</h2>
+	<p><strong>As a player, I want collected letters to match the next
+	required character in my selected word so that I’m actually
+	spelling it.</strong></p>
+	<p><strong>Acceptance Criteria</strong></p>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Given my selected word requires
+		letter N next, when I click a falling N, then that N is added to
+		the construction tray at the end. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Given the next required letter is
+		N, when I click a non&#8209;matching letter, then it is not added
+		and continues falling with a small negative feedback cue. 
+		</p></li>
+		<li><p>Given I complete the final required letter, when it is
+		collected, then the word is marked complete. 
+		</p></li>
+	</ul>
+	<hr/>
+
+	<h2 class="western">TD&#8209;005 — Construction tray and progress
+	display (👨‍👧 Priya)</h2>
+	<p><strong>As a player, I want a clear construction tray showing my
+	in&#8209;order progress so that I can anticipate the next needed
+	letter.</strong></p>
+	<p><strong>Acceptance Criteria</strong></p>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Given a word is selected, when I
+		collect letters, then the tray shows the built string and visibly
+		indicates the next required letter. 
+		</p></li>
+		<li><p>Given I made a mistake selecting the word, when I switch
+		words, then each word’s partial progress is retained separately. 
+		</p></li>
+	</ul>
+	<hr/>
+
+	<h2 class="western">TD&#8209;006 — Cross off completed words (🎮
+	Alex)</h2>
+	<p><strong>As a player, I want completed words crossed off the list
+	so that my remaining goals are obvious.</strong></p>
+	<p><strong>Acceptance Criteria</strong></p>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Given I complete a word, when the
+		last letter is placed, then the word is crossed off with a short
+		animation and sound. 
+		</p></li>
+		<li><p>Given a word is completed, when I tap it, then it cannot be
+		re&#8209;selected for construction. 
+		</p></li>
+	</ul>
+	<hr/>
+
+	<h2 class="western">TD&#8209;007 — Credits drain on missed letters
+	and lose state (🎮 Alex)</h2>
+	<p><strong>As a player, I want a visible credits counter that
+	decreases when letters hit the bottom so that time pressure feels
+	fair and clear.</strong></p>
+	<p><strong>Acceptance Criteria</strong></p>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Given a round starts with 100
+		credits, when any falling letter reaches the bottom, then credits
+		decrease by 1. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Given credits reach 0, when that
+		occurs, then the round ends immediately with a lose screen. 
+		</p></li>
+		<li><p>Given the lose screen is shown, when I choose Restart, then
+		a new round begins with 100 credits. 
+		</p></li>
+	</ul>
+	<hr/>
+
+	<h2 class="western">TD&#8209;008 — Win state when all 10 words are
+	completed (🧩 Dana)</h2>
+	<p><strong>As a player, I want a clear win screen when I complete
+	all 10 words so that success feels earned.</strong></p>
+	<p><strong>Acceptance Criteria</strong></p>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Given there are 10 words, when
+		the 10th is crossed off, then the round ends with a win screen. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Given the win screen is shown,
+		when I choose Restart, then a new round begins on the same topic by
+		default. 
+		</p></li>
+		<li><p><strong>Given the win screen is shown, then the game does
+		not auto&#8209;restart; it waits for me to choose an option.</strong>
+				</p></li>
+	</ul>
+	<hr/>
+
+	<h2 class="western">TD&#8209;009 — Fairness guard: ensure required
+	letters appear (🎮 Alex)</h2>
+	<p><strong>As a player, I want the game to avoid long droughts of
+	the next required letter so that losses feel fair, not unlucky.</strong></p>
+	<p><strong>Acceptance Criteria</strong></p>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Given a word is selected, when
+		the next required letter has not spawned for a reasonable interval,
+		then spawn weighting increases until it appears. 
+		</p></li>
+		<li><p>Given the required letter appears, when I click it, then
+		progress resumes normally. 
+		</p></li>
+	</ul>
+	<hr/>
+
+	<h2 class="western">TD&#8209;010 — Minimal onboarding overlay (🎓
+	Riley)</h2>
+	<p><strong>As a teacher, I want a 10&#8209;second, skippable overlay
+	that explains the three UI regions so that new players can start
+	without confusion.</strong></p>
+	<p><strong>Acceptance Criteria</strong></p>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Given first launch, when the
+		round is about to start, then a 1–3 card overlay explains the
+		main area, word list, and construction tray. 
+		</p></li>
+		<li><p>Given I dismiss or complete the overlay, when I return
+		later, then onboarding does not show again unless I ask for Help. 
+		</p></li>
+	</ul>
+	<hr/>
+
+	<h2 class="western">TD&#8209;011 — Quick mute and volume control
+	(🎓 Riley)</h2>
+	<p><strong>As a teacher, I want a one&#8209;tap mute so that the
+	game can be classroom&#8209;friendly.</strong></p>
+	<p><strong>Acceptance Criteria</strong></p>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Given a round is in progress,
+		when I tap Mute, then all SFX stop immediately and remain muted
+		until I unmute. 
+		</p></li>
+		<li><p>Given mute is on, when I restart a round, then the mute
+		state persists. 
+		</p></li>
+	</ul>
+	<hr/>
+
+	<h2 class="western">TD&#8209;012 — Accessibility: readable and
+	tappable (👨‍👧 Priya)</h2>
+	<p><strong>As a parent with a child, I want large, readable UI and
+	safe color contrasts so that play is comfortable.</strong></p>
+	<p><strong>Acceptance Criteria</strong></p>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Given I am on a phone, when
+		letters fall, then each letter has a finger&#8209;friendly tap
+		target and clear outline. 
+		</p></li>
+		<li><p>Given color cues exist, when colorblind mode is enabled,
+		then essential information is also conveyed by shape or text. 
+		</p></li>
+	</ul>
+	<hr/>
+
+	<h2 class="western">TD&#8209;013 — Restart and topic switch (🎮
+	Alex)</h2>
+	<p><strong>As a player, I want to quickly restart or change topics
+	from end or pause screens so that sessions chain smoothly.</strong></p>
+	<p><strong>Acceptance Criteria</strong></p>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Given I am on win or lose screen,
+		when I tap Restart, then a new round begins immediately. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Given I Restart on the same
+		topic, when the new round begins, then a fresh set of 10 target
+		words is sampled without replacement from the topic’s larger word
+		pool with recency avoidance applied. 
+		</p></li>
+		<li><p>Given I am on win or lose screen, when I tap Change Topic,
+		then I can start on a different random topic or pick one from
+		Settings. 
+		</p></li>
+	</ul>
+	<hr/>
+
+	<h2 class="western">TD&#8209;014 — Offline, client&#8209;side play
+	(👨‍👧 Priya)</h2>
+	<p><strong>As a player, I want the game to run without an internet
+	connection so that it works anywhere.</strong></p>
+	<p><strong>Acceptance Criteria</strong></p>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Given no network is available,
+		when I launch the game, then I can Start and play a full round on a
+		random built&#8209;in topic. 
+		</p></li>
+		<li><p>Given I am mid&#8209;round, when the network drops, then
+		gameplay continues uninterrupted. 
+		</p></li>
+	</ul>
+	<hr/>
+
+	<h2 class="western">TD&#8209;015 — Round summary (🧩 Dana)</h2>
+	<p><strong>As a player, I want a simple end&#8209;of&#8209;round
+	summary so that I can gauge performance.</strong></p>
+	<p><strong>Acceptance Criteria</strong></p>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Given a round ends, when the
+		summary appears, then I see words completed and credits remaining. 
+		</p></li>
+		<li><p>Given I restart from the summary, when the new round starts,
+		then prior results are not persisted beyond that screen in v1. 
+		</p></li>
+	</ul>
+	<hr/>
+
+	<h2 class="western">TD&#8209;016 — Gentle speed ramp (👨‍👧
+	Priya)</h2>
+	<p><strong>As a player, I want drop speed to ramp gently so that
+	early play teaches the loop and later play adds tension.</strong></p>
+	<p><strong>Acceptance Criteria</strong></p>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Given a round starts, when the
+		first 30 seconds elapse, then drop speed increases modestly. 
+		</p></li>
+		<li><p>Given speed ramps, when credits are low, then speed does not
+		spike further beyond a reasonable cap. 
+		</p></li>
+	</ul>
+	<hr/>
+
+	<h2 class="western">TD&#8209;017 — Settings for difficulty, speed,
+	noise, and topic preferences (🎮 Alex)</h2>
+	<p><strong>As a player, I want a simple Settings panel to adjust
+	difficulty and pacing so that the game fits my preference without
+	blocking play.</strong></p>
+	<p><strong>Acceptance Criteria</strong></p>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Given I am on the opening or
+		pause screen, when I open Settings, then I can adjust difficulty
+		tier, drop speed, and noise percentage within safe ranges. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Given I save Settings, when I
+		press Start, then the next round uses my preferences without extra
+		confirmation dialogs. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Given I have a topic preference,
+		when I set it to Random or a specific category, then Start respects
+		that preference while still allowing Quick Start. 
+		</p></li>
+		<li><p><strong>Given I open topic preferences, when viewing the
+		available topics in MVP, then I can choose among the 10 curated
+		topics or Random.</strong> 
+		</p></li>
+	</ul>
+	<hr/>
+
+	<h2 class="western">TD&#8209;018 — Help menu with How to Play and
+	FAQ (🎮 Alex)</h2>
+	<p><strong>As a player, I want a Help menu that explains controls,
+	scoring, win/lose, and tips so that I can self&#8209;serve answers.</strong></p>
+	<p><strong>Acceptance Criteria</strong></p>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Given I am on the opening or
+		pause screen, when I tap Help, then a modal shows concise tabs or
+		cards: How to Play, Tips, FAQ, Controls. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Given I open Help while offline,
+		when content loads, then it appears instantly with no external
+		links required. 
+		</p></li>
+		<li><p>Given I close Help, when I return later, then my optional
+		“Show tips on Start” toggle is remembered. 
+		</p></li>
+	</ul>
+	<hr/>
+
+	<h2 class="western">TD&#8209;019 — About modal with version and
+	privacy (🧩 Dana)</h2>
+	<p><strong>As a player, I want an About modal that shows version,
+	creators, and privacy notes so that I know what I’m running.</strong></p>
+	<p><strong>Acceptance Criteria</strong></p>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Given I open About from opening
+		or pause screens, when the modal appears, then I see the app name,
+		version, short description, creators, and a privacy statement that
+		no data is collected and play is offline. 
+		</p></li>
+		<li><p>Given I am offline, when I open About, then all information
+		is available without network calls. 
+		</p></li>
+	</ul>
+</div>
+<div id="section-019994a1-0db1-7070-979f-c855264abf21" dir="ltr"><h3 class="western">
+	4. 🗺️ User Journeys</h3>
+	<h1 class="western">🗺️ User Journeys</h1>
+	<p>Below are three pivotal journeys that validate the frictionless
+	Quick Start, accessibility, and classroom suitability. Important
+	interaction points are highlighted, and each journey includes a
+	Mermaid diagram with sentiment scores.</p>
+	<hr/>
+
+	<h2 class="western">Journey 1: Quick Start to Win — 🎮 Alex</h2>
+	<p><strong>Scenario:</strong> Alex opens LetterFall, taps <strong>Start</strong>,
+	and completes a topic in a single, satisfying run.</p>
+	<p><strong>Highlights:</strong></p>
+	<ul>
+		<li><p style="margin-bottom: 0cm"><strong>One&#8209;tap Start</strong>
+		with auto&#8209;selected topic 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Clear <strong>10&#8209;word list</strong>
+		and <strong>construction tray</strong> feedback 
+		</p></li>
+		<li><p style="margin-bottom: 0cm"><strong>Fairness guard</strong>
+		prevents droughts of the next needed letter 
+		</p></li>
+		<li><p><strong>Win screen</strong> and instant <strong>Restart</strong>
+		loop 
+		</p></li>
+	</ul>
+	<div id="mermaid-0" dir="ltr"><p><br/>
+<br/>
+
+		</p>
+	</div>
+</div>
+<p align="center" style="line-height: 100%; margin-bottom: 0cm">Launch</p>
+<p align="center" style="line-height: 100%; margin-bottom: 0cm">Open
+LetterFall and tap Start</p>
+<p align="center" style="line-height: 100%; margin-bottom: 0cm">Auto
+topic selected and letters begin falling</p>
+<p align="center" style="line-height: 100%; margin-bottom: 0cm">Early
+play</p>
+<p align="center" style="line-height: 100%; margin-bottom: 0cm">Tap a
+word to target it</p>
+<p align="center" style="line-height: 100%; margin-bottom: 0cm">Collect
+matching letters and see credits on misses</p>
+<p align="center" style="line-height: 100%; margin-bottom: 0cm">Mid
+play</p>
+<p align="center" style="line-height: 100%; margin-bottom: 0cm">Cross
+off completed words with feedback</p>
+<p align="center" style="line-height: 100%; margin-bottom: 0cm">Fairness
+guard boosts missing letter appearance</p>
+<p align="center" style="line-height: 100%; margin-bottom: 0cm">Speed
+ramps gently while credits remain safe</p>
+<p align="center" style="line-height: 100%; margin-bottom: 0cm">Finish</p>
+<p align="center" style="line-height: 100%; margin-bottom: 0cm">Complete
+the 10th word and see the win screen</p>
+<p align="center" style="line-height: 100%; margin-bottom: 0.5cm">Tap
+Restart to play another random topic</p>
+<p><strong>Pain Points and Opportunities</strong></p>
+<ul>
+	<li><p style="margin-bottom: 0cm">Potential hesitation choosing
+	which word to target first → default highlight the first
+	incomplete word. 
+	</p></li>
+	<li><p>Early confusion on misses draining credits → reinforce with
+	<strong>brief on&#8209;screen cue</strong> and subtle SFX. 
+	</p></li>
+</ul>
+<hr/>
+
+<h2 class="western">Journey 2: Settings then Play (Gentle Mode) —
+👨‍👧 Priya</h2>
+<p><strong>Scenario:</strong> Priya adjusts <strong>difficulty</strong>
+and <strong>speed</strong> for her child, then plays together.</p>
+<p><strong>Highlights:</strong></p>
+<ul>
+	<li><p style="margin-bottom: 0cm"><strong>Settings</strong>
+	available before play, but never required 
+	</p></li>
+	<li><p style="margin-bottom: 0cm"><strong>Large tap targets</strong>,
+	color&#8209;safe cues, readable fonts 
+	</p></li>
+	<li><p><strong>Gentle speed ramp</strong> to reduce frustration 
+	</p></li>
+</ul>
+<div id="mermaid-1" dir="ltr"><p><br/>
+<br/>
+
+	</p>
+</div>
+<p align="center" style="margin-bottom: 0cm">Launch</p>
+<p align="center" style="margin-bottom: 0cm">Open app with child
+present</p>
+<p align="center" style="margin-bottom: 0cm">Open Settings and choose
+Easy with lower speed</p>
+<p align="center" style="margin-bottom: 0cm">Start</p>
+<p align="center" style="margin-bottom: 0cm">Tap Start and skim the
+minimal overlay</p>
+<p align="center" style="margin-bottom: 0cm">Play</p>
+<p align="center" style="margin-bottom: 0cm">Large tap targets aid
+accurate tapping</p>
+<p align="center" style="margin-bottom: 0cm">Missed letters drain
+credits but cues stay calm</p>
+<p align="center" style="margin-bottom: 0cm">Pause between bursts to
+coach the next letter</p>
+<p align="center" style="margin-bottom: 0cm">Finish</p>
+<p align="center" style="margin-bottom: 0cm">Lose with 1–2 words
+left but feel encouraged</p>
+<p align="center">Restart with the same saved settings</p>
+<p><strong>Pain Points and Opportunities</strong></p>
+<ul>
+	<li><p style="margin-bottom: 0cm">Child may be overwhelmed if speed
+	spikes late → cap the maximum speed at Easy. 
+	</p></li>
+	<li><p>Visibility for the <strong>next required letter</strong> →
+	always show a clear marker in the tray. 
+	</p></li>
+</ul>
+<hr/>
+
+<h2 class="western">Journey 3: Classroom Warm&#8209;Up Round — 🎓
+Riley</h2>
+<p><strong>Scenario:</strong> Riley uses LetterFall as a quick
+warm&#8209;up on shared devices or a projector.</p>
+<p><strong>Highlights:</strong></p>
+<ul>
+	<li><p style="margin-bottom: 0cm"><strong>Mute toggle</strong> for
+	classroom friendliness 
+	</p></li>
+	<li><p style="margin-bottom: 0cm"><strong>Skippable onboarding</strong>
+	explaining three UI regions 
+	</p></li>
+	<li><p><strong>Three&#8209;minute round</strong> fits a warm&#8209;up
+	slot 
+	</p></li>
+</ul>
+<div id="mermaid-2" dir="ltr"><p><br/>
+<br/>
+
+	</p>
+</div>
+<p align="center" style="margin-bottom: 0cm">Setup</p>
+<p align="center" style="margin-bottom: 0cm">Launch on projector or
+student devices</p>
+<p align="center" style="margin-bottom: 0cm">Tap Mute and skip the
+overlay</p>
+<p align="center" style="margin-bottom: 0cm">Play</p>
+<p align="center" style="margin-bottom: 0cm">Tap Start to auto select
+a topic</p>
+<p align="center" style="margin-bottom: 0cm">Students call out
+letters while one taps</p>
+<p align="center" style="margin-bottom: 0cm">Fairness guard reduces
+frustration from droughts</p>
+<p align="center" style="margin-bottom: 0cm">Wrap</p>
+<p align="center" style="margin-bottom: 0cm">Round ends in about
+three minutes win or lose</p>
+<p align="center" style="margin-bottom: 0cm">Tap Restart for the next
+group</p>
+<div id="Section1" dir="ltr"><p><a name="section-019994a1-0db1-7070-979f-c855264abf21"></a>
+	<strong>Pain Points and Opportunities</strong></p>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Mixed reading levels across
+		students → ensure <strong>topic difficulty labels</strong> and
+		provide <strong>Easy</strong> default on first run. 
+		</p></li>
+		<li><p>Classroom noise constraints → <strong>remember Mute state</strong>
+		across rounds by default. 
+		</p></li>
+	</ul>
+	<hr/>
+
+	<h3 class="western">Takeaways Across Journeys</h3>
+	<ul>
+		<li><p style="margin-bottom: 0cm">The <strong>Quick Start</strong>
+		successfully eliminates pre&#8209;round friction while Settings
+		preserve control. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Clear <strong>credit drain</strong>
+		signaling and <strong>fairness tuning</strong> keep tension high
+		without feeling unfair. 
+		</p></li>
+		<li><p>Accessibility and <strong>readability</strong> are essential
+		on small screens and in shared environments. 
+		</p></li>
+	</ul>
+</div>
+<div id="section-019994a1-101b-7ae2-94dc-2b3ae134d03b" dir="ltr"><h3 class="western">
+	5. 🧩 Features</h3>
+	<h1 class="western">🧩 Features</h1>
+	<p>This section defines the functional behavior, edge cases, and
+	non&#8209;functional expectations for LetterFall’s client&#8209;side
+	MVP. Each feature lists objective, user benefit, detailed
+	requirements, and acceptance criteria.</p>
+	<h2 class="western">F&#8209;001 Quick Start (Auto Topic)</h2>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Objective: Remove friction from
+		FTUE; single tap to play. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Behavior:</p>
+		<ul>
+			<li><p style="margin-bottom: 0cm">Start button immediately selects
+			a random topic from the available set, then samples 10 words from
+			that topic’s 50&#8209;word pool. 
+			</p></li>
+			<li><p style="margin-bottom: 0cm">Transition to gameplay within &lt;
+			500 ms after tap on modern devices. 
+			</p></li>
+		</ul>
+		<li><p style="margin-bottom: 0cm">Acceptance:</p>
+		<ul>
+			<li><p style="margin-bottom: 0cm">Given the app just loaded, when
+			the user taps Start, then a session begins with a random topic and
+			10 sampled words. 
+			</p></li>
+			<li><p>Topic name is displayed (small label) but selection UI is
+			not required. 
+			</p></li>
+		</ul>
+	</ul>
+	<h2 class="western">F&#8209;002 Topic Word Sampling</h2>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Objective: Increase
+		replayability; reduce repetition. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Behavior:</p>
+		<ul>
+			<li><p style="margin-bottom: 0cm">Each topic has a large word pool
+			(~50). On session start, sample 10 unique words without
+			replacement. 
+			</p></li>
+			<li><p style="margin-bottom: 0cm">Ensure words are family&#8209;friendly
+			and single tokens; case&#8209;insensitive matching. 
+			</p></li>
+		</ul>
+		<li><p style="margin-bottom: 0cm">Acceptance:</p>
+		<ul>
+			<li><p>Over 100 sessions, duplication rate of full 10&#8209;word
+			sets is extremely low. 
+			</p></li>
+		</ul>
+	</ul>
+	<h2 class="western">F&#8209;003 Three&#8209;Pane Layout</h2>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Objective: Maintain clarity
+		during action play. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Behavior:</p>
+		<ul>
+			<li><p style="margin-bottom: 0cm">Main Playfield (center): falling
+			letters; shows credits and pause. 
+			</p></li>
+			<li><p style="margin-bottom: 0cm">Right Sidebar: list of 10 target
+			words; completed words are crossed/checked. 
+			</p></li>
+			<li><p style="margin-bottom: 0cm">Bottom Tray: shows current word
+			under construction; letters added by tapping falling letters. 
+			</p></li>
+		</ul>
+		<li><p style="margin-bottom: 0cm">Acceptance:</p>
+		<ul>
+			<li><p>Layout adapts to mobile (vertical) and desktop (horizontal)
+			with readable sizes. 
+			</p></li>
+		</ul>
+	</ul>
+	<h2 class="western">F&#8209;004 Falling Letters &amp; Spawn Logic</h2>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Objective: Provide a fair yet
+		engaging stream of letters. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Behavior:</p>
+		<ul>
+			<li><p style="margin-bottom: 0cm">Spawn scheduler biases letters
+			toward those present in the 10 target words, with a configurable
+			noise percentage. 
+			</p></li>
+			<li><p style="margin-bottom: 0cm">Difficulty affects fall speed,
+			spawn cadence, and noise percent (defaults tuned post&#8209;MVP). 
+			</p></li>
+			<li><p style="margin-bottom: 0cm">Letters that reach the bottom
+			decrement credits. 
+			</p></li>
+		</ul>
+		<li><p style="margin-bottom: 0cm">Acceptance:</p>
+		<ul>
+			<li><p>With default settings, a typical player can complete 10
+			words before credits reach zero at least 30–50% of the time. 
+			</p></li>
+		</ul>
+	</ul>
+	<h2 class="western">F&#8209;005 Word Construction &amp; Validation</h2>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Objective: Make letter capture
+		intentional and mistake&#8209;tolerant. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Behavior:</p>
+		<ul>
+			<li><p style="margin-bottom: 0cm">Tapping a falling letter appends
+			it to the current word in the bottom tray. 
+			</p></li>
+			<li><p style="margin-bottom: 0cm">Support backspace/undo via
+			on&#8209;screen control (no keyboard dependency). 
+			</p></li>
+			<li><p style="margin-bottom: 0cm">If the constructed word matches
+			a word from the right list, it is marked complete, removed from
+			active set, and the tray clears. 
+			</p></li>
+			<li><p style="margin-bottom: 0cm">Optional assist: highlight
+			letters beneficial for the current word (accessibility toggle). 
+			</p></li>
+		</ul>
+		<li><p style="margin-bottom: 0cm">Acceptance:</p>
+		<ul>
+			<li><p>Exact match required; word list is case&#8209;insensitive;
+			diacritics not used in MVP. 
+			</p></li>
+		</ul>
+	</ul>
+	<h2 class="western">F&#8209;006 Credits &amp; End Conditions</h2>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Objective: Provide tension and a
+		clear win/loss state. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Behavior:</p>
+		<ul>
+			<li><p style="margin-bottom: 0cm">Player starts with 100 credits;
+			each letter that reaches bottom reduces credits by 1. 
+			</p></li>
+			<li><p style="margin-bottom: 0cm">Lose when credits reach 0. 
+			</p></li>
+			<li><p style="margin-bottom: 0cm">Win when all 10 words completed.
+			Require a tap to restart; no auto&#8209;restart. 
+			</p></li>
+		</ul>
+		<li><p style="margin-bottom: 0cm">Acceptance:</p>
+		<ul>
+			<li><p>End screens show summary (topic, words completed, remaining
+			credits) and options: Restart, Settings, Help. 
+			</p></li>
+		</ul>
+	</ul>
+	<h2 class="western">F&#8209;007 Settings</h2>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Objective: Allow players to tune
+		challenge and comfort without blocking play. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Behavior:</p>
+		<ul>
+			<li><p style="margin-bottom: 0cm">Difficulty presets (e.g.,
+			Standard, Hard) affecting speed, spawn rate, noise percent
+			(defaults TBD via playtests). 
+			</p></li>
+			<li><p style="margin-bottom: 0cm">Toggles: sound on/off, reduced
+			motion, color&#8209;blind safe palette. 
+			</p></li>
+			<li><p style="margin-bottom: 0cm">Persist preferences in local
+			storage. 
+			</p></li>
+		</ul>
+		<li><p style="margin-bottom: 0cm">Acceptance:</p>
+		<ul>
+			<li><p>Returning players see their previous settings applied. 
+			</p></li>
+		</ul>
+	</ul>
+	<h2 class="western">F&#8209;008 Help &amp; About</h2>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Objective: Provide in&#8209;app
+		guidance and transparency. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Behavior:</p>
+		<ul>
+			<li><p style="margin-bottom: 0cm">Help: concise rules, tips,
+			accessibility notes. 
+			</p></li>
+			<li><p style="margin-bottom: 0cm">About: version, credits, privacy
+			note (no data collection), and acknowledgments. 
+			</p></li>
+		</ul>
+		<li><p style="margin-bottom: 0cm">Acceptance:</p>
+		<ul>
+			<li><p>Accessible from pause menu and home screen; opens as
+			lightweight modal or sheet. 
+			</p></li>
+		</ul>
+	</ul>
+	<h2 class="western">F&#8209;009 Pause &amp; Resume</h2>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Objective: Allow short breaks
+		without penalty drift. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Behavior:</p>
+		<ul>
+			<li><p style="margin-bottom: 0cm">Pausing stops spawn and
+			animation; no credits deducted while paused. 
+			</p></li>
+		</ul>
+		<li><p style="margin-bottom: 0cm">Acceptance:</p>
+		<ul>
+			<li><p>Resume returns to same state deterministically. 
+			</p></li>
+		</ul>
+	</ul>
+	<h2 class="western">F&#8209;010 Audio/Visual Feedback</h2>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Objective: Reinforce
+		interactions. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Behavior:</p>
+		<ul>
+			<li><p style="margin-bottom: 0cm">Subtle sounds for capture, miss,
+			word complete; animations for tray updates. 
+			</p></li>
+			<li><p style="margin-bottom: 0cm">Respect global sound toggle and
+			reduced motion. 
+			</p></li>
+		</ul>
+		<li><p style="margin-bottom: 0cm">Acceptance:</p>
+		<ul>
+			<li><p>Audio never blocks gameplay; visual cues redundant with
+			color + shape. 
+			</p></li>
+		</ul>
+	</ul>
+	<h2 class="western">Non&#8209;Functional</h2>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Performance: 60 fps target; input
+		latency &lt; 50 ms. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Bundle: initial load &lt; 300KB
+		gzipped; defer heavy assets. 
+		</p></li>
+		<li><p>Accessibility: WCAG&#8209;inspired contrasts; supports
+		color&#8209;blind palettes and reduced motion. 
+		</p></li>
+	</ul>
+</div>
+<div id="section-019994a1-1291-7761-b13c-0d9955fc3d0a" dir="ltr"><h3 class="western">
+	6. ❓ Help</h3>
+	<h1 class="western">❓ Help</h1>
+	<p>A concise, offline Help hub giving players everything they need
+	to succeed without leaving LetterFall.</p>
+	<h2 class="western">How to Play</h2>
+	<ol>
+		<li><p style="margin-bottom: 0cm">Tap <strong>Start</strong> to
+		auto&#8209;select a topic and begin. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Tap a word in the <strong>word
+		list</strong> to set your current target. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Tap falling letters that match
+		the <strong>next required character</strong> of the selected word. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Each missed letter that reaches
+		the bottom <strong>costs 1 credit</strong>; you start with <strong>100
+		credits</strong>. 
+		</p></li>
+		<li><p>Complete all <strong>10 words</strong> before credits hit <strong>0</strong>
+		to <strong>win</strong>. If credits reach <strong>0</strong>, you
+		<strong>lose</strong>. 
+		</p></li>
+	</ol>
+	<h2 class="western">Controls</h2>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Tap letters to collect;
+		non&#8209;matching taps do not collect and provide a gentle cue. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Tap a word in the list to switch
+		targets; partial progress for each word is saved. 
+		</p></li>
+		<li><p><strong>Mute</strong> toggles sound instantly. <strong>Pause</strong>
+		stops the action; credits do not drain while paused. 
+		</p></li>
+	</ul>
+	<h2 class="western">Tips</h2>
+	<ul>
+		<li><p style="margin-bottom: 0cm">The game slightly favors letters
+		you need and prevents long droughts of the next required letter. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Focus on shorter words first to
+		build momentum; or target the longest word early if credits are
+		high. 
+		</p></li>
+		<li><p>Watch the <strong>next required letter</strong> indicator in
+		the construction tray. 
+		</p></li>
+	</ul>
+	<h2 class="western">FAQ</h2>
+	<ul>
+		<li><p style="margin-bottom: 0cm"><strong>Can I choose a topic?</strong>
+		Yes, optionally via <strong>Settings</strong>. Quick Start always
+		works with a random topic. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm"><strong>Is internet required?</strong>
+		No. The game is fully <strong>offline</strong> in v1. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm"><strong>Why am I losing credits?</strong>
+		Each letter that hits the bottom costs <strong>1 credit</strong>. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm"><strong>How long is a round?</strong>
+		Typically <strong>2–4 minutes</strong>, depending on difficulty
+		and speed. 
+		</p></li>
+		<li><p><strong>Can I see the tutorial again?</strong> Yes. Open
+		<strong>Help</strong> and select <strong>Replay Onboarding</strong>.
+				</p></li>
+	</ul>
+	<h2 class="western">Accessibility</h2>
+	<ul>
+		<li><p>Enable <strong>Colorblind Mode</strong>, <strong>Text Size</strong>,
+		and <strong>Reduce Motion</strong> in <strong>Settings</strong> for
+		comfort. 
+		</p></li>
+	</ul>
+	<h2 class="western">Options</h2>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Toggle <strong>Show tips on
+		Start</strong>. 
+		</p></li>
+		<li><p><strong>Replay Onboarding</strong> to view the 1–3 card
+		intro. 
+		</p></li>
+	</ul>
+	<p>This Help is fully available <strong>offline</strong> and
+	designed to be skimmed in under <strong>30 seconds</strong>.</p>
+</div>
+<div id="section-019994a1-150b-7cf0-893b-bbacf3ca802e" dir="ltr"><h3 class="western">
+	7. ℹ️ About</h3>
+	<h1 class="western">ℹ️ About</h1>
+	<h2 class="western">LetterFall — Word&#8209;Action Vocabulary Game</h2>
+	<p><strong>Version:</strong> 1.0.0 (MVP)<br/>
+<strong>Working Title:</strong>
+	LetterFall</p>
+	<p>LetterFall fuses Wordle&#8209;style word targeting with an arcade
+	falling&#8209;letters loop. Complete <strong>10 words</strong> for a
+	random topic before your <strong>100 credits</strong> run out.</p>
+	<h2 class="western">Credits</h2>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Design and Product: [Your Name] 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Development: [Your Name or Team] 
+		</p></li>
+		<li><p>Art and Audio: Lightweight in&#8209;house assets and
+		open&#8209;licensed effects 
+		</p></li>
+	</ul>
+	<h2 class="western">Privacy and Data</h2>
+	<ul>
+		<li><p style="margin-bottom: 0cm"><strong>No data collected.</strong>
+				</p></li>
+		<li><p style="margin-bottom: 0cm"><strong>No account.</strong> 
+		</p></li>
+		<li><p style="margin-bottom: 0cm"><strong>No network required.</strong>
+				</p></li>
+		<li><p>Runs entirely <strong>client&#8209;side</strong>. 
+		</p></li>
+	</ul>
+	<h2 class="western">Content</h2>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Topics and word lists are <strong>curated</strong>
+		for clarity and age&#8209;appropriateness. 
+		</p></li>
+		<li><p>Please report problematic words by contacting the creators
+		in future versions; v1 ships without in&#8209;app reporting. 
+		</p></li>
+	</ul>
+	<h2 class="western">Acknowledgments</h2>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Thanks to the broader word&#8209;game
+		community for inspiration. 
+		</p></li>
+		<li><p>Typeface and SFX attributions available upon request; assets
+		are embedded for offline use in v1. 
+		</p></li>
+	</ul>
+	<h2 class="western">Legal</h2>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Copyright © [Year] [Creator or
+		Studio]. All rights reserved. 
+		</p></li>
+		<li><p>Trademarks and brand names belong to their respective
+		owners. 
+		</p></li>
+	</ul>
+	<p>This About page is fully available <strong>offline</strong>.</p>
+</div>
+<div id="section-019994a1-1787-7471-b8e2-e16ae2ef7a31" dir="ltr"><h3 class="western">
+	8. 🛣️ Roadmap (Order of Work, No Dates)</h3>
+	<h1 class="western">🛣️ Roadmap (Order of Work, No Dates)</h1>
+	<p>A lightweight, sequence&#8209;only plan for delivering the
+	client&#8209;side MVP of LetterFall. No timelines or estimates; each
+	phase lists key deliverables and exit criteria.</p>
+	<h2 class="western">Principles</h2>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Frictionless: single&#8209;tap
+		<strong>Start</strong> to play; Settings never block play. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Client&#8209;side only: fully
+		<strong>offline</strong>; no accounts, no tracking. 
+		</p></li>
+		<li><p>Accessible by default: readable, tappable, color&#8209;safe.
+				</p></li>
+	</ul>
+	<h2 class="western">Phase 0 — Project Scaffold</h2>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Create repo, basic app shell,
+		scene/router structure, and build pipeline. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Add placeholder assets and a
+		minimal UI theme. 
+		</p></li>
+		<li><p>Exit criteria: App boots to an opening screen with Start,
+		Settings, Mute (nonfunctional). 
+		</p></li>
+	</ul>
+	<h2 class="western">Phase 1 — Core Loop Skeleton</h2>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Implement falling letters engine
+		and rendering. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Implement Construction Tray
+		placeholder and tap detection on letters. 
+		</p></li>
+		<li><p>Exit criteria: Tapping a falling letter highlights selection
+		but does not yet validate correctness. 
+		</p></li>
+	</ul>
+	<h2 class="western">Phase 2 — Topics and Word List</h2>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Embed a few curated topic packs
+		with 10 words each. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Render the right&#8209;side word
+		list with states: Pending, In&#8209;Progress, Completed. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Default select first incomplete
+		word; allow switching. 
+		</p></li>
+		<li><p>Exit criteria: Selecting a word changes the active target;
+		list updates visually. 
+		</p></li>
+	</ul>
+	<h2 class="western">Phase 3 — Spelling Rules and Progress</h2>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Enforce next&#8209;required&#8209;letter
+		matching on collection. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Preserve partial progress per
+		word; cross off on completion. 
+		</p></li>
+		<li><p>Exit criteria: Players can fully complete a word via correct
+		letter taps; completed words cannot be reselected. 
+		</p></li>
+	</ul>
+	<h2 class="western">Phase 4 — Economy and End States</h2>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Credits HUD starting at 100;
+		decrement by 1 when any letter reaches bottom. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Detect <strong>Win</strong> when
+		all 10 words complete; <strong>Lose</strong> at 0 credits. 
+		</p></li>
+		<li><p>Exit criteria: Round can end in win or lose; Restart returns
+		to opening screen or same topic. 
+		</p></li>
+	</ul>
+	<h2 class="western">Phase 5 — Spawn Logic and Fairness Guard</h2>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Probability&#8209;weighted spawns
+		from topic letters plus noise slider. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Dynamic weighting for needed
+		letters; implement fairness guard to prevent droughts. 
+		</p></li>
+		<li><p>Exit criteria: Observed spawns favor needed letters; long
+		droughts are rare by design. 
+		</p></li>
+	</ul>
+	<h2 class="western">Phase 6 — UX Feedback and Readability</h2>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Clear next&#8209;required&#8209;letter
+		indicator in Construction Tray. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Visual and SFX cues for collect,
+		miss, cross&#8209;off; subtle negative feedback on wrong taps. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Auto&#8209;advance to next
+		incomplete word on completion (toggle default ON). 
+		</p></li>
+		<li><p>Exit criteria: Playtesters report clarity on what to do next
+		and why credits drop. 
+		</p></li>
+	</ul>
+	<h2 class="western">Phase 7 — Difficulty and Speed Ramp</h2>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Easy, Standard, Hard presets
+		affecting base speed, max speed, noise, concurrent letters. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Gentle speed ramp with caps that
+		avoid spikes at low credits. 
+		</p></li>
+		<li><p>Exit criteria: Default Standard feels tense but fair; Easy
+		is family&#8209;friendly; Hard challenges enthusiasts. 
+		</p></li>
+	</ul>
+	<h2 class="western">Phase 8 — Settings</h2>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Implement Settings panel with
+		difficulty, speed, noise, topic preference, audio volume,
+		colorblind mode, reduce motion. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Persist settings locally; Start
+		respects latest preferences without extra prompts. 
+		</p></li>
+		<li><p>Exit criteria: Settings changes apply on the next Start;
+		persistence verified offline. 
+		</p></li>
+	</ul>
+	<h2 class="western">Phase 9 — Onboarding, Help, and About</h2>
+	<ul>
+		<li><p style="margin-bottom: 0cm">First&#8209;launch, skippable 1–3
+		card overlay. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Help modal with How to Play,
+		Tips, FAQ, Accessibility, plus Replay Onboarding. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">About modal with version,
+		creators, and privacy note. 
+		</p></li>
+		<li><p>Exit criteria: New players can understand the UI in under 10
+		seconds; all content loads offline. 
+		</p></li>
+	</ul>
+	<h2 class="western">Phase 10 — Accessibility Polishing</h2>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Ensure 44 px min tap targets;
+		verify color contrast and text scaling. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Implement colorblind mode and
+		reduce&#8209;motion behavior. 
+		</p></li>
+		<li><p>Exit criteria: Accessibility checklist passes; key flows
+		usable on small phones and tablets. 
+		</p></li>
+	</ul>
+	<h2 class="western">Phase 11 — Pause, End&#8209;of&#8209;Round
+	Summary, and Quality Polish</h2>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Pause halts spawns and motion
+		without credit drain. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Add end&#8209;of&#8209;round
+		summary with words completed and credits remaining. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Tighten UI layout responsiveness;
+		fix overlap edge cases; ensure no scroll in word list on typical
+		phones. 
+		</p></li>
+		<li><p>Exit criteria: No soft&#8209;locks; summary is clear and
+		quick; UI scales across common devices. 
+		</p></li>
+	</ul>
+	<h2 class="western">Phase 12 — Offline Packaging and Stability</h2>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Bundle topic content and assets
+		for full offline play. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Test network loss during rounds;
+		ensure zero degradation. 
+		</p></li>
+		<li><p>Exit criteria: App functions identically offline; cold&#8209;start
+		and resume are stable. 
+		</p></li>
+	</ul>
+	<h2 class="western">Phase 13 — Performance Pass</h2>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Profile and optimize drops,
+		collisions, and animations to sustain target frame rate. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Cap concurrent letters sensibly
+		per difficulty. 
+		</p></li>
+		<li><p>Exit criteria: Smooth input and animation on low&#8209; to
+		mid&#8209;range devices. 
+		</p></li>
+	</ul>
+	<h2 class="western">Phase 14 — Playtesting and Tuning</h2>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Guided tests across personas:
+		Alex, Priya child pairing, Riley classroom demo, Dana enthusiast. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Tune spawn weights, speed curves,
+		and noise defaults based on feedback. 
+		</p></li>
+		<li><p>Exit criteria: Loss rate in Standard near 35–45 percent;
+		average words per session near 8–10. 
+		</p></li>
+	</ul>
+	<h2 class="western">Phase 15 — Release Candidate</h2>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Finalize icons, app metadata, and
+		basic branding. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Sanity regression pass across all
+		phases. 
+		</p></li>
+		<li><p>Exit criteria: Ready&#8209;to&#8209;ship client&#8209;side
+		MVP with Quick Start, Settings, Help, and About. 
+		</p></li>
+	</ul>
+	<hr/>
+
+	<h2 class="western">Visual Sequence</h2>
+	<div id="Section2" dir="ltr"><p><a name="mermaid-0"></a><br/>
+<br/>
+
+		</p>
+	</div>
+</div>
+<h3 class="western">9. 🛠️ Implementation Plan</h3>
+<h1 class="western">🛠️ Implementation Plan</h1>
+<p>A sequenced, engineering&#8209;ready plan to deliver the offline,
+client&#8209;side MVP of LetterFall. It aligns 1:1 with the Roadmap
+phases and the User Stories TD&#8209;001 to TD&#8209;019. No server,
+no accounts, no tracking.</p>
+<h2 class="western">🎯 Objectives and Constraints</h2>
+<ul>
+	<li><p style="margin-bottom: 0cm">Objectives: Ship a smooth, fair,
+	2–4 minute falling&#8209;letters loop with one&#8209;tap Quick
+	Start and clear win/lose. 
+	</p></li>
+	<li><p style="margin-bottom: 0cm">Constraints: 100 percent
+	client&#8209;side; English only; offline by default; accessibility
+	AA; minimal footprint; deterministic testing hooks. 
+	</p></li>
+	<li><p>Success: Users complete 8–10 words per session on average
+	with a 35–45 percent loss rate on Standard. 
+	</p></li>
+</ul>
+<h2 class="western">🧱 Core Components</h2>
+<ul>
+	<li><p style="margin-bottom: 0cm">UI Shell: Opening screen, Pause,
+	End screens, Settings, Help, About. 
+	</p></li>
+	<li><p style="margin-bottom: 0cm">Game Loop: Timestep control, spawn
+	cadence, motion updates, collision with bottom, pause/resume. 
+	</p></li>
+	<li><p style="margin-bottom: 0cm">Entities: Letter instances with
+	glyph, position, velocity, lifecycle state. 
+	</p></li>
+	<li><p style="margin-bottom: 0cm">Input: Tap or click resolution to
+	the topmost letter under pointer. 
+	</p></li>
+	<li><p style="margin-bottom: 0cm">State: Round state, selected word,
+	per&#8209;word progress, credits, difficulty, settings, mute,
+	accessibility flags. 
+	</p></li>
+	<li><p style="margin-bottom: 0cm">Content: Topic packs with
+	approximately 50&#8209;word pools per topic minimum 40; per&#8209;round
+	sampler that selects 10 unique words without replacement; recency
+	avoidance across consecutive rounds on the same topic. 
+	</p></li>
+	<li><p style="margin-bottom: 0cm">Spawn Engine: Weighted selection
+	from letters belonging to the round’s 10 sampled words plus
+	configurable noise; fairness guard; flood caps; duplicate glyph
+	handling. 
+	</p></li>
+	<li><p style="margin-bottom: 0cm">HUD: Credits, current word
+	indicator, next required letter hint, word list states. 
+	</p></li>
+	<li><p style="margin-bottom: 0cm">Audio: SFX for collect, miss,
+	cross&#8209;off, win, lose; global mute. 
+	</p></li>
+	<li><p>Persistence: Local storage of settings only. 
+	</p></li>
+</ul>
+<div id="Section3" dir="ltr"><p><a name="mermaid-0 Copy 1"></a><br/>
+<br/>
+
+	</p>
+	<div id="dmermaid-1759141676793" dir="ltr"><p><br/>
+<br/>
+
+		</p>
+	</div>
+</div>
+<div id="section-019994a1-1a0a-7ad2-83a6-c68940f2c8f6" dir="ltr"><p><br/>
+<br/>
+
+	</p>
+	<div id="Section4" dir="ltr"><p><a name="mermaid-0 Copy 2"></a><br/>
+<br/>
+
+		</p>
+		<div id="Section5" dir="ltr"><p><a name="dmermaid-1759141676793"></a>
+			<br/>
+<br/>
+
+			</p>
+		</div>
+	</div>
+	<h2 class="western">🗂️ Workstreams and Deliverables</h2>
+	<h3 class="western">1. Project Scaffold and UI Shell</h3>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Deliverables: App bootstrap,
+		basic scene routing, minimal theme, Start Settings Mute on opening
+		screen. 
+		</p></li>
+		<li><p>DoD: Boots reliably; UI buttons visible and tappable across
+		phone and tablet sizes. 
+		</p></li>
+	</ul>
+	<h3 class="western">2. Core Loop and Entities</h3>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Deliverables: Fixed update or
+		frame&#8209;based loop; falling letter entity with spawn, update,
+		render, despawn; bottom boundary detection. 
+		</p></li>
+		<li><p>DoD: Letters fall, can be paused, and despawn on bottom hit;
+		no credit logic yet. 
+		</p></li>
+	</ul>
+	<h3 class="western">3. Topics, Word List, and Selection</h3>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Deliverables: In&#8209;app topic
+		definitions with ~50&#8209;word pools per topic; per&#8209;round
+		random sampler that selects 10 unique words; right sidebar shows
+		those 10 and states; selection highlight; auto&#8209;select first
+		incomplete. 
+		</p></li>
+		<li><p>DoD: Tapping a list item changes active target; state
+		persists during round; no duplicate words within the round’s
+		10&#8209;word list; consecutive rounds on the same topic apply
+		recency avoidance so immediate repeats are uncommon. 
+		</p></li>
+	</ul>
+	<h3 class="western">4. Spelling Rules and Progress</h3>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Deliverables:
+		Next&#8209;required&#8209;letter matching; construction tray with
+		built substring and next&#8209;letter marker; per&#8209;word
+		partial progress; cross&#8209;off on completion; auto&#8209;advance
+		toggle. 
+		</p></li>
+		<li><p>DoD: A word can be fully completed only via correct order;
+		completed words non&#8209;selectable. 
+		</p></li>
+	</ul>
+	<h3 class="western">5. Credits, Win and Lose States</h3>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Deliverables: Credits HUD
+		starting at 100; decrement on bottom hits; Win when 10 words done;
+		Lose at 0; end screen with Restart and Change Topic. 
+		</p></li>
+		<li><p>DoD: Round reliably terminates in win or lose; <strong>end
+		screen persists with no auto&#8209;restart on Win;</strong> Restart
+		resets round state. 
+		</p></li>
+	</ul>
+	<h3 class="western">6. Spawn Engine and Fairness Guard</h3>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Deliverables: Weighted letter
+		distribution from the round’s 10 sampled words plus configurable
+		noise; dynamic favoring of needed letters; fairness guard to
+		prevent droughts; flood caps; duplicate glyph handling. 
+		</p></li>
+		<li><p>DoD: Observed play shows useful letters appear at reasonable
+		cadence; long droughts are rare. 
+		</p></li>
+	</ul>
+	<h3 class="western">7. UX Feedback, Audio, and Readability</h3>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Deliverables: Visual cues for
+		collect, miss, cross&#8209;off; subtle negative feedback on wrong
+		taps; SFX and global mute; ensure topmost&#8209;letter hit testing.
+				</p></li>
+		<li><p>DoD: Input&#8209;to&#8209;feedback under 100 ms on target
+		devices; mute persists across rounds. 
+		</p></li>
+	</ul>
+	<h3 class="western">8. Difficulty Presets and Speed Ramp</h3>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Deliverables: Easy Standard Hard
+		affecting base speed, max speed, noise, concurrent letters; gentle
+		ramp over time with caps; <strong>noise defaults for Standard and
+		Hard to be finalized during the tuning phase once the game is
+		playable</strong>. 
+		</p></li>
+		<li><p>DoD: Standard produces target tension; Easy remains
+		family&#8209;friendly; Hard is challenging. 
+		</p></li>
+	</ul>
+	<h3 class="western">9. Settings and Persistence</h3>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Deliverables: Settings for
+		difficulty, speed, noise, topic preference, audio volume,
+		colorblind mode, reduce motion; local persistence. 
+		</p></li>
+		<li><p>DoD: Settings changes apply next round; persist survives app
+		restarts; Quick Start respects preferences. 
+		</p></li>
+	</ul>
+	<h3 class="western">10. Onboarding, Help, About</h3>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Deliverables: First&#8209;launch
+		1–3 card overlay; Help with How to Play, Tips, FAQ,
+		Accessibility; About with version and privacy note; Replay
+		Onboarding. 
+		</p></li>
+		<li><p>DoD: New players understand UI in under 10 seconds; all
+		content available offline. 
+		</p></li>
+	</ul>
+	<h3 class="western">11. Pause, Summary, Accessibility Polish</h3>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Deliverables: Pause halts motion
+		and spawns; end&#8209;of&#8209;round summary; AA color contrast; 44
+		px taps; colorblind mode; reduce motion; text size scaling. 
+		</p></li>
+		<li><p>DoD: Accessibility checklist passes; UI scales on small
+		phones and tablets; no scroll in word list on common devices. 
+		</p></li>
+	</ul>
+	<h3 class="western">12. Offline Packaging, Stability, Performance</h3>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Deliverables: Bundle content and
+		assets; offline operation validated; performance tuning to sustain
+		smooth input and motion; cap concurrent letters per difficulty. 
+		</p></li>
+		<li><p>DoD: Identical behavior offline; no soft&#8209;locks; smooth
+		feel on low&#8209; to mid&#8209;range hardware. 
+		</p></li>
+	</ul>
+	<h2 class="western">✅ Acceptance and Test Strategy</h2>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Deterministic Spawns: Add debug
+		seed input to RNG to reproduce sequences for fairness tests. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Sampling and Recency Tests:
+		Verify 10 unique words per round; across 3 consecutive rounds on
+		the same topic, repeats stay below an agreed threshold via recency
+		avoidance; confirm no duplicates within a single round’s list. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Scenario Scripts: Fixed topics
+		and settings to validate TD&#8209;001 to TD&#8209;019 end&#8209;to&#8209;end.
+				</p></li>
+		<li><p style="margin-bottom: 0cm">Edge Cases: Duplicate letters in
+		words, simultaneous bottom hits, overlapping taps, rapid word
+		switching, last&#8209;letter completes word. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Fairness Guard Tests: Simulate
+		prolonged absence of next required letter and verify weight
+		increase resolves within bounds. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Performance Budget: Start tap to
+		first letter under 800 ms; tap feedback under 100 ms; steady motion
+		without hitches. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Accessibility Checklist:
+		Contrast, tap size, text scale, colorblind verification,
+		reduce&#8209;motion audit. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Offline Tests: Airplane mode cold
+		start; mid&#8209;round connectivity drop; Help/About availability. 
+		</p></li>
+		<li><p>Device Matrix: Small phone, large phone, tablet, low&#8209;end
+		device profile. 
+		</p></li>
+	</ul>
+	<h2 class="western">📦 Content Guidelines for v1</h2>
+	<ul>
+		<li><p style="margin-bottom: 0cm"><strong>10 curated topics</strong>;
+		each with approximately 50 clear, age&#8209;appropriate words per
+		topic; each round samples 10 unique words without replacement;
+		avoid rare proper nouns. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Label topics with difficulty and
+		length profile; balance letter frequency variance across topics. 
+		</p></li>
+		<li><p>Avoid ambiguous homographs; prefer American English spelling
+		for v1. 
+		</p></li>
+	</ul>
+	<h2 class="western">⚠️ Risks and Mitigations</h2>
+	<ul>
+		<li><p style="margin-bottom: 0cm">RNG Frustration: Fairness guard
+		plus spawn weighting; cap noise at safe default; telemetry is
+		offline, so rely on playtests and session heuristics. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Visual Clutter: Limit concurrent
+		letters; ensure outlines and spacing; reduce motion option. 
+		</p></li>
+		<li><p>Overlong Sessions: Speed ramp tuning; gentle, capped
+		acceleration; credits drain provides ceiling. 
+		</p></li>
+	</ul>
+	<h2 class="western">🔁 Build Order Tie&#8209;In to Roadmap</h2>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Phase 0–1: Scaffold and core
+		loop. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Phase 2–4: Topics, spelling,
+		credits and end states. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Phase 5–7: Spawn fairness,
+		feedback, difficulty and ramp. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Phase 8–10: Settings,
+		onboarding, help, about, accessibility. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Phase 11–13: Pause, summary,
+		offline packaging, performance. 
+		</p></li>
+		<li><p>Phase 14–15: Playtesting, tuning, release. 
+		</p></li>
+	</ul>
+	<h2 class="western">📋 Definition of Ready and Done</h2>
+	<ul>
+		<li><p style="margin-bottom: 0cm">DoR: Story has user value,
+		acceptance criteria, UI snapshot or description, test notes, and
+		dependencies resolved. 
+		</p></li>
+		<li><p>DoD: Feature meets acceptance criteria, passes device
+		matrix, accessibility checks, offline tests, and has rollback/retry
+		paths where relevant. 
+		</p></li>
+	</ul>
+	<h2 class="western">✅ Resolved Decisions</h2>
+	<ul>
+		<li><p style="margin-bottom: 0cm"><strong>V1 content lock
+		2025&#8209;09&#8209;29:</strong> 10 launch topics and their draft
+		50&#8209;word pools approved. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm"><strong>MVP topic count:</strong>
+		10 curated topics at launch. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm"><strong>Content pools:</strong>
+		Each topic uses a ≈50&#8209;word pool minimum 40; each round
+		samples 10 unique words; recency avoidance reduces repeats across
+		back&#8209;to&#8209;back rounds on the same topic. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm"><strong>Noise defaults:</strong>
+		Set during the tuning phase once the game is playable; provisional
+		internal values are acceptable pre&#8209;tuning. 
+		</p></li>
+		<li><p><strong>Win restart behavior:</strong> Require a tap to
+		restart; no auto&#8209;restart on Win. 
+		</p></li>
+	</ul>
+	<h2 class="western">🧰 Stack Selection Criteria for Tech Handoff
+	(Product&#8209;Side)</h2>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Offline&#8209;First: No runtime
+		network calls; all code and assets bundled; Help and About fully
+		offline; zero trackers or analytics. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Performance Budgets: Sustain 60
+		fps feel; input&#8209;to&#8209;feedback under 100 ms; Start tap to
+		first falling letter under 800 ms on target low&#8209; to mid&#8209;range
+		devices; stable timing for fairness. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Small Footprint: Prefer lean
+		runtime and bundles; avoid heavyweight engines that jeopardize load
+		time or device compatibility. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Cross&#8209;Device Input:
+		Reliable touch and mouse support; accurate topmost&#8209;letter hit
+		testing; high&#8209;DPI rendering; landscape layout. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Accessibility Support: Text
+		scaling, AA contrast, colorblind mode hooks, reduce&#8209;motion;
+		semantic structure where applicable. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Determinism Hooks: Seedable RNG,
+		fixed&#8209;step simulation option, and record&#8209;and&#8209;replay
+		harness capability for fairness testing. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Content Pipeline: Human&#8209;editable
+		embedded resources for per&#8209;topic word pools; validation at
+		build time; safe character set; future localization path. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Packaging and Installability:
+		Installable offline experience for mobile and desktop; no elevated
+		permissions; predictable cold&#8209;start behavior. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Audio Constraints: Immediate SFX
+		with global mute; respect platform audio policies without blocking
+		gameplay. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Tooling and DX: Fast local
+		iteration, simple build steps, and portable project structure. 
+		</p></li>
+		<li><p>Security and Privacy: No data egress; sandboxed runtime; no
+		external script loading at runtime. 
+		</p></li>
+	</ul>
+	<h2 class="western">🚀 Sprint 0: Stack&#8209;Selection Spike &amp;
+	Deliverables</h2>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Goals: De&#8209;risk stack choice
+		against offline, performance, accessibility, and determinism
+		requirements. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Deliverables:</p>
+		<ul>
+			<li><p style="margin-bottom: 0cm">Micro&#8209;prototype: Falling
+			letters, click&#8209;to&#8209;collect, basic word list panel;
+			measure input latency and frame stability on a low&#8209;end
+			profile. 
+			</p></li>
+			<li><p style="margin-bottom: 0cm">Offline Package: Produce an
+			installable offline build and validate airplane&#8209;mode cold
+			start and mid&#8209;round behavior. 
+			</p></li>
+			<li><p style="margin-bottom: 0cm">Determinism Harness: Seed input
+			UI, record&#8209;and&#8209;replay of a 60&#8209;second scenario;
+			document reproducibility. 
+			</p></li>
+			<li><p style="margin-bottom: 0cm">Accessibility Proof: Text scale,
+			color contrast sample screens, reduce&#8209;motion toggle impact. 
+			</p></li>
+			<li><p style="margin-bottom: 0cm">Content Ingestion Demo: Load one
+			topic with a ~50&#8209;word pool and sample 10 unique words; show
+			recency avoidance across 3 rounds. 
+			</p></li>
+			<li><p style="margin-bottom: 0cm">Decision Record: Compare
+			candidate stacks against criteria; risks, mitigations, and a
+			recommended path with evidence and perf numbers. 
+			</p></li>
+		</ul>
+		<li><p style="margin-bottom: 0cm">Go/No&#8209;Go Criteria:</p>
+		<ul>
+			<li><p style="margin-bottom: 0cm">Meets performance budgets on
+			target devices with representative load. 
+			</p></li>
+			<li><p style="margin-bottom: 0cm">Fully offline with zero network
+			calls; Help/About available. 
+			</p></li>
+			<li><p style="margin-bottom: 0cm">Deterministic replay reproduces
+			key fairness tests. 
+			</p></li>
+			<li><p style="margin-bottom: 0cm">Accessibility checks pass for
+			text scaling and contrast; reduce&#8209;motion degrades
+			gracefully. 
+			</p></li>
+			<li><p>Build and packaging steps are reliable and under 10 minutes
+			on a standard dev machine. 
+			</p></li>
+		</ul>
+	</ul>
+</div>
+<div id="section-019994cd-0fb7-7ec1-9725-af2b6b452b2b" dir="ltr"><h3 class="western">
+	10. 📚 Launch Topics and Draft 50&#8209;Word Pools</h3>
+	<h1 class="western">📚 Launch Topics and Draft 50&#8209;Word Pools</h1>
+	<p>These are proposed launch topics with draft pools of 50 unique,
+	single&#8209;word entries each. Principles applied:</p>
+	<ul>
+		<li><p style="margin-bottom: 0cm">American English spelling;
+		family&#8209;friendly; no spaces or hyphens; avoid rare proper
+		nouns 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Mix of short and medium lengths
+		for pacing; clear nouns to reduce ambiguity 
+		</p></li>
+		<li><p>Each round samples 10 unique words from the chosen topic;
+		recency avoidance reduces back&#8209;to&#8209;back repeats across
+		rounds 
+		</p></li>
+	</ul>
+	<hr/>
+
+	<h2 class="western">1) Fruits</h2>
+	<p>Length profile: 4–10 letters. Difficulty: Easy to Standard.</p>
+	<ol>
+		<li><p style="margin-bottom: 0cm">apple 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">banana 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">orange 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">grape 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">mango 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">peach 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">pear 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">plum 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">cherry 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">apricot 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">kiwi 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">lemon 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">lime 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">cantaloupe 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">honeydew 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">papaya 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">guava 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">fig 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">date 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">coconut 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">pineapple 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">blueberry 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">blackberry 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">strawberry 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">raspberry 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">cranberry 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">tangerine 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">clementine 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">grapefruit 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">pomegranate 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">nectarine 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">persimmon 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">avocado 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">currant 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">lychee 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">mulberry 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">boysenberry 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">gooseberry 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">passionfruit 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">starfruit 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">dragonfruit 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">jackfruit 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">durian 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">soursop 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">plantain 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">kumquat 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">quince 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">feijoa 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">tamarind 
+		</p></li>
+		<li><p>longan 
+		</p></li>
+	</ol>
+	<hr/>
+
+	<h2 class="western">2) Vegetables</h2>
+	<p>Length profile: 3–12 letters. Difficulty: Easy to Standard.</p>
+	<ol>
+		<li><p style="margin-bottom: 0cm">carrot 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">potato 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">tomato 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">onion 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">garlic 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">pepper 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">cucumber 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">lettuce 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">spinach 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">kale 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">cabbage 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">broccoli 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">cauliflower 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">celery 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">beet 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">turnip 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">radish 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">yam 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">squash 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">pumpkin 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">zucchini 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">eggplant 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">okra 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">asparagus 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">artichoke 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">leek 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">chive 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">scallion 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">shallot 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">parsley 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">cilantro 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">dill 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">basil 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">pea 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">bean 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">lentil 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">chickpea 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">corn 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">ginger 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">horseradish 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">rutabaga 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">parsnip 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">endive 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">arugula 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">fennel 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">radicchio 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">watercress 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">mushroom 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">cassava 
+		</p></li>
+		<li><p>taro 
+		</p></li>
+	</ol>
+	<hr/>
+
+	<h2 class="western">3) Animals</h2>
+	<p>Length profile: 3–10 letters. Difficulty: Easy to Standard.</p>
+	<ol>
+		<li><p style="margin-bottom: 0cm">dog 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">cat 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">horse 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">cow 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">pig 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">sheep 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">goat 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">chicken 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">duck 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">goose 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">turkey 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">rabbit 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">deer 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">lion 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">tiger 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">bear 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">wolf 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">fox 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">zebra 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">giraffe 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">elephant 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">rhino 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">hippo 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">kangaroo 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">koala 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">panda 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">monkey 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">gorilla 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">chimpanzee 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">lemur 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">otter 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">beaver 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">raccoon 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">skunk 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">squirrel 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">mouse 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">rat 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">hamster 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">hedgehog 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">camel 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">bison 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">donkey 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">mule 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">leopard 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">cheetah 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">jaguar 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">dolphin 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">whale 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">shark 
+		</p></li>
+		<li><p>seal 
+		</p></li>
+	</ol>
+	<hr/>
+
+	<h2 class="western">4) Birds</h2>
+	<p>Length profile: 3–12 letters. Difficulty: Easy to Standard.</p>
+	<ol>
+		<li><p style="margin-bottom: 0cm">robin 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">sparrow 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">finch 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">canary 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">pigeon 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">dove 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">crow 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">raven 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">jay 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">magpie 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">lark 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">wren 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">swallow 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">swift 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">owl 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">hawk 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">eagle 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">falcon 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">vulture 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">heron 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">crane 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">stork 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">ibis 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">pelican 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">cormorant 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">duck 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">goose 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">swan 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">turkey 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">quail 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">pheasant 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">grouse 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">parrot 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">macaw 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">cockatoo 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">toucan 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">flamingo 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">gull 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">penguin 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">ostrich 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">emu 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">auk 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">woodpecker 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">kingfisher 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">hummingbird 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">nightjar 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">sandpiper 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">plover 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">tern 
+		</p></li>
+		<li><p>egret 
+		</p></li>
+	</ol>
+	<hr/>
+
+	<h2 class="western">5) Sea Life</h2>
+	<p>Length profile: 3–12 letters. Difficulty: Standard.</p>
+	<ol>
+		<li><p style="margin-bottom: 0cm">shark 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">whale 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">dolphin 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">porpoise 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">manatee 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">dugong 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">seal 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">walrus 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">octopus 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">squid 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">cuttlefish 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">nautilus 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">jellyfish 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">seahorse 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">starfish 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">barnacle 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">coral 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">anemone 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">sponge 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">urchin 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">clam 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">oyster 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">mussel 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">scallop 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">lobster 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">crab 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">shrimp 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">prawn 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">krill 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">eel 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">flounder 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">halibut 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">salmon 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">tuna 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">mackerel 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">sardine 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">anchovy 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">swordfish 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">marlin 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">cod 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">haddock 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">grouper 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">snapper 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">barracuda 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">stingray 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">manta 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">kelp 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">plankton 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">seaweed 
+		</p></li>
+		<li><p>bonito 
+		</p></li>
+	</ol>
+	<hr/>
+
+	<h2 class="western">6) Clothing</h2>
+	<p>Length profile: 3–10 letters. Difficulty: Easy.</p>
+	<ol>
+		<li><p style="margin-bottom: 0cm">shirt 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">pants 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">jeans 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">shorts 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">skirt 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">dress 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">blouse 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">sweater 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">hoodie 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">jacket 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">coat 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">vest 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">blazer 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">suit 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">tie 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">belt 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">scarf 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">hat 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">cap 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">beanie 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">gloves 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">mittens 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">socks 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">stockings 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">boots 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">shoes 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">sandals 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">sneakers 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">loafers 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">slippers 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">pajamas 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">robe 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">underwear 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">bra 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">briefs 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">boxers 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">leggings 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">tights 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">cardigan 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">parka 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">raincoat 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">poncho 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">overalls 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">jumpsuit 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">swimsuit 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">bikini 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">trunks 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">shawl 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">kimono 
+		</p></li>
+		<li><p>sari 
+		</p></li>
+	</ol>
+	<hr/>
+
+	<h2 class="western">7) Household Items</h2>
+	<p>Length profile: 3–10 letters. Difficulty: Easy.</p>
+	<ol>
+		<li><p style="margin-bottom: 0cm">chair 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">table 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">sofa 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">couch 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">ottoman 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">stool 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">bench 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">bed 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">mattress 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">pillow 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">blanket 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">quilt 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">sheet 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">lamp 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">lantern 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">bulb 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">switch 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">outlet 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">clock 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">mirror 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">rug 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">carpet 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">curtain 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">drape 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">blind 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">shutter 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">cabinet 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">drawer 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">dresser 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">wardrobe 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">closet 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">shelf 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">bookcase 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">desk 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">counter 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">faucet 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">sink 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">toilet 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">shower 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">bathtub 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">towel 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">soap 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">sponge 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">bucket 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">broom 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">mop 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">vacuum 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">trashcan 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">bin 
+		</p></li>
+		<li><p>basket 
+		</p></li>
+	</ol>
+	<hr/>
+
+	<h2 class="western">8) Sports</h2>
+	<p>Length profile: 4–12 letters. Difficulty: Standard.</p>
+	<ol>
+		<li><p style="margin-bottom: 0cm">soccer 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">football 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">baseball 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">basketball 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">tennis 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">golf 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">hockey 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">cricket 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">rugby 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">volleyball 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">badminton 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">pingpong 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">handball 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">softball 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">lacrosse 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">gymnastics 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">wrestling 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">boxing 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">karate 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">judo 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">taekwondo 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">fencing 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">archery 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">skating 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">surfing 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">sailing 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">rowing 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">kayaking 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">canoeing 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">diving 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">swimming 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">skiing 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">snowboarding 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">biathlon 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">curling 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">bobsled 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">luge 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">shotput 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">marathon 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">sprint 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">hurdles 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">cycling 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">triathlon 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">decathlon 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">equestrian 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">polo 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">skateboarding 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">climbing 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">parkour 
+		</p></li>
+		<li><p>yoga 
+		</p></li>
+	</ol>
+	<hr/>
+
+	<h2 class="western">9) Body Parts</h2>
+	<p>Length profile: 3–10 letters. Difficulty: Easy.</p>
+	<ol>
+		<li><p style="margin-bottom: 0cm">head 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">hair 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">face 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">forehead 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">eyebrow 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">eyelash 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">eye 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">ear 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">nose 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">mouth 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">lip 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">tooth 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">tongue 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">chin 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">neck 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">throat 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">shoulder 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">arm 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">elbow 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">wrist 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">hand 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">palm 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">finger 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">thumb 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">chest 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">back 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">waist 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">hip 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">belly 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">stomach 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">leg 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">thigh 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">knee 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">shin 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">calf 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">ankle 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">foot 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">heel 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">toe 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">brain 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">heart 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">lung 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">liver 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">kidney 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">muscle 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">bone 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">skull 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">spine 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">rib 
+		</p></li>
+		<li><p>vein 
+		</p></li>
+	</ol>
+	<hr/>
+
+	<h2 class="western">10) Transportation</h2>
+	<p>Length profile: 3–12 letters. Difficulty: Easy to Standard.</p>
+	<ol>
+		<li><p style="margin-bottom: 0cm">car 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">truck 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">bus 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">van 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">taxi 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">train 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">subway 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">metro 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">tram 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">trolley 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">monorail 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">ferry 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">boat 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">ship 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">canoe 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">kayak 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">raft 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">yacht 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">sailboat 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">submarine 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">airplane 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">jet 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">helicopter 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">glider 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">balloon 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">blimp 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">zeppelin 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">rocket 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">spaceship 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">scooter 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">moped 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">motorcycle 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">bicycle 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">skateboard 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">skates 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">unicycle 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">snowmobile 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">bulldozer 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">tractor 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">ambulance 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">carriage 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">rickshaw 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">wagon 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">sled 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">gondola 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">funicular 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">hovercraft 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">jetski 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">motorboat 
+		</p></li>
+		<li><p>streetcar 
+		</p></li>
+	</ol>
+	<hr/>
+
+	<h3 class="western">Notes</h3>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Words can be pruned or swapped
+		during tuning for difficulty balance, letter frequency coverage,
+		and age appropriateness. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">We intentionally avoided spaces
+		and hyphens to keep spelling mechanics simple in v1. 
+		</p></li>
+		<li><p>If you’d like, we can add regional variants later as
+		optional packs. 
+		</p></li>
+	</ul>
+</div>
+<div id="section-019994d1-426c-79d2-8118-80b25c0d4eb3" dir="ltr"><h3 class="western">
+	11. 🏗️ Architecture Overview</h3>
+	<h1 class="western">🏗️ Architecture Overview</h1>
+	<h2 class="western">System Purpose</h2>
+	<p>Deliver a frictionless, client&#8209;only word action game where
+	players tap falling letters to complete 10 randomly sampled words
+	from a topic, managing a shared credit pool.</p>
+	<h2 class="western">Scope and Context</h2>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Single&#8209;page, client&#8209;only
+		web app (desktop and mobile). No server required for gameplay. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Static assets (HTML/CSS/JS,
+		images, word pools as JSON) hosted on a CDN or static site host. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Preferences and lightweight
+		session state persisted in browser storage. 
+		</p></li>
+		<li><p>Optional PWA support (installable, offline cache) as a
+		near&#8209;term evolution. 
+		</p></li>
+	</ul>
+	<h2 class="western">Context Diagram</h2>
+	<div id="Section6" dir="ltr"><p><a name="mermaid-0 Copy 3"></a><br/>
+<br/>
+
+		</p>
+	</div>
+</div>
+<div id="Section7" dir="ltr"><p><a name="section-019994d1-426c-79d2-8118-80b25c0d4eb3"></a>
+	<br/>
+<br/>
+
+	</p>
+	<div id="Section8" dir="ltr"><p><a name="mermaid-0 Copy 4"></a><br/>
+<br/>
+
+		</p>
+	</div>
+	<h2 class="western">Key Responsibilities (Client)</h2>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Game loop and letter spawn
+		scheduler with difficulty presets. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Physics/animation of falling
+		letters (60 fps target) and collision with bottom boundary. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Input handling for touch/mouse;
+		no keyboard required. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Word construction tray logic and
+		validation against current target word. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Topic/word selection: choose
+		random topic → sample 10 words from a larger pool (e.g., 50+
+		entries) per session. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Credit management: start 100;
+		decrement by 1 when a letter reaches bottom; end conditions. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">UI layout: main playfield, right
+		word list (progress), bottom construction tray, HUD (credits,
+		pause, settings, help, about). 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Persistence: store settings
+		(difficulty, speed, accessibility toggles) locally. 
+		</p></li>
+		<li><p>Audio/visual feedback and accessibility options (reduced
+		motion, color&#8209;safe indicators). 
+		</p></li>
+	</ul>
+	<h2 class="western">Constraints and Assumptions</h2>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Client&#8209;only MVP; no
+		authentication, no backend APIs. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Family&#8209;friendly content; no
+		PII collected; analytics (if any) deferred or opt&#8209;in,
+		client&#8209;side only. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Performance: smooth animation on
+		mid&#8209;range mobile; target &lt; 16ms/frame; avoid layout
+		thrash. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Bundle size budget: aim &lt;
+		300KB gzipped initial, lazy&#8209;load heavy assets. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Determinism: random seeds per
+		session for reproducibility when debugging. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Internationalization later; MVP
+		English only. 
+		</p></li>
+		<li><p>Win flow requires user tap to restart (no auto&#8209;restart).
+				</p></li>
+	</ul>
+	<h2 class="western">External Interfaces</h2>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Web Platform APIs:
+		requestAnimationFrame, CSS transforms, Pointer Events, Web Audio
+		(optional), Web Storage/IndexedDB, Resize Observer. 
+		</p></li>
+		<li><p>Optional PWA: Service Worker, Cache Storage, Manifest. 
+		</p></li>
+	</ul>
+	<h2 class="western">Open Items (tracked)</h2>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Noise letter percentage defaults
+		per difficulty will be tuned post&#8209;MVP based on playtests. 
+		</p></li>
+		<li><p>Potential lightweight telemetry (client&#8209;only) to tune
+		difficulty—out of scope for MVP unless explicitly enabled. 
+		</p></li>
+	</ul>
+</div>
+<div id="section-019994d7-6c48-7e33-aa17-7a0fe84fec52" dir="ltr"><h3 class="western">
+	12. 🧱 Architecture Views</h3>
+	<h1 class="western">🧱 Architecture Views</h1>
+	<p>This section details the deployable containers, internal
+	components, and key runtime flows for LetterFall’s client&#8209;only
+	MVP.</p>
+	<h2 class="western">1) Container View</h2>
+	<div id="Section9" dir="ltr"><p><a name="mermaid-0 Copy 5"></a><br/>
+<br/>
+
+		</p>
+		<div id="dmermaid-1759141676802" dir="ltr"><p><br/>
+<br/>
+
+			</p>
+		</div>
+	</div>
+</div>
+<div id="Section10" dir="ltr"><p><a name="mermaid-0 Copy 6"></a><br/>
+<br/>
+
+	</p>
+	<div id="Section11" dir="ltr"><p><a name="dmermaid-1759141676802"></a>
+		<br/>
+<br/>
+
+		</p>
+	</div>
+</div>
+<h2 class="western">2) Component View (Inside the Client App)</h2>
+<div id="Section12" dir="ltr"><p><a name="mermaid-1"></a><br/>
+<br/>
+
+	</p>
+	<div id="dmermaid-1759141676803" dir="ltr"><p><br/>
+<br/>
+
+		</p>
+	</div>
+</div>
+<div id="Section13" dir="ltr"><p><a name="mermaid-1 Copy 1"></a><br/>
+<br/>
+
+	</p>
+	<div id="Section14" dir="ltr"><p><a name="dmermaid-1759141676803"></a>
+		<br/>
+<br/>
+
+		</p>
+	</div>
+</div>
+<h3 class="western">Component Responsibilities</h3>
+<ul>
+	<li><p style="margin-bottom: 0cm">App Shell/Router: lightweight
+	navigation; no full page reloads. 
+	</p></li>
+	<li><p style="margin-bottom: 0cm">Game State Machine (FSM):
+	transitions Home, LoadingTopic, Playing, Paused, Win, Lose. 
+	</p></li>
+	<li><p style="margin-bottom: 0cm">Game Loop: requestAnimationFrame
+	with delta&#8209;time and a fixed step for game logic if needed. 
+	</p></li>
+	<li><p style="margin-bottom: 0cm">RNG + Seed: deterministic sessions
+	for QA; new seed per Start unless overridden in debug. 
+	</p></li>
+	<li><p style="margin-bottom: 0cm">Spawn Scheduler: determines next
+	letters using target words frequency + noise percentage; difficulty
+	affects spawn cadence and fall speed. 
+	</p></li>
+	<li><p style="margin-bottom: 0cm">Physics/Animation: positions
+	letters; detects bottom boundary; triggers miss events. 
+	</p></li>
+	<li><p style="margin-bottom: 0cm">Pointer Input: hit&#8209;test
+	falling letters; forward captures to Word Manager. 
+	</p></li>
+	<li><p style="margin-bottom: 0cm">Word Manager: manages current
+	construction tray; validates against active 10&#8209;word set; marks
+	completion, updates list. 
+	</p></li>
+	<li><p style="margin-bottom: 0cm">Credits Manager: 100 start; −1
+	per bottom collision; triggers Lose at 0. 
+	</p></li>
+	<li><p style="margin-bottom: 0cm">HUD Controller: credits, topic
+	label, pause button, settings/help/about access. 
+	</p></li>
+	<li><p style="margin-bottom: 0cm">Settings Manager: difficulty,
+	noise, speed, audio, reduced motion, color palette; persisted
+	locally. 
+	</p></li>
+	<li><p style="margin-bottom: 0cm">Persistence Adapter: abstracts Web
+	Storage/IndexedDB as needed. 
+	</p></li>
+	<li><p style="margin-bottom: 0cm">Content Loader: loads topic JSON;
+	samples 10 unique words per session. 
+	</p></li>
+	<li><p style="margin-bottom: 0cm">Audio Manager: non&#8209;blocking
+	sound cues with global toggle. 
+	</p></li>
+	<li><p>Accessibility Options: reduced motion and color&#8209;blind
+	safe palette hooks to UI. 
+	</p></li>
+</ul>
+<h2 class="western">3) Key Runtime Flows</h2>
+<h3 class="western">3.1 Quick Start → Playing</h3>
+<div id="Section15" dir="ltr"><p><a name="mermaid-2"></a><br/>
+<br/>
+
+	</p>
+	<div id="dmermaid-1759141676805" dir="ltr"><p><br/>
+<br/>
+
+		</p>
+	</div>
+</div>
+<div id="Section16" dir="ltr"><p><a name="mermaid-2 Copy 1"></a><br/>
+<br/>
+
+	</p>
+	<div id="Section17" dir="ltr"><p><a name="dmermaid-1759141676805"></a>
+		<br/>
+<br/>
+
+		</p>
+	</div>
+</div>
+<h3 class="western">3.2 Per&#8209;Frame Tick (Playing)</h3>
+<div id="mermaid-3" dir="ltr"><p><br/>
+<br/>
+
+	</p>
+	<div id="dmermaid-1759141676808" dir="ltr"><p><br/>
+<br/>
+
+		</p>
+	</div>
+</div>
+<div id="Section18" dir="ltr"><p><a name="mermaid-3"></a><br/>
+<br/>
+
+	</p>
+	<div id="Section19" dir="ltr"><p><a name="dmermaid-1759141676808"></a>
+		<br/>
+<br/>
+
+		</p>
+	</div>
+</div>
+<h3 class="western">3.3 Capture Letter → Construct Word</h3>
+<div id="mermaid-4" dir="ltr"><p><br/>
+<br/>
+
+	</p>
+	<div id="dmermaid-1759141676809" dir="ltr"><p><br/>
+<br/>
+
+		</p>
+	</div>
+</div>
+<div id="Section20" dir="ltr"><p><a name="mermaid-4"></a><br/>
+<br/>
+
+	</p>
+	<div id="Section21" dir="ltr"><p><a name="dmermaid-1759141676809"></a>
+		<br/>
+<br/>
+
+		</p>
+	</div>
+</div>
+<h3 class="western">3.4 Bottom Collision → Credits</h3>
+<div id="mermaid-5" dir="ltr"><p><br/>
+<br/>
+
+	</p>
+	<div id="dmermaid-1759141676811" dir="ltr"><p><br/>
+<br/>
+
+		</p>
+	</div>
+</div>
+<div id="Section22" dir="ltr"><p><a name="mermaid-5"></a><br/>
+<br/>
+
+	</p>
+	<div id="Section23" dir="ltr"><p><a name="dmermaid-1759141676811"></a>
+		<br/>
+<br/>
+
+		</p>
+	</div>
+</div>
+<h3 class="western">3.5 Pause/Resume and Win/Lose</h3>
+<ul>
+	<li><p style="margin-bottom: 0cm">Pause: freezes loop and spawns; no
+	credit changes. 
+	</p></li>
+	<li><p style="margin-bottom: 0cm">Win: when all 10 words complete;
+	show summary; require explicit tap to restart. 
+	</p></li>
+	<li><p>Lose: when credits reach 0; show summary; restart allowed via
+	tap. 
+	</p></li>
+</ul>
+<h2 class="western">4) Game State Machine</h2>
+<div id="mermaid-6" dir="ltr"><p><br/>
+<br/>
+
+	</p>
+</div>
+<p style="margin-bottom: 0cm">Start</p>
+<p style="margin-bottom: 0cm">topic loaded + sample 10</p>
+<p style="margin-bottom: 0cm">Pause</p>
+<p style="margin-bottom: 0cm">Resume</p>
+<p style="margin-bottom: 0cm">all 10 complete</p>
+<p style="margin-bottom: 0cm">credits == 0</p>
+<p style="margin-bottom: 0cm">Tap to restart</p>
+<p style="margin-bottom: 0cm">Tap to restart</p>
+<p style="margin-bottom: 0cm">Home</p>
+<p style="margin-bottom: 0cm">LoadingTopic</p>
+<p style="margin-bottom: 0cm">Playing</p>
+<p style="margin-bottom: 0cm">Paused</p>
+<p style="margin-bottom: 0cm">Win</p>
+<div id="Section24" dir="ltr"><p style="margin-bottom: 0cm"><a name="section-019994d7-6c48-7e33-aa17-7a0fe84fec52"></a>
+	<br/>
+
+	</p>
+	<div id="Section25" dir="ltr"><p style="margin-bottom: 0cm"><a name="mermaid-6"></a>
+		Lose</p>
+	</div>
+	<h2 class="western">5) Data Model (tech&#8209;agnostic,
+	illustrative)</h2>
+	<pre class="western"><code class="western">// Configuration &amp; prefs</code>
+<code class="western">interface DifficultyPreset { name: string; fallSpeed: number; spawnRate: number; noisePct: number; }</code>
+<code class="western">interface Preferences { difficulty: string; sound: boolean; reducedMotion: boolean; colorBlindSafe: boolean; }</code>
+
+<code class="western">// Content</code>
+<code class="western">interface TopicPool { topicId: string; name: string; words: string[]; }</code>
+<code class="western">interface SessionWords { topicId: string; selected: string[]; }</code>
+
+<code class="western">// Runtime state</code>
+<code class="western">type GameState = 'Home'|'LoadingTopic'|'Playing'|'Paused'|'Win'|'Lose';</code>
+<code class="western">interface LetterEntity { id: string; char: string; x: number; y: number; vy: number; spawnedAt: number; }</code>
+<code class="western">interface HUDState { credits: number; topicName: string; completed: Set&lt;string&gt;; constructing: string; }</code></pre><h2 class="western">
+	6) Algorithms (sketches)</h2>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Spawn Biasing:</p>
+		<ul>
+			<li><p style="margin-bottom: 0cm">Build frequency map from active
+			10 words (e.g., counts per letter). 
+			</p></li>
+			<li><p style="margin-bottom: 0cm">Compute in&#8209;topic
+			distribution D_topic from frequencies; mix with uniform alphabet
+			distribution D_noise at noisePct: D = (1−p)<em>D_topic +
+			p</em>D_noise. 
+			</p></li>
+			<li><p style="margin-bottom: 0cm">Sample letters from D at spawn
+			events; optionally apply small pity bias to letters needed for the
+			currently shortest&#8209;to&#8209;complete word to avoid stalls. 
+			</p></li>
+		</ul>
+		<li><p style="margin-bottom: 0cm">Sampling 10 Words:</p>
+		<ul>
+			<li><p style="margin-bottom: 0cm">From topic words (50+), sample
+			10 unique without replacement; sort list alphabetically for right
+			sidebar legibility. 
+			</p></li>
+		</ul>
+		<li><p style="margin-bottom: 0cm">Validation:</p>
+		<ul>
+			<li><p style="margin-bottom: 0cm">Maintain activeSet; when
+			construction string equals any remaining word, mark complete and
+			clear tray. Case&#8209;insensitive; ASCII only MVP. 
+			</p></li>
+		</ul>
+		<li><p style="margin-bottom: 0cm">Credits:</p>
+		<ul>
+			<li><p style="margin-bottom: 0cm">On bottom collision, decrement
+			by 1; clamp at [0,1000); emit lose when 0. 
+			</p></li>
+		</ul>
+		<li><p style="margin-bottom: 0cm">Determinism:</p>
+		<ul>
+			<li><p>Initialize RNG with session seed; record seed in local
+			storage for QA replays. 
+			</p></li>
+		</ul>
+	</ul>
+	<h2 class="western">7) Rendering &amp; Performance Notes</h2>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Prefer GPU&#8209;friendly
+		transforms (translate3d) or canvas batch draws; avoid layout
+		thrash. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Cap maximum on&#8209;screen
+		letters to a safe threshold per device; scale spawn if FPS dips
+		(adaptive mode optional). 
+		</p></li>
+		<li><p>Avoid creating garbage in the inner loop; object pools for
+		LetterEntity if needed. 
+		</p></li>
+	</ul>
+	<h2 class="western">8) Accessibility Hooks (MVP)</h2>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Reduced motion disables certain
+		animations; keep essential cues via color/shape. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Color&#8209;blind safe palette
+		for success/miss; ensure contrast ratios are readable. 
+		</p></li>
+		<li><p>Large tap targets for falling letters on mobile; hitboxes
+		can be slightly inflated. 
+		</p></li>
+	</ul>
+</div>
+<div id="section-019994dc-484c-7d01-9fd5-9ba96c567a8d" dir="ltr"><h3 class="western">
+	13. 📘 Architecture Decision Records (ADRs)</h3>
+	<h1 class="western">📘 Architecture Decision Records (ADRs)</h1>
+	<p>Lightweight decisions that shape LetterFall’s MVP. Each ADR
+	includes context, decision, and consequences.</p>
+	<h2 class="western">ADR&#8209;001: Client&#8209;Only Architecture</h2>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Context: Game can run entirely in
+		the browser with static assets; avoids back&#8209;end complexity. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Decision: Ship as a static SPA;
+		no server runtime required. 
+		</p></li>
+		<li><p>Consequences: Simple hosting and ops; offline&#8209;friendly;
+		any analytics/leaderboards deferred or must be client&#8209;only or
+		third&#8209;party optional. 
+		</p></li>
+	</ul>
+	<h2 class="western">ADR&#8209;002: Topic Pools with Session Sampling</h2>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Context: Replayability requires
+		variety; user shouldn’t pick topics up front. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Decision: Maintain ~50&#8209;word
+		pool per topic in JSON; on Start, randomly sample 10 unique words. 
+		</p></li>
+		<li><p>Consequences: Low repetition; content QA needed; JSON size
+		management and possible lazy&#8209;loading per topic. 
+		</p></li>
+	</ul>
+	<h2 class="western">ADR&#8209;003: One&#8209;Tap Start with Random
+	Topic</h2>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Context: Minimize FTUE friction. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Decision: Start immediately
+		selects a random topic and begins play; Settings optional. 
+		</p></li>
+		<li><p>Consequences: Faster time&#8209;to&#8209;fun; players
+		discover Settings after initial sessions. 
+		</p></li>
+	</ul>
+	<h2 class="western">ADR&#8209;004: No Keyboard Dependency</h2>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Context: Mobile&#8209;first play;
+		accessibility. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Decision: All interactions via
+		touch/mouse; on&#8209;screen Undo in tray. 
+		</p></li>
+		<li><p>Consequences: Wider device coverage; slightly more UI work. 
+		</p></li>
+	</ul>
+	<h2 class="western">ADR&#8209;005: Deterministic RNG for QA</h2>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Context: Need reproducible
+		sessions to tune noise and difficulty. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Decision: Seeded RNG per session;
+		seed stored for debug. 
+		</p></li>
+		<li><p>Consequences: Easier testing and telemetry correlation;
+		ensure seeds don’t leak PII. 
+		</p></li>
+	</ul>
+	<h2 class="western">ADR&#8209;006: Performance Budget &amp;
+	Rendering Path</h2>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Context: 60 fps on mid&#8209;range
+		devices is critical. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Decision: Prefer GPU&#8209;accelerated
+		CSS transforms or a single canvas layer; avoid heavy DOM. 
+		</p></li>
+		<li><p>Consequences: Simpler draw path; test hit&#8209;boxes and
+		accessibility overlays accordingly. 
+		</p></li>
+	</ul>
+	<h2 class="western">ADR&#8209;007: Tap&#8209;to&#8209;Restart on Win</h2>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Context: Player intent and
+		summary review. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Decision: Do not auto&#8209;restart;
+		require explicit tap. 
+		</p></li>
+		<li><p>Consequences: Clear closure; slightly longer loop between
+		sessions. 
+		</p></li>
+	</ul>
+	<h2 class="western">ADR&#8209;008: Noise % Tuned Post&#8209;MVP</h2>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Context: Optimal challenge is
+		unknown. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Decision: Ship with conservative
+		defaults; make percentages configurable; plan to adjust after
+		playtesting. 
+		</p></li>
+		<li><p>Consequences: Fewer debates now; commit to a tuning pass
+		later. 
+		</p></li>
+	</ul>
+	<h2 class="western">ADR&#8209;009: Local Persistence Only</h2>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Context: Privacy and simplicity
+		for MVP. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Decision: Use Web
+		Storage/IndexedDB; no cloud saves. 
+		</p></li>
+		<li><p>Consequences: Device&#8209;local preferences; players
+		switching devices won’t carry settings (acceptable for MVP). 
+		</p></li>
+	</ul>
+</div>
+<div id="section-019994dc-91f5-7c43-8947-6a23693d0782" dir="ltr"><h3 class="western">
+	14. ✅ Quality Attributes &amp; Targets</h3>
+	<h1 class="western">✅ Quality Attributes &amp; Targets</h1>
+	<p>Measurable non&#8209;functional requirements that the design must
+	satisfy. Targets are for MVP on mid&#8209;range mobile and desktop.</p>
+	<table cellpadding="2" cellspacing="2">
+		<thead>
+			<tr>
+				<th style="border: none; padding: 0cm"><p>Attribute</p>
+				</th>
+				<th style="border: none; padding: 0cm"><p>Metric</p>
+				</th>
+				<th style="border: none; padding: 0cm"><p>Target</p>
+				</th>
+				<th style="border: none; padding: 0cm"><p>Design Strategies</p>
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td style="border: none; padding: 0cm"><p>Performance</p>
+				</td>
+				<td style="border: none; padding: 0cm"><p>Frame time</p>
+				</td>
+				<td style="border: none; padding: 0cm"><p>&lt; 16 ms avg; &lt; 32
+					ms P95</p>
+				</td>
+				<td style="border: none; padding: 0cm"><p>rAF loop, CSS
+					transforms/canvas, object pooling, avoid layout thrash</p>
+				</td>
+			</tr>
+			<tr>
+				<td style="border: none; padding: 0cm"><p>Input latency</p>
+				</td>
+				<td style="border: none; padding: 0cm"><p>Tap&#8209;to&#8209;feedback</p>
+				</td>
+				<td style="border: none; padding: 0cm"><p>&lt; 50 ms</p>
+				</td>
+				<td style="border: none; padding: 0cm"><p>Passive listeners,
+					pointer events, batching UI updates</p>
+				</td>
+			</tr>
+			<tr>
+				<td style="border: none; padding: 0cm"><p>Bundle size</p>
+				</td>
+				<td style="border: none; padding: 0cm"><p>Initial gzipped</p>
+				</td>
+				<td style="border: none; padding: 0cm"><p>&lt; 300 KB</p>
+				</td>
+				<td style="border: none; padding: 0cm"><p>Code&#8209;split, defer
+					heavy assets, compress JSON pools</p>
+				</td>
+			</tr>
+			<tr>
+				<td style="border: none; padding: 0cm"><p>Availability</p>
+				</td>
+				<td style="border: none; padding: 0cm"><p>Offline behavior</p>
+				</td>
+				<td style="border: none; padding: 0cm"><p>Works after first load
+					(assets cached)</p>
+				</td>
+				<td style="border: none; padding: 0cm"><p>Optional SW caching,
+					graceful fetch fallback</p>
+				</td>
+			</tr>
+			<tr>
+				<td style="border: none; padding: 0cm"><p>Usability</p>
+				</td>
+				<td style="border: none; padding: 0cm"><p>FTUE to first
+					completion</p>
+				</td>
+				<td style="border: none; padding: 0cm"><p>&gt; 80% reach 1st word</p>
+				</td>
+				<td style="border: none; padding: 0cm"><p>One&#8209;tap Start,
+					gentle defaults, clear HUD</p>
+				</td>
+			</tr>
+			<tr>
+				<td style="border: none; padding: 0cm"><p>Accessibility</p>
+				</td>
+				<td style="border: none; padding: 0cm"><p>Contrast &amp; motion</p>
+				</td>
+				<td style="border: none; padding: 0cm"><p>WCAG&#8209;inspired;
+					reduced motion</p>
+				</td>
+				<td style="border: none; padding: 0cm"><p>Color&#8209;blind
+					palette, reduced motion toggle</p>
+				</td>
+			</tr>
+			<tr>
+				<td style="border: none; padding: 0cm"><p>Security/Privacy</p>
+				</td>
+				<td style="border: none; padding: 0cm"><p>Data collection</p>
+				</td>
+				<td style="border: none; padding: 0cm"><p>0 PII; no tracking by
+					default</p>
+				</td>
+				<td style="border: none; padding: 0cm"><p>Local storage only;
+					explicit opt&#8209;in for telemetry if added</p>
+				</td>
+			</tr>
+			<tr>
+				<td style="border: none; padding: 0cm"><p>Testability</p>
+				</td>
+				<td style="border: none; padding: 0cm"><p>Determinism</p>
+				</td>
+				<td style="border: none; padding: 0cm"><p>Reproducible sessions</p>
+				</td>
+				<td style="border: none; padding: 0cm"><p>Seeded RNG; debug
+					overlay shows seed</p>
+				</td>
+			</tr>
+			<tr>
+				<td style="border: none; padding: 0cm"><p>Maintainability</p>
+				</td>
+				<td style="border: none; padding: 0cm"><p>Module boundaries</p>
+				</td>
+				<td style="border: none; padding: 0cm"><p>Clear components</p>
+				</td>
+				<td style="border: none; padding: 0cm"><p>Separation: UI, Engine,
+					Content, Persistence</p>
+				</td>
+			</tr>
+			<tr>
+				<td style="border: none; padding: 0cm"><p>Portability</p>
+				</td>
+				<td style="border: none; padding: 0cm"><p>Platforms</p>
+				</td>
+				<td style="border: none; padding: 0cm"><p>Mobile + Desktop modern
+					browsers</p>
+				</td>
+				<td style="border: none; padding: 0cm"><p>Standards&#8209;based
+					APIs only</p>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<h2 class="western">SLOs (Internal)</h2>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Cold start to playable: &lt; 1.5
+		s on 4G mid&#8209;range device after caching. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Topic load + sample: &lt; 200 ms
+		for 50&#8209;word pools. 
+		</p></li>
+		<li><p>Memory footprint: avoid sustained growth; no leaks in
+		10&#8209;minute session. 
+		</p></li>
+	</ul>
+	<h2 class="western">Verification Plan</h2>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Performance profiling on
+		mid&#8209;range Android and iOS devices plus desktop. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Automated tests for spawn bias,
+		word sampling uniqueness, and end&#8209;condition correctness. 
+		</p></li>
+		<li><p>Accessibility checks for color contrast and reduced motion. 
+		</p></li>
+	</ul>
+</div>
+<div id="section-019994df-13dc-7de1-9ff8-c5c8c8951c25" dir="ltr"><h3 class="western">
+	15. 🧰 Technology Stack Selection</h3>
+	<h2 class="western">🎯 Goals &amp; Constraints</h2>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Client-side only (no backend) and
+		offline-capable (PWA) 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Smooth 60 FPS on mid&#8209;range
+		mobile and desktops 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Fast startup (&lt;2s on 4G),
+		small bundle, tree&#8209;shaken 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Simple to maintain; clear
+		separation: rendering vs game state 
+		</p></li>
+		<li><p>Accessibility and responsive layout 
+		</p></li>
+	</ul>
+	<h2 class="western">Core Decisions</h2>
+	<ol>
+		<li><p>UI Framework: React + TypeScript 
+		</p></li>
+	</ol>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Why: Mature ecosystem, strong
+		component model for UI (HUD, menus, settings), and fast dev flow
+		with Vite. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Tradeoffs: React reconciliation
+		shouldn’t drive the animation loop; keep render loop in a game
+		lib. 
+		</p></li>
+		<li><p>Alternatives: Svelte/Solid (lighter, fast) or Vue
+		(ergonomic), but team familiarity and tooling favor React. 
+		</p></li>
+	</ul>
+	<ol start="2">
+		<li><p>Rendering &amp; Game Loop: PixiJS (WebGL with Canvas
+		fallback) 
+		</p></li>
+	</ol>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Why: High&#8209;perf 2D
+		rendering, sprites, textures, filters, text; control over ticker;
+		small and flexible versus full game engines. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Alternatives: Canvas 2D (simpler,
+		but manual batching/perf), Phaser (feature&#8209;rich engine,
+		heavier than needed), Three.js (3D&#8209;first). 
+		</p></li>
+		<li><p>Approach: Drive animations via PixiJS ticker; React owns UI,
+		not the animation frames. 
+		</p></li>
+	</ul>
+	<ol start="3">
+		<li><p>State Management: Zustand (app state) + XState (game flow) 
+		</p></li>
+	</ol>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Zustand: Lightweight, simple
+		selectors, persist middleware (localStorage), ideal for settings,
+		credits, topic/word pools, word progress. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">XState: Explicit finite states
+		(Loading → Ready → Playing → Paused → Win/Lose). Easier
+		testing and fewer edge cases. 
+		</p></li>
+		<li><p>Alternatives: Redux Toolkit (solid but heavier),
+		Recoil/Jotai (fine, less explicit for FSM), pure context (OK but
+		can entangle concerns). 
+		</p></li>
+	</ul>
+	<ol start="4">
+		<li><p>Build &amp; Tooling: Vite + TypeScript + ESLint/Prettier 
+		</p></li>
+	</ol>
+	<ul>
+		<li><p style="margin-bottom: 0cm">Vite: fast HMR, code&#8209;splitting,
+		PWA support via plugin, excellent DX. 
+		</p></li>
+		<li><p>TS: safer refactors and API contracts. 
+		</p></li>
+	</ul>
+	<ol start="5">
+		<li><p>PWA &amp; Offline: vite&#8209;plugin&#8209;pwa + Workbox 
+		</p></li>
+	</ol>
+	<ul>
+		<li><p>Cache shell, assets, and topic JSON; offline replay; update
+		via SW with in&#8209;app prompt. 
+		</p></li>
+	</ul>
+	<ol start="6">
+		<li><p>Audio: Howler.js (simple, cross&#8209;browser) 
+		</p></li>
+	</ol>
+	<ul>
+		<li><p>Clicks, success, fail, background subtle loop with user mute
+		toggle. 
+		</p></li>
+	</ul>
+	<ol start="7">
+		<li><p>Testing: Vitest + Testing Library + Playwright 
+		</p></li>
+	</ol>
+	<ul>
+		<li><p>Unit/store tests, component tests, and E2E for core loops
+		(start, collect letters, win/lose). 
+		</p></li>
+	</ul>
+	<ol start="8">
+		<li><p>Deployment: Static hosting (Vercel/Netlify/GitHub Pages) 
+		</p></li>
+	</ol>
+	<p>Note: Keyboard gameplay is intentionally not part of MVP, per
+	requirement; mouse/touch only.</p>
+	<hr/>
+
+	<h2 class="western">Package List (initial)</h2>
+	<ul>
+		<li><p style="margin-bottom: 0cm">react, react-dom, typescript 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">pixi.js 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">zustand 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">xstate, @xstate/react 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">howler 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">vite, vite-plugin-pwa 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">eslint,
+		@typescript-eslint/eslint-plugin, @typescript-eslint/parser,
+		prettier 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">vitest, @testing-library/react,
+		@testing-library/user-event, jsdom 
+		</p></li>
+		<li><p>playwright (dev) 
+		</p></li>
+	</ul>
+	<p>Optional utilities: nanoid (IDs), zod (settings schema),
+	seedrandom (deterministic RNG if needed)</p>
+	<hr/>
+
+	<h2 class="western">Project Structure</h2>
+	<pre class="western"><code class="western">letterfall/</code>
+<code class="western">  </code><code class="western">src/</code>
+<code class="western">    </code><code class="western">app/</code>
+<code class="western">      </code><code class="western">App.tsx</code>
+<code class="western">      </code><code class="western">routes.tsx</code>
+<code class="western">      </code><code class="western">store.ts (Zustand)</code>
+<code class="western">      </code><code class="western">machine.ts (XState game FSM)</code>
+<code class="western">    </code><code class="western">game/</code>
+<code class="western">      </code><code class="western">engine/</code>
+<code class="western">        </code><code class="western">Game.ts (Pixi app bootstrap)</code>
+<code class="western">        </code><code class="western">LetterSpawner.ts</code>
+<code class="western">        </code><code class="western">Systems.ts (collision/tick systems)</code>
+<code class="western">        </code><code class="western">rng.ts</code>
+<code class="western">      </code><code class="western">components/</code>
+<code class="western">        </code><code class="western">GameCanvas.tsx (wraps Pixi stage)</code>
+<code class="western">        </code><code class="western">HUD.tsx (credits, topic, timer)</code>
+<code class="western">        </code><code class="western">WordList.tsx</code>
+<code class="western">        </code><code class="western">ConstructionBar.tsx</code>
+<code class="western">      </code><code class="western">assets/</code>
+<code class="western">        </code><code class="western">sprites/ ...</code>
+<code class="western">        </code><code class="western">sounds/ ...</code>
+<code class="western">    </code><code class="western">ui/</code>
+<code class="western">      </code><code class="western">StartScreen.tsx</code>
+<code class="western">      </code><code class="western">Settings.tsx</code>
+<code class="western">      </code><code class="western">Help.tsx</code>
+<code class="western">      </code><code class="western">About.tsx</code>
+<code class="western">      </code><code class="western">Modal.tsx</code>
+<code class="western">    </code><code class="western">data/</code>
+<code class="western">      </code><code class="western">topics/</code>
+<code class="western">        </code><code class="western">animals.json</code>
+<code class="western">        </code><code class="western">fruit.json</code>
+<code class="western">        </code><code class="western">...</code>
+<code class="western">    </code><code class="western">styles/</code>
+<code class="western">      </code><code class="western">globals.css</code>
+<code class="western">    </code><code class="western">sw/ (service worker customizations if needed)</code>
+<code class="western">    </code><code class="western">main.tsx</code>
+<code class="western">    </code><code class="western">vite-env.d.ts</code>
+<code class="western">  </code><code class="western">index.html</code>
+<code class="western">  </code><code class="western">vite.config.ts</code>
+<code class="western">  </code><code class="western">tsconfig.json</code>
+<code class="western">  </code><code class="western">public/manifest.webmanifest</code></pre>
+	<hr/>
+
+	<h2 class="western">Minimal Starter Snippets</h2>
+	<ol>
+		<li><p>PixiJS bootstrap (game/engine/Game.ts) 
+		</p></li>
+	</ol>
+	<pre class="western"><code class="western">import { Application } from 'pixi.js';</code>
+
+<code class="western">export type GameCtx = {</code>
+<code class="western">  </code><code class="western">app: Application;</code>
+<code class="western">};</code>
+
+<code class="western">export async function createGame(canvas: HTMLCanvasElement): Promise&lt;GameCtx&gt; {</code>
+<code class="western">  </code><code class="western">const app = new Application({</code>
+<code class="western">    </code><code class="western">view: canvas,</code>
+<code class="western">    </code><code class="western">resizeTo: window,</code>
+<code class="western">    </code><code class="western">antialias: true,</code>
+<code class="western">    </code><code class="western">backgroundAlpha: 0,</code>
+<code class="western">  </code><code class="western">});</code>
+
+<code class="western">  </code><code class="western">// Fixed timestep logic (clamped) via ticker</code>
+<code class="western">  </code><code class="western">let last = performance.now();</code>
+<code class="western">  </code><code class="western">const FIXED_DT = 1000 / 60;</code>
+<code class="western">  </code><code class="western">let acc = 0;</code>
+
+<code class="western">  </code><code class="western">app.ticker.add((now) =&gt; {</code>
+<code class="western">    </code><code class="western">const dt = now - last; last = now;</code>
+<code class="western">    </code><code class="western">acc += dt;</code>
+<code class="western">    </code><code class="western">while (acc &gt;= FIXED_DT) {</code>
+<code class="western">      </code><code class="western">update(FIXED_DT / 1000);</code>
+<code class="western">      </code><code class="western">acc -= FIXED_DT;</code>
+<code class="western">    </code><code class="western">}</code>
+<code class="western">    </code><code class="western">render();</code>
+<code class="western">  </code><code class="western">});</code>
+
+<code class="western">  </code><code class="western">function update(dt: number) {</code>
+<code class="western">    </code><code class="western">// advance letters, collisions, credit drain, etc.</code>
+<code class="western">  </code><code class="western">}</code>
+
+<code class="western">  </code><code class="western">function render() {</code>
+<code class="western">    </code><code class="western">// Pixi handles rendering at ticker cadence</code>
+<code class="western">  </code><code class="western">}</code>
+
+<code class="western">  </code><code class="western">return { app };</code>
+<code class="western">}</code></pre>
+	<ol start="2">
+		<li><p>React Canvas wrapper (game/components/GameCanvas.tsx) 
+		</p></li>
+	</ol>
+	<pre class="western"><code class="western">import { useEffect, useRef } from 'react';</code>
+<code class="western">import { createGame } from '../engine/Game';</code>
+
+<code class="western">export default function GameCanvas() {</code>
+<code class="western">  </code><code class="western">const ref = useRef&lt;HTMLCanvasElement | null&gt;(null);</code>
+<code class="western">  </code><code class="western">useEffect(() =&gt; {</code>
+<code class="western">    </code><code class="western">if (!ref.current) return;</code>
+<code class="western">    </code><code class="western">let disposed = false;</code>
+<code class="western">    </code><code class="western">(async () =&gt; {</code>
+<code class="western">      </code><code class="western">const { app } = await createGame(ref.current!);</code>
+<code class="western">      </code><code class="western">if (disposed) app.destroy(true);</code>
+<code class="western">      </code><code class="western">return () =&gt; app.destroy(true);</code>
+<code class="western">    </code><code class="western">})();</code>
+<code class="western">    </code><code class="western">return () =&gt; { disposed = true; };</code>
+<code class="western">  </code><code class="western">}, []);</code>
+<code class="western">  </code><code class="western">return &lt;canvas className=&quot;game-canvas&quot; ref={ref} /&gt;;</code>
+<code class="western">}</code></pre>
+	<ol start="3">
+		<li><p>Zustand store (app/store.ts) 
+		</p></li>
+	</ol>
+	<pre class="western"><code class="western">import { create } from 'zustand';</code>
+<code class="western">import { persist } from 'zustand/middleware';</code>
+
+<code class="western">export type Difficulty = 'Easy' | 'Standard' | 'Hard';</code>
+
+<code class="western">type WordProgress = {</code>
+<code class="western">  </code><code class="western">word: string;</code>
+<code class="western">  </code><code class="western">found: boolean;</code>
+<code class="western">};</code>
+
+<code class="western">type AppState = {</code>
+<code class="western">  </code><code class="western">credits: number;</code>
+<code class="western">  </code><code class="western">topic: string | null;</code>
+<code class="western">  </code><code class="western">words: WordProgress[];</code>
+<code class="western">  </code><code class="western">construction: string;</code>
+<code class="western">  </code><code class="western">difficulty: Difficulty;</code>
+<code class="western">  </code><code class="western">speed: 'Slow' | 'Normal' | 'Fast';</code>
+<code class="western">  </code><code class="western">setTopic: (t: string, words: string[]) =&gt; void;</code>
+<code class="western">  </code><code class="western">pushLetter: (ch: string) =&gt; void;</code>
+<code class="western">  </code><code class="western">completeWord: (w: string) =&gt; void;</code>
+<code class="western">  </code><code class="western">tickCredit: () =&gt; void;</code>
+<code class="western">  </code><code class="western">reset: () =&gt; void;</code>
+<code class="western">};</code>
+
+<code class="western">export const useApp = create&lt;AppState&gt;()(</code>
+<code class="western">  </code><code class="western">persist(</code>
+<code class="western">    </code><code class="western">(set, get) =&gt; ({</code>
+<code class="western">      </code><code class="western">credits: 100,</code>
+<code class="western">      </code><code class="western">topic: null,</code>
+<code class="western">      </code><code class="western">words: [],</code>
+<code class="western">      </code><code class="western">construction: '',</code>
+<code class="western">      </code><code class="western">difficulty: 'Standard',</code>
+<code class="western">      </code><code class="western">speed: 'Normal',</code>
+<code class="western">      </code><code class="western">setTopic: (t, ws) =&gt; set({ topic: t, words: ws.map(w =&gt; ({ word: w, found: false })) }),</code>
+<code class="western">      </code><code class="western">pushLetter: (ch) =&gt; set({ construction: get().construction + ch }),</code>
+<code class="western">      </code><code class="western">completeWord: (w) =&gt; set({</code>
+<code class="western">        </code><code class="western">words: get().words.map(x =&gt; x.word === w ? { ...x, found: true } : x),</code>
+<code class="western">        </code><code class="western">construction: ''</code>
+<code class="western">      </code><code class="western">}),</code>
+<code class="western">      </code><code class="western">tickCredit: () =&gt; set({ credits: Math.max(0, get().credits - 1) }),</code>
+<code class="western">      </code><code class="western">reset: () =&gt; set({ credits: 100, construction: '', words: get().words.map(w =&gt; ({...w, found:false})) })</code>
+<code class="western">    </code><code class="western">}),</code>
+<code class="western">    </code><code class="western">{ name: 'letterfall' }</code>
+<code class="western">  </code><code class="western">)</code>
+<code class="western">);</code></pre>
+	<ol start="4">
+		<li><p>XState game machine (app/machine.ts) 
+		</p></li>
+	</ol>
+	<pre class="western"><code class="western">import { createMachine } from 'xstate';</code>
+
+<code class="western">export const gameMachine = createMachine({</code>
+<code class="western">  </code><code class="western">id: 'game',</code>
+<code class="western">  </code><code class="western">initial: 'loading',</code>
+<code class="western">  </code><code class="western">states: {</code>
+<code class="western">    </code><code class="western">loading: { on: { READY: 'ready' } },</code>
+<code class="western">    </code><code class="western">ready: { on: { START: 'playing' } },</code>
+<code class="western">    </code><code class="western">playing: { on: { PAUSE: 'paused', WIN: 'win', LOSE: 'lose' } },</code>
+<code class="western">    </code><code class="western">paused: { on: { RESUME: 'playing', QUIT: 'ready' } },</code>
+<code class="western">    </code><code class="western">win: { on: { ACK: 'ready' } },</code>
+<code class="western">    </code><code class="western">lose: { on: { ACK: 'ready' } }</code>
+<code class="western">  </code><code class="western">}</code>
+<code class="western">});</code></pre>
+	<ol start="5">
+		<li><p>PWA manifest (public/manifest.webmanifest) 
+		</p></li>
+	</ol>
+	<pre class="western"><code class="western">{</code>
+<code class="western">  </code><code class="western">&quot;name&quot;: &quot;LetterFall&quot;,</code>
+<code class="western">  </code><code class="western">&quot;short_name&quot;: &quot;LetterFall&quot;,</code>
+<code class="western">  </code><code class="western">&quot;start_url&quot;: &quot;.&quot;,</code>
+<code class="western">  </code><code class="western">&quot;display&quot;: &quot;standalone&quot;,</code>
+<code class="western">  </code><code class="western">&quot;background_color&quot;: &quot;#0b0b0f&quot;,</code>
+<code class="western">  </code><code class="western">&quot;theme_color&quot;: &quot;#4f46e5&quot;,</code>
+<code class="western">  </code><code class="western">&quot;icons&quot;: [</code>
+<code class="western">    </code><code class="western">{ &quot;src&quot;: &quot;/icons/icon-192.png&quot;, &quot;sizes&quot;: &quot;192x192&quot;, &quot;type&quot;: &quot;image/png&quot; },</code>
+<code class="western">    </code><code class="western">{ &quot;src&quot;: &quot;/icons/icon-512.png&quot;, &quot;sizes&quot;: &quot;512x512&quot;, &quot;type&quot;: &quot;image/png&quot; }</code>
+<code class="western">  </code><code class="western">]</code>
+<code class="western">}</code></pre>
+	<ol start="6">
+		<li><p>Vite PWA plugin (vite.config.ts) 
+		</p></li>
+	</ol>
+	<pre class="western"><code class="western">import { defineConfig } from 'vite';</code>
+<code class="western">import react from '@vitejs/plugin-react';</code>
+<code class="western">import { VitePWA } from 'vite-plugin-pwa';</code>
+
+<code class="western">export default defineConfig({</code>
+<code class="western">  </code><code class="western">plugins: [</code>
+<code class="western">    </code><code class="western">react(),</code>
+<code class="western">    </code><code class="western">VitePWA({ registerType: 'autoUpdate', includeAssets: ['icons/*'], manifest: true })</code>
+<code class="western">  </code><code class="western">],</code>
+<code class="western">});</code></pre>
+	<ol start="7">
+		<li><p>Deterministic RNG (game/engine/rng.ts) – optional 
+		</p></li>
+	</ol>
+	<pre class="western"><code class="western">export function mulberry32(seed: number) {</code>
+<code class="western">  </code><code class="western">return function() {</code>
+<code class="western">    </code><code class="western">let t = seed += 0x6D2B79F5;</code>
+<code class="western">    </code><code class="western">t = Math.imul(t ^ (t &gt;&gt;&gt; 15), t | 1);</code>
+<code class="western">    </code><code class="western">t ^= t + Math.imul(t ^ (t &gt;&gt;&gt; 7), t | 61);</code>
+<code class="western">    </code><code class="western">return ((t ^ (t &gt;&gt;&gt; 14)) &gt;&gt;&gt; 0) / 4294967296;</code>
+<code class="western">  </code><code class="western">};</code>
+<code class="western">}</code></pre>
+	<hr/>
+
+	<h2 class="western">Rationale &amp; Tradeoffs Summary</h2>
+	<ul>
+		<li><p style="margin-bottom: 0cm">React keeps UI composable; PixiJS
+		owns the render loop → avoids jank from React re-renders. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Zustand is minimal for app data;
+		XState formalizes game flow and win/lose transitions. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Vite + PWA plugin delivers
+		instant dev feedback and easy offline. 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Howler simplifies audio across
+		platforms. 
+		</p></li>
+		<li><p>Testing is layered: logic (Vitest), UI (Testing Library),
+		flows (Playwright). 
+		</p></li>
+	</ul>
+	<hr/>
+
+	<h2 class="western">References</h2>
+	<ul>
+		<li><p style="margin-bottom: 0cm">React Docs: <a href="https://react.dev/">https://react.dev</a>
+				</p></li>
+		<li><p style="margin-bottom: 0cm">Vite: <a href="https://vitejs.dev/">https://vitejs.dev</a>
+				</p></li>
+		<li><p style="margin-bottom: 0cm">PixiJS Guides:
+		<a href="https://pixijs.io/guides/">https://pixijs.io/guides/</a> 
+		</p></li>
+		<li><p style="margin-bottom: 0cm">Zustand:
+		<a href="https://github.com/pmndrs/zustand">https://github.com/pmndrs/zustand</a>
+				</p></li>
+		<li><p style="margin-bottom: 0cm">XState:
+		<a href="https://stately.ai/docs/xstate">https://stately.ai/docs/xstate</a>
+				</p></li>
+		<li><p style="margin-bottom: 0cm">Howler.js: <a href="https://howlerjs.com/">https://howlerjs.com</a>
+				</p></li>
+		<li><p style="margin-bottom: 0cm">Vitest: <a href="https://vitest.dev/">https://vitest.dev</a>
+				</p></li>
+		<li><p style="margin-bottom: 0cm">Testing Library:
+		<a href="https://testing-library.com/">https://testing-library.com</a>
+				</p></li>
+		<li><p style="margin-bottom: 0cm">PWA Overview (MDN):
+		<a href="https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps">https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps</a>
+				</p></li>
+		<li><p style="margin-bottom: 0cm">Workbox:
+		<a href="https://developer.chrome.com/docs/workbox/">https://developer.chrome.com/docs/workbox/</a>
+				</p></li>
+		<li><p>Web Audio API (MDN):
+		<a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API">https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API</a>
+				</p></li>
+	</ul>
+</div>
+<p style="line-height: 100%; margin-bottom: 0cm"><br/>
+
+</p>
+</body>
+</html>

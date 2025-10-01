@@ -1,0 +1,9 @@
+# Node & build artifacts (handled within app/, but listed here for clarity)
+node_modules/
+dist/
+*.log
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.vscode/

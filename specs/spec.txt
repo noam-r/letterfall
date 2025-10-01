@@ -1,0 +1,8204 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+🎯 Product Overview
+
+
+
+	Working Title
+
+
+LetterFall — Topic-Based Falling-Letters Word Game
+
+
+One‑Line Mission
+
+
+Help players enter a flow state by catching falling letters to
+	complete 10 topic‑themed words before their credits hit zero.
+
+
+Core Loop
+
+
+
+
+Tap Start → game auto‑selects
+		a random topic (no friction). 
+		
+
+
+10 words are randomly sampled
+		from a larger topic pool (e.g., 50+ words per topic). 
+		
+
+
+Letters fall with a higher
+		probability for in‑topic letters plus noise characters. 
+		
+
+
+Player taps letters to construct
+		one word at a time; completed words are crossed off. 
+		
+
+
+Each letter that hits the bottom
+		reduces credits by 1; start with 100 credits. 
+		
+
+
+Win when all 10 words are completed; lose at 0 credits. On
+		win, require tap to restart. 
+		
+
+
+
+
+Why It’s Different
+
+
+
+
+Topic‑based replayability;
+		each session samples words from larger pools. 
+		
+
+
+Zero‑friction start: one
+		tap to play, with optional Settings for difficulty and speed. 
+		
+
+
+Skill ramp via difficulty presets affecting fall speed,
+		spawn rate, and noise. 
+		
+
+
+
+
+Views (Three‑Pane Layout)
+
+
+
+
+Main Area (center):
+
+		Falling letters and gameplay. 
+		
+
+
+Right Sidebar:
+
+		The 10‑word list (tick/cross as completed). 
+		
+
+
+Bottom Bar:
+ Word construction tray showing
+		the current word being built. 
+		
+
+
+
+
+MVP Scope
+
+
+
+
+Client‑only implementation
+		(no server). Persist lightweight preferences in local storage. 
+		
+
+
+Topics: initial 10 topics, each
+		with ~50‑word pools (select 10 per session). 
+		
+
+
+Difficulty presets: Standard,
+		Hard (noise % tunable post‑MVP). 
+		
+
+
+Help and About screens. 
+		
+
+
+
+
+Key Constraints
+
+
+
+
+No backend dependency; assets and
+		logic shipped as static files. 
+		
+
+
+Performance: smooth animation at
+		60 fps on mid‑range mobile and desktop. 
+		
+
+
+Accessibility: readable fonts,
+		color‑safe feedback, optional reduced motion. 
+		
+
+
+Offline‑friendly (PWA optional in v1.1). 
+		
+
+
+
+
+Success Metrics (Directional)
+
+
+
+
+FTUE completion rate (Start →
+		first word completed) > 80%. 
+		
+
+
+Average session length 3–6
+		minutes. 
+		
+
+
+Retention proxy: % of players who start a second session >
+		30% in early tests. 
+		
+
+
+
+
+
+
+
+	2. 👥 Product Personas
+
+
+👥 Product Personas
+
+
+Below are four core personas representing the primary audiences
+	for LetterFall. Each persona includes context, goals, frustrations,
+	and a success definition in their own words.
+
+
+🎓 Riley the Classroom Coach (Teacher, Grades
+	5–8)
+
+
+Role & Demographics
+
+
+
+
+Middle‑school ELA/Science
+		teacher, 28–45, public school 
+		
+
+
+Devices: Chromebooks, iPads; uses
+		web apps and lightweight installs 
+		
+
+
+Session style: 5–10 minute warm‑ups or
+		early‑finisher activities 
+		
+
+
+
+
+Goals
+
+
+
+
+Primary: Keep students engaged
+		with themed vocabulary practice without setup overhead 
+		
+
+
+Secondary: Track which words or topics are mastered vs.
+		tricky 
+		
+
+
+
+
+Frustrations / Pain Points
+
+
+
+
+Classroom time is tight;
+		convoluted onboarding kills adoption 
+		
+
+
+Content mismatch: topics too hard
+		or too childish 
+		
+
+
+Sound and ads disrupt the class; needs quick mute and
+		ad‑free flow 
+		
+
+
+
+
+Success Definition
+
+“Kids are actually
+	excited to review vocabulary, and I can launch a round in under a
+	minute.”
+
+
+
+
+🎮 Alex the On‑the‑Go Player
+	(Casual Commuter)
+
+
+Role & Demographics
+
+
+
+
+22–38, plays in short bursts on
+		phone during commute or breaks 
+		
+
+
+Devices: Mobile first; sometimes
+		desktop at lunch 
+		
+
+
+Prefers games that respect time and feel fair 
+		
+
+
+
+
+Goals
+
+
+
+
+Primary: Quick 2–4 minute
+		sessions that feel skillful, not random 
+		
+
+
+Secondary: Variety via topics; light sense of progression or
+		streaks 
+		
+
+
+
+
+Frustrations / Pain Points
+
+
+
+
+RNG that withholds needed letters
+		feels unfair 
+		
+
+
+Long tutorials, slow start
+		speeds, or paywalls block fun 
+		
+
+
+Visual clutter and tiny tap targets on small screens 
+		
+
+
+
+
+Success Definition
+
+“I can jump in, finish
+	a topic in a couple minutes, and feel clever doing it.”
+
+
+
+
+🧩 Dana the Word‑Game Enthusiast (Puzzle
+	Aficionado)
+
+
+Role & Demographics
+
+
+
+
+35–65, avid player of
+		crosswords and word puzzles 
+		
+
+
+Plays daily; enjoys stats and
+		personal bests 
+		
+
+
+Often uses tablet; appreciates accessibility options 
+		
+
+
+
+
+Goals
+
+
+
+
+Primary: A fair challenge with
+		clear strategy, not pure reflexes 
+		
+
+
+Secondary: Track performance (wins, losses, average credits
+		left) 
+		
+
+
+
+
+Frustrations / Pain Points
+
+
+
+
+Overly twitchy gameplay that
+		punishes slower reflexes 
+		
+
+
+No transparency on letter
+		distribution or difficulty tuning 
+		
+
+
+Lack of optional assistive features (colorblind modes, text
+		size) 
+		
+
+
+
+
+Success Definition
+
+“I can plan my moves,
+	understand the drop logic, and steadily improve my stats.”
+
+
+
+
+👨‍👧 Priya and Aarav (Parent with
+	9‑year‑old)
+
+
+Role & Demographics
+
+
+
+
+Parent 30–45 playing alongside
+		child aged 8–10 
+		
+
+
+Devices: Shared tablet at home,
+		occasional phone play 
+		
+
+
+Seeks light learning, bonding, and safe content 
+		
+
+
+
+
+Goals
+
+
+
+
+Primary: Age‑appropriate
+		topics that build vocabulary without frustration 
+		
+
+
+Secondary: Positive feedback, adjustable difficulty, and no
+		surprise content 
+		
+
+
+
+
+Frustrations / Pain Points
+
+
+
+
+Words that exceed reading level
+		or are too niche 
+		
+
+
+Loud SFX or complex UI
+		overwhelming for kids 
+		
+
+
+No way to slow down or pause between rounds 
+		
+
+
+
+
+Success Definition
+
+“We can pick a topic
+	my kid loves, finish most words, and celebrate wins without
+	meltdowns.”
+
+
+
+
+Persona Implications for Design
+
+
+
+
+Difficulty and pacing should be
+		adjustable or auto‑tuned for fairness. 
+		
+
+
+Topic curation needs tiers (easy,
+		standard, advanced) and clear labeling. 
+		
+
+
+Sessions must be snappy to
+		launch, with optional muted SFX by default in shared spaces. 
+		
+
+
+Accessibility: larger tap
+		targets, color‑safe cues, readable fonts, and text scaling. 
+		
+
+
+Light progression and stats support enthusiasts without
+		burdening casuals. 
+		
+
+
+
+
+
+
+
+	3. 📝 User Stories
+
+
+📝 User Stories
+
+
+A concise, INVEST‑compliant backlog for LetterFall. Each
+	story maps to an existing persona: 🎮 Alex, 🎓 Riley, 🧩 Dana,
+	👨‍👧 Priya.
+
+
+
+
+TD‑001 — One‑tap Quick Start
+	selects a random topic and shows 10 words (🎮 Alex)
+
+
+As a casual player, I want a single Start button that
+	begins a round with a random topic so that I can play immediately.
+
+
+Acceptance Criteria
+
+
+
+
+Given I am on the opening screen,
+		when I press Start, then a random curated topic is selected and the
+		round begins without additional prompts. 
+		
+
+
+Given the round begins, when
+		gameplay starts, then the right sidebar shows a list of exactly 10
+		target words. 
+		
+
+
+Given the round begins, when the
+		10 target words are shown, then they are sampled at random without
+		replacement from the selected topic’s larger word pool
+		approximately 50 words for MVP. 
+		
+
+
+Given the 10 target words are
+		sampled, when the list is displayed, then there are no duplicate
+		target words within the round’s list. 
+		
+
+
+Given I play consecutive rounds
+		on the same topic, when a new round begins, then recently used
+		words are deprioritized via recency avoidance so back‑to‑back
+		repeats are uncommon. 
+		
+
+
+Given I press Start, when
+		measuring perceived delay, then letters begin falling
+		near‑immediately on typical devices. 
+		
+
+
+Given the MVP build, when a topic is selected on Start, then
+		it is chosen from the set of 
+10 curated topics
+. 
+		
+
+
+
+
+
+
+TD‑002 — Choose current word to build
+	(🎮 Alex)
+
+
+As a player, I want to tap a word in the list to set it
+	as my current target so that my collected letters build that word.
+
+
+Acceptance Criteria
+
+
+
+
+Given the word list is visible,
+		when I tap a word, then it is highlighted as selected. 
+		
+
+
+Given a word is selected, when I
+		collect letters, then progress applies to that selected word only. 
+		
+
+
+Given I switch to a different word, when I return later,
+		then my prior progress on the first word is preserved. 
+		
+
+
+
+
+
+
+TD‑003 — Falling letters with weighted
+	distribution (🧩 Dana)
+
+
+As a puzzle enthusiast, I want most falling letters drawn
+	from the round’s 10 sampled words so that skillful selection
+	matters more than luck.
+
+
+Acceptance Criteria
+
+
+
+
+Given a round has started, when
+		letters fall, then a configurable noise percentage controls
+		non‑sampled letters. 
+		
+
+
+Given letters are spawning, when spawn weighting is applied,
+		then letters from the 10 sampled target words appear the majority
+		of the time over a typical 60‑second span at default
+		settings. 
+		
+
+
+
+
+
+
+TD‑004 — Click‑to‑collect in
+	correct order (🧩 Dana)
+
+
+As a player, I want collected letters to match the next
+	required character in my selected word so that I’m actually
+	spelling it.
+
+
+Acceptance Criteria
+
+
+
+
+Given my selected word requires
+		letter N next, when I click a falling N, then that N is added to
+		the construction tray at the end. 
+		
+
+
+Given the next required letter is
+		N, when I click a non‑matching letter, then it is not added
+		and continues falling with a small negative feedback cue. 
+		
+
+
+Given I complete the final required letter, when it is
+		collected, then the word is marked complete. 
+		
+
+
+
+
+
+
+TD‑005 — Construction tray and progress
+	display (👨‍👧 Priya)
+
+
+As a player, I want a clear construction tray showing my
+	in‑order progress so that I can anticipate the next needed
+	letter.
+
+
+Acceptance Criteria
+
+
+
+
+Given a word is selected, when I
+		collect letters, then the tray shows the built string and visibly
+		indicates the next required letter. 
+		
+
+
+Given I made a mistake selecting the word, when I switch
+		words, then each word’s partial progress is retained separately. 
+		
+
+
+
+
+
+
+TD‑006 — Cross off completed words (🎮
+	Alex)
+
+
+As a player, I want completed words crossed off the list
+	so that my remaining goals are obvious.
+
+
+Acceptance Criteria
+
+
+
+
+Given I complete a word, when the
+		last letter is placed, then the word is crossed off with a short
+		animation and sound. 
+		
+
+
+Given a word is completed, when I tap it, then it cannot be
+		re‑selected for construction. 
+		
+
+
+
+
+
+
+TD‑007 — Credits drain on missed letters
+	and lose state (🎮 Alex)
+
+
+As a player, I want a visible credits counter that
+	decreases when letters hit the bottom so that time pressure feels
+	fair and clear.
+
+
+Acceptance Criteria
+
+
+
+
+Given a round starts with 100
+		credits, when any falling letter reaches the bottom, then credits
+		decrease by 1. 
+		
+
+
+Given credits reach 0, when that
+		occurs, then the round ends immediately with a lose screen. 
+		
+
+
+Given the lose screen is shown, when I choose Restart, then
+		a new round begins with 100 credits. 
+		
+
+
+
+
+
+
+TD‑008 — Win state when all 10 words are
+	completed (🧩 Dana)
+
+
+As a player, I want a clear win screen when I complete
+	all 10 words so that success feels earned.
+
+
+Acceptance Criteria
+
+
+
+
+Given there are 10 words, when
+		the 10th is crossed off, then the round ends with a win screen. 
+		
+
+
+Given the win screen is shown,
+		when I choose Restart, then a new round begins on the same topic by
+		default. 
+		
+
+
+Given the win screen is shown, then the game does
+		not auto‑restart; it waits for me to choose an option.
+
+
+
+
+
+
+
+
+TD‑009 — Fairness guard: ensure required
+	letters appear (🎮 Alex)
+
+
+As a player, I want the game to avoid long droughts of
+	the next required letter so that losses feel fair, not unlucky.
+
+
+Acceptance Criteria
+
+
+
+
+Given a word is selected, when
+		the next required letter has not spawned for a reasonable interval,
+		then spawn weighting increases until it appears. 
+		
+
+
+Given the required letter appears, when I click it, then
+		progress resumes normally. 
+		
+
+
+
+
+
+
+TD‑010 — Minimal onboarding overlay (🎓
+	Riley)
+
+
+As a teacher, I want a 10‑second, skippable overlay
+	that explains the three UI regions so that new players can start
+	without confusion.
+
+
+Acceptance Criteria
+
+
+
+
+Given first launch, when the
+		round is about to start, then a 1–3 card overlay explains the
+		main area, word list, and construction tray. 
+		
+
+
+Given I dismiss or complete the overlay, when I return
+		later, then onboarding does not show again unless I ask for Help. 
+		
+
+
+
+
+
+
+TD‑011 — Quick mute and volume control
+	(🎓 Riley)
+
+
+As a teacher, I want a one‑tap mute so that the
+	game can be classroom‑friendly.
+
+
+Acceptance Criteria
+
+
+
+
+Given a round is in progress,
+		when I tap Mute, then all SFX stop immediately and remain muted
+		until I unmute. 
+		
+
+
+Given mute is on, when I restart a round, then the mute
+		state persists. 
+		
+
+
+
+
+
+
+TD‑012 — Accessibility: readable and
+	tappable (👨‍👧 Priya)
+
+
+As a parent with a child, I want large, readable UI and
+	safe color contrasts so that play is comfortable.
+
+
+Acceptance Criteria
+
+
+
+
+Given I am on a phone, when
+		letters fall, then each letter has a finger‑friendly tap
+		target and clear outline. 
+		
+
+
+Given color cues exist, when colorblind mode is enabled,
+		then essential information is also conveyed by shape or text. 
+		
+
+
+
+
+
+
+TD‑013 — Restart and topic switch (🎮
+	Alex)
+
+
+As a player, I want to quickly restart or change topics
+	from end or pause screens so that sessions chain smoothly.
+
+
+Acceptance Criteria
+
+
+
+
+Given I am on win or lose screen,
+		when I tap Restart, then a new round begins immediately. 
+		
+
+
+Given I Restart on the same
+		topic, when the new round begins, then a fresh set of 10 target
+		words is sampled without replacement from the topic’s larger word
+		pool with recency avoidance applied. 
+		
+
+
+Given I am on win or lose screen, when I tap Change Topic,
+		then I can start on a different random topic or pick one from
+		Settings. 
+		
+
+
+
+
+
+
+TD‑014 — Offline, client‑side play
+	(👨‍👧 Priya)
+
+
+As a player, I want the game to run without an internet
+	connection so that it works anywhere.
+
+
+Acceptance Criteria
+
+
+
+
+Given no network is available,
+		when I launch the game, then I can Start and play a full round on a
+		random built‑in topic. 
+		
+
+
+Given I am mid‑round, when the network drops, then
+		gameplay continues uninterrupted. 
+		
+
+
+
+
+
+
+TD‑015 — Round summary (🧩 Dana)
+
+
+As a player, I want a simple end‑of‑round
+	summary so that I can gauge performance.
+
+
+Acceptance Criteria
+
+
+
+
+Given a round ends, when the
+		summary appears, then I see words completed and credits remaining. 
+		
+
+
+Given I restart from the summary, when the new round starts,
+		then prior results are not persisted beyond that screen in v1. 
+		
+
+
+
+
+
+
+TD‑016 — Gentle speed ramp (👨‍👧
+	Priya)
+
+
+As a player, I want drop speed to ramp gently so that
+	early play teaches the loop and later play adds tension.
+
+
+Acceptance Criteria
+
+
+
+
+Given a round starts, when the
+		first 30 seconds elapse, then drop speed increases modestly. 
+		
+
+
+Given speed ramps, when credits are low, then speed does not
+		spike further beyond a reasonable cap. 
+		
+
+
+
+
+
+
+TD‑017 — Settings for difficulty, speed,
+	noise, and topic preferences (🎮 Alex)
+
+
+As a player, I want a simple Settings panel to adjust
+	difficulty and pacing so that the game fits my preference without
+	blocking play.
+
+
+Acceptance Criteria
+
+
+
+
+Given I am on the opening or
+		pause screen, when I open Settings, then I can adjust difficulty
+		tier, drop speed, and noise percentage within safe ranges. 
+		
+
+
+Given I save Settings, when I
+		press Start, then the next round uses my preferences without extra
+		confirmation dialogs. 
+		
+
+
+Given I have a topic preference,
+		when I set it to Random or a specific category, then Start respects
+		that preference while still allowing Quick Start. 
+		
+
+
+Given I open topic preferences, when viewing the
+		available topics in MVP, then I can choose among the 10 curated
+		topics or Random.
+
+
+
+
+
+
+
+
+TD‑018 — Help menu with How to Play and
+	FAQ (🎮 Alex)
+
+
+As a player, I want a Help menu that explains controls,
+	scoring, win/lose, and tips so that I can self‑serve answers.
+
+
+Acceptance Criteria
+
+
+
+
+Given I am on the opening or
+		pause screen, when I tap Help, then a modal shows concise tabs or
+		cards: How to Play, Tips, FAQ, Controls. 
+		
+
+
+Given I open Help while offline,
+		when content loads, then it appears instantly with no external
+		links required. 
+		
+
+
+Given I close Help, when I return later, then my optional
+		“Show tips on Start” toggle is remembered. 
+		
+
+
+
+
+
+
+TD‑019 — About modal with version and
+	privacy (🧩 Dana)
+
+
+As a player, I want an About modal that shows version,
+	creators, and privacy notes so that I know what I’m running.
+
+
+Acceptance Criteria
+
+
+
+
+Given I open About from opening
+		or pause screens, when the modal appears, then I see the app name,
+		version, short description, creators, and a privacy statement that
+		no data is collected and play is offline. 
+		
+
+
+Given I am offline, when I open About, then all information
+		is available without network calls. 
+		
+
+
+
+
+
+
+
+	4. 🗺️ User Journeys
+
+
+🗺️ User Journeys
+
+
+Below are three pivotal journeys that validate the frictionless
+	Quick Start, accessibility, and classroom suitability. Important
+	interaction points are highlighted, and each journey includes a
+	Mermaid diagram with sentiment scores.
+
+
+
+
+Journey 1: Quick Start to Win — 🎮 Alex
+
+
+Scenario:
+ Alex opens LetterFall, taps 
+Start
+,
+	and completes a topic in a single, satisfying run.
+
+
+Highlights:
+
+
+
+
+One‑tap Start
+
+		with auto‑selected topic 
+		
+
+
+Clear 
+10‑word list
+
+		and 
+construction tray
+ feedback 
+		
+
+
+Fairness guard
+
+		prevents droughts of the next needed letter 
+		
+
+
+Win screen
+ and instant 
+Restart
+
+		loop 
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Launch
+
+
+Open
+LetterFall and tap Start
+
+
+Auto
+topic selected and letters begin falling
+
+
+Early
+play
+
+
+Tap a
+word to target it
+
+
+Collect
+matching letters and see credits on misses
+
+
+Mid
+play
+
+
+Cross
+off completed words with feedback
+
+
+Fairness
+guard boosts missing letter appearance
+
+
+Speed
+ramps gently while credits remain safe
+
+
+Finish
+
+
+Complete
+the 10th word and see the win screen
+
+
+Tap
+Restart to play another random topic
+
+
+Pain Points and Opportunities
+
+
+
+
+Potential hesitation choosing
+	which word to target first → default highlight the first
+	incomplete word. 
+	
+
+
+Early confusion on misses draining credits → reinforce with
+	
+brief on‑screen cue
+ and subtle SFX. 
+	
+
+
+
+
+
+
+Journey 2: Settings then Play (Gentle Mode) —
+👨‍👧 Priya
+
+
+Scenario:
+ Priya adjusts 
+difficulty
+
+and 
+speed
+ for her child, then plays together.
+
+
+Highlights:
+
+
+
+
+Settings
+
+	available before play, but never required 
+	
+
+
+Large tap targets
+,
+	color‑safe cues, readable fonts 
+	
+
+
+Gentle speed ramp
+ to reduce frustration 
+	
+
+
+
+
+
+
+
+
+
+
+
+
+Launch
+
+
+Open app with child
+present
+
+
+Open Settings and choose
+Easy with lower speed
+
+
+Start
+
+
+Tap Start and skim the
+minimal overlay
+
+
+Play
+
+
+Large tap targets aid
+accurate tapping
+
+
+Missed letters drain
+credits but cues stay calm
+
+
+Pause between bursts to
+coach the next letter
+
+
+Finish
+
+
+Lose with 1–2 words
+left but feel encouraged
+
+
+Restart with the same saved settings
+
+
+Pain Points and Opportunities
+
+
+
+
+Child may be overwhelmed if speed
+	spikes late → cap the maximum speed at Easy. 
+	
+
+
+Visibility for the 
+next required letter
+ →
+	always show a clear marker in the tray. 
+	
+
+
+
+
+
+
+Journey 3: Classroom Warm‑Up Round — 🎓
+Riley
+
+
+Scenario:
+ Riley uses LetterFall as a quick
+warm‑up on shared devices or a projector.
+
+
+Highlights:
+
+
+
+
+Mute toggle
+ for
+	classroom friendliness 
+	
+
+
+Skippable onboarding
+
+	explaining three UI regions 
+	
+
+
+Three‑minute round
+ fits a warm‑up
+	slot 
+	
+
+
+
+
+
+
+
+
+
+
+
+
+Setup
+
+
+Launch on projector or
+student devices
+
+
+Tap Mute and skip the
+overlay
+
+
+Play
+
+
+Tap Start to auto select
+a topic
+
+
+Students call out
+letters while one taps
+
+
+Fairness guard reduces
+frustration from droughts
+
+
+Wrap
+
+
+Round ends in about
+three minutes win or lose
+
+
+Tap Restart for the next
+group
+
+
+
+
+Pain Points and Opportunities
+
+
+
+
+Mixed reading levels across
+		students → ensure 
+topic difficulty labels
+ and
+		provide 
+Easy
+ default on first run. 
+		
+
+
+Classroom noise constraints → 
+remember Mute state
+
+		across rounds by default. 
+		
+
+
+
+
+
+
+Takeaways Across Journeys
+
+
+
+
+The 
+Quick Start
+
+		successfully eliminates pre‑round friction while Settings
+		preserve control. 
+		
+
+
+Clear 
+credit drain
+
+		signaling and 
+fairness tuning
+ keep tension high
+		without feeling unfair. 
+		
+
+
+Accessibility and 
+readability
+ are essential
+		on small screens and in shared environments. 
+		
+
+
+
+
+
+
+
+	5. 🧩 Features
+
+
+🧩 Features
+
+
+This section defines the functional behavior, edge cases, and
+	non‑functional expectations for LetterFall’s client‑side
+	MVP. Each feature lists objective, user benefit, detailed
+	requirements, and acceptance criteria.
+
+
+F‑001 Quick Start (Auto Topic)
+
+
+
+
+Objective: Remove friction from
+		FTUE; single tap to play. 
+		
+
+
+Behavior:
+
+
+
+
+Start button immediately selects
+			a random topic from the available set, then samples 10 words from
+			that topic’s 50‑word pool. 
+			
+
+
+Transition to gameplay within <
+			500 ms after tap on modern devices. 
+			
+
+
+
+
+Acceptance:
+
+
+
+
+Given the app just loaded, when
+			the user taps Start, then a session begins with a random topic and
+			10 sampled words. 
+			
+
+
+Topic name is displayed (small label) but selection UI is
+			not required. 
+			
+
+
+
+
+
+
+F‑002 Topic Word Sampling
+
+
+
+
+Objective: Increase
+		replayability; reduce repetition. 
+		
+
+
+Behavior:
+
+
+
+
+Each topic has a large word pool
+			(~50). On session start, sample 10 unique words without
+			replacement. 
+			
+
+
+Ensure words are family‑friendly
+			and single tokens; case‑insensitive matching. 
+			
+
+
+
+
+Acceptance:
+
+
+
+
+Over 100 sessions, duplication rate of full 10‑word
+			sets is extremely low. 
+			
+
+
+
+
+
+
+F‑003 Three‑Pane Layout
+
+
+
+
+Objective: Maintain clarity
+		during action play. 
+		
+
+
+Behavior:
+
+
+
+
+Main Playfield (center): falling
+			letters; shows credits and pause. 
+			
+
+
+Right Sidebar: list of 10 target
+			words; completed words are crossed/checked. 
+			
+
+
+Bottom Tray: shows current word
+			under construction; letters added by tapping falling letters. 
+			
+
+
+
+
+Acceptance:
+
+
+
+
+Layout adapts to mobile (vertical) and desktop (horizontal)
+			with readable sizes. 
+			
+
+
+
+
+
+
+F‑004 Falling Letters & Spawn Logic
+
+
+
+
+Objective: Provide a fair yet
+		engaging stream of letters. 
+		
+
+
+Behavior:
+
+
+
+
+Spawn scheduler biases letters
+			toward those present in the 10 target words, with a configurable
+			noise percentage. 
+			
+
+
+Difficulty affects fall speed,
+			spawn cadence, and noise percent (defaults tuned post‑MVP). 
+			
+
+
+Letters that reach the bottom
+			decrement credits. 
+			
+
+
+
+
+Acceptance:
+
+
+
+
+With default settings, a typical player can complete 10
+			words before credits reach zero at least 30–50% of the time. 
+			
+
+
+
+
+
+
+F‑005 Word Construction & Validation
+
+
+
+
+Objective: Make letter capture
+		intentional and mistake‑tolerant. 
+		
+
+
+Behavior:
+
+
+
+
+Tapping a falling letter appends
+			it to the current word in the bottom tray. 
+			
+
+
+Support backspace/undo via
+			on‑screen control (no keyboard dependency). 
+			
+
+
+If the constructed word matches
+			a word from the right list, it is marked complete, removed from
+			active set, and the tray clears. 
+			
+
+
+Optional assist: highlight
+			letters beneficial for the current word (accessibility toggle). 
+			
+
+
+
+
+Acceptance:
+
+
+
+
+Exact match required; word list is case‑insensitive;
+			diacritics not used in MVP. 
+			
+
+
+
+
+
+
+F‑006 Credits & End Conditions
+
+
+
+
+Objective: Provide tension and a
+		clear win/loss state. 
+		
+
+
+Behavior:
+
+
+
+
+Player starts with 100 credits;
+			each letter that reaches bottom reduces credits by 1. 
+			
+
+
+Lose when credits reach 0. 
+			
+
+
+Win when all 10 words completed.
+			Require a tap to restart; no auto‑restart. 
+			
+
+
+
+
+Acceptance:
+
+
+
+
+End screens show summary (topic, words completed, remaining
+			credits) and options: Restart, Settings, Help. 
+			
+
+
+
+
+
+
+F‑007 Settings
+
+
+
+
+Objective: Allow players to tune
+		challenge and comfort without blocking play. 
+		
+
+
+Behavior:
+
+
+
+
+Difficulty presets (e.g.,
+			Standard, Hard) affecting speed, spawn rate, noise percent
+			(defaults TBD via playtests). 
+			
+
+
+Toggles: sound on/off, reduced
+			motion, color‑blind safe palette. 
+			
+
+
+Persist preferences in local
+			storage. 
+			
+
+
+
+
+Acceptance:
+
+
+
+
+Returning players see their previous settings applied. 
+			
+
+
+
+
+
+
+F‑008 Help & About
+
+
+
+
+Objective: Provide in‑app
+		guidance and transparency. 
+		
+
+
+Behavior:
+
+
+
+
+Help: concise rules, tips,
+			accessibility notes. 
+			
+
+
+About: version, credits, privacy
+			note (no data collection), and acknowledgments. 
+			
+
+
+
+
+Acceptance:
+
+
+
+
+Accessible from pause menu and home screen; opens as
+			lightweight modal or sheet. 
+			
+
+
+
+
+
+
+F‑009 Pause & Resume
+
+
+
+
+Objective: Allow short breaks
+		without penalty drift. 
+		
+
+
+Behavior:
+
+
+
+
+Pausing stops spawn and
+			animation; no credits deducted while paused. 
+			
+
+
+
+
+Acceptance:
+
+
+
+
+Resume returns to same state deterministically. 
+			
+
+
+
+
+
+
+F‑010 Audio/Visual Feedback
+
+
+
+
+Objective: Reinforce
+		interactions. 
+		
+
+
+Behavior:
+
+
+
+
+Subtle sounds for capture, miss,
+			word complete; animations for tray updates. 
+			
+
+
+Respect global sound toggle and
+			reduced motion. 
+			
+
+
+
+
+Acceptance:
+
+
+
+
+Audio never blocks gameplay; visual cues redundant with
+			color + shape. 
+			
+
+
+
+
+
+
+Non‑Functional
+
+
+
+
+Performance: 60 fps target; input
+		latency < 50 ms. 
+		
+
+
+Bundle: initial load < 300KB
+		gzipped; defer heavy assets. 
+		
+
+
+Accessibility: WCAG‑inspired contrasts; supports
+		color‑blind palettes and reduced motion. 
+		
+
+
+
+
+
+
+
+	6. ❓ Help
+
+
+❓ Help
+
+
+A concise, offline Help hub giving players everything they need
+	to succeed without leaving LetterFall.
+
+
+How to Play
+
+
+
+
+Tap 
+Start
+ to
+		auto‑select a topic and begin. 
+		
+
+
+Tap a word in the 
+word
+		list
+ to set your current target. 
+		
+
+
+Tap falling letters that match
+		the 
+next required character
+ of the selected word. 
+		
+
+
+Each missed letter that reaches
+		the bottom 
+costs 1 credit
+; you start with 
+100
+		credits
+. 
+		
+
+
+Complete all 
+10 words
+ before credits hit 
+0
+
+		to 
+win
+. If credits reach 
+0
+, you
+		
+lose
+. 
+		
+
+
+
+
+Controls
+
+
+
+
+Tap letters to collect;
+		non‑matching taps do not collect and provide a gentle cue. 
+		
+
+
+Tap a word in the list to switch
+		targets; partial progress for each word is saved. 
+		
+
+
+Mute
+ toggles sound instantly. 
+Pause
+
+		stops the action; credits do not drain while paused. 
+		
+
+
+
+
+Tips
+
+
+
+
+The game slightly favors letters
+		you need and prevents long droughts of the next required letter. 
+		
+
+
+Focus on shorter words first to
+		build momentum; or target the longest word early if credits are
+		high. 
+		
+
+
+Watch the 
+next required letter
+ indicator in
+		the construction tray. 
+		
+
+
+
+
+FAQ
+
+
+
+
+Can I choose a topic?
+
+		Yes, optionally via 
+Settings
+. Quick Start always
+		works with a random topic. 
+		
+
+
+Is internet required?
+
+		No. The game is fully 
+offline
+ in v1. 
+		
+
+
+Why am I losing credits?
+
+		Each letter that hits the bottom costs 
+1 credit
+. 
+		
+
+
+How long is a round?
+
+		Typically 
+2–4 minutes
+, depending on difficulty
+		and speed. 
+		
+
+
+Can I see the tutorial again?
+ Yes. Open
+		
+Help
+ and select 
+Replay Onboarding
+.
+				
+
+
+
+
+Accessibility
+
+
+
+
+Enable 
+Colorblind Mode
+, 
+Text Size
+,
+		and 
+Reduce Motion
+ in 
+Settings
+ for
+		comfort. 
+		
+
+
+
+
+Options
+
+
+
+
+Toggle 
+Show tips on
+		Start
+. 
+		
+
+
+Replay Onboarding
+ to view the 1–3 card
+		intro. 
+		
+
+
+
+
+This Help is fully available 
+offline
+ and
+	designed to be skimmed in under 
+30 seconds
+.
+
+
+
+
+
+	7. ℹ️ About
+
+
+ℹ️ About
+
+
+LetterFall — Word‑Action Vocabulary Game
+
+
+Version:
+ 1.0.0 (MVP)
+
+
+Working Title:
+
+	LetterFall
+
+
+LetterFall fuses Wordle‑style word targeting with an arcade
+	falling‑letters loop. Complete 
+10 words
+ for a
+	random topic before your 
+100 credits
+ run out.
+
+
+Credits
+
+
+
+
+Design and Product: [Your Name] 
+		
+
+
+Development: [Your Name or Team] 
+		
+
+
+Art and Audio: Lightweight in‑house assets and
+		open‑licensed effects 
+		
+
+
+
+
+Privacy and Data
+
+
+
+
+No data collected.
+
+
+
+
+No account.
+
+
+
+
+No network required.
+
+
+
+
+Runs entirely 
+client‑side
+. 
+		
+
+
+
+
+Content
+
+
+
+
+Topics and word lists are 
+curated
+
+		for clarity and age‑appropriateness. 
+		
+
+
+Please report problematic words by contacting the creators
+		in future versions; v1 ships without in‑app reporting. 
+		
+
+
+
+
+Acknowledgments
+
+
+
+
+Thanks to the broader word‑game
+		community for inspiration. 
+		
+
+
+Typeface and SFX attributions available upon request; assets
+		are embedded for offline use in v1. 
+		
+
+
+
+
+Legal
+
+
+
+
+Copyright © [Year] [Creator or
+		Studio]. All rights reserved. 
+		
+
+
+Trademarks and brand names belong to their respective
+		owners. 
+		
+
+
+
+
+This About page is fully available 
+offline
+.
+
+
+
+
+
+	8. 🛣️ Roadmap (Order of Work, No Dates)
+
+
+🛣️ Roadmap (Order of Work, No Dates)
+
+
+A lightweight, sequence‑only plan for delivering the
+	client‑side MVP of LetterFall. No timelines or estimates; each
+	phase lists key deliverables and exit criteria.
+
+
+Principles
+
+
+
+
+Frictionless: single‑tap
+		
+Start
+ to play; Settings never block play. 
+		
+
+
+Client‑side only: fully
+		
+offline
+; no accounts, no tracking. 
+		
+
+
+Accessible by default: readable, tappable, color‑safe.
+				
+
+
+
+
+Phase 0 — Project Scaffold
+
+
+
+
+Create repo, basic app shell,
+		scene/router structure, and build pipeline. 
+		
+
+
+Add placeholder assets and a
+		minimal UI theme. 
+		
+
+
+Exit criteria: App boots to an opening screen with Start,
+		Settings, Mute (nonfunctional). 
+		
+
+
+
+
+Phase 1 — Core Loop Skeleton
+
+
+
+
+Implement falling letters engine
+		and rendering. 
+		
+
+
+Implement Construction Tray
+		placeholder and tap detection on letters. 
+		
+
+
+Exit criteria: Tapping a falling letter highlights selection
+		but does not yet validate correctness. 
+		
+
+
+
+
+Phase 2 — Topics and Word List
+
+
+
+
+Embed a few curated topic packs
+		with 10 words each. 
+		
+
+
+Render the right‑side word
+		list with states: Pending, In‑Progress, Completed. 
+		
+
+
+Default select first incomplete
+		word; allow switching. 
+		
+
+
+Exit criteria: Selecting a word changes the active target;
+		list updates visually. 
+		
+
+
+
+
+Phase 3 — Spelling Rules and Progress
+
+
+
+
+Enforce next‑required‑letter
+		matching on collection. 
+		
+
+
+Preserve partial progress per
+		word; cross off on completion. 
+		
+
+
+Exit criteria: Players can fully complete a word via correct
+		letter taps; completed words cannot be reselected. 
+		
+
+
+
+
+Phase 4 — Economy and End States
+
+
+
+
+Credits HUD starting at 100;
+		decrement by 1 when any letter reaches bottom. 
+		
+
+
+Detect 
+Win
+ when
+		all 10 words complete; 
+Lose
+ at 0 credits. 
+		
+
+
+Exit criteria: Round can end in win or lose; Restart returns
+		to opening screen or same topic. 
+		
+
+
+
+
+Phase 5 — Spawn Logic and Fairness Guard
+
+
+
+
+Probability‑weighted spawns
+		from topic letters plus noise slider. 
+		
+
+
+Dynamic weighting for needed
+		letters; implement fairness guard to prevent droughts. 
+		
+
+
+Exit criteria: Observed spawns favor needed letters; long
+		droughts are rare by design. 
+		
+
+
+
+
+Phase 6 — UX Feedback and Readability
+
+
+
+
+Clear next‑required‑letter
+		indicator in Construction Tray. 
+		
+
+
+Visual and SFX cues for collect,
+		miss, cross‑off; subtle negative feedback on wrong taps. 
+		
+
+
+Auto‑advance to next
+		incomplete word on completion (toggle default ON). 
+		
+
+
+Exit criteria: Playtesters report clarity on what to do next
+		and why credits drop. 
+		
+
+
+
+
+Phase 7 — Difficulty and Speed Ramp
+
+
+
+
+Easy, Standard, Hard presets
+		affecting base speed, max speed, noise, concurrent letters. 
+		
+
+
+Gentle speed ramp with caps that
+		avoid spikes at low credits. 
+		
+
+
+Exit criteria: Default Standard feels tense but fair; Easy
+		is family‑friendly; Hard challenges enthusiasts. 
+		
+
+
+
+
+Phase 8 — Settings
+
+
+
+
+Implement Settings panel with
+		difficulty, speed, noise, topic preference, audio volume,
+		colorblind mode, reduce motion. 
+		
+
+
+Persist settings locally; Start
+		respects latest preferences without extra prompts. 
+		
+
+
+Exit criteria: Settings changes apply on the next Start;
+		persistence verified offline. 
+		
+
+
+
+
+Phase 9 — Onboarding, Help, and About
+
+
+
+
+First‑launch, skippable 1–3
+		card overlay. 
+		
+
+
+Help modal with How to Play,
+		Tips, FAQ, Accessibility, plus Replay Onboarding. 
+		
+
+
+About modal with version,
+		creators, and privacy note. 
+		
+
+
+Exit criteria: New players can understand the UI in under 10
+		seconds; all content loads offline. 
+		
+
+
+
+
+Phase 10 — Accessibility Polishing
+
+
+
+
+Ensure 44 px min tap targets;
+		verify color contrast and text scaling. 
+		
+
+
+Implement colorblind mode and
+		reduce‑motion behavior. 
+		
+
+
+Exit criteria: Accessibility checklist passes; key flows
+		usable on small phones and tablets. 
+		
+
+
+
+
+Phase 11 — Pause, End‑of‑Round
+	Summary, and Quality Polish
+
+
+
+
+Pause halts spawns and motion
+		without credit drain. 
+		
+
+
+Add end‑of‑round
+		summary with words completed and credits remaining. 
+		
+
+
+Tighten UI layout responsiveness;
+		fix overlap edge cases; ensure no scroll in word list on typical
+		phones. 
+		
+
+
+Exit criteria: No soft‑locks; summary is clear and
+		quick; UI scales across common devices. 
+		
+
+
+
+
+Phase 12 — Offline Packaging and Stability
+
+
+
+
+Bundle topic content and assets
+		for full offline play. 
+		
+
+
+Test network loss during rounds;
+		ensure zero degradation. 
+		
+
+
+Exit criteria: App functions identically offline; cold‑start
+		and resume are stable. 
+		
+
+
+
+
+Phase 13 — Performance Pass
+
+
+
+
+Profile and optimize drops,
+		collisions, and animations to sustain target frame rate. 
+		
+
+
+Cap concurrent letters sensibly
+		per difficulty. 
+		
+
+
+Exit criteria: Smooth input and animation on low‑ to
+		mid‑range devices. 
+		
+
+
+
+
+Phase 14 — Playtesting and Tuning
+
+
+
+
+Guided tests across personas:
+		Alex, Priya child pairing, Riley classroom demo, Dana enthusiast. 
+		
+
+
+Tune spawn weights, speed curves,
+		and noise defaults based on feedback. 
+		
+
+
+Exit criteria: Loss rate in Standard near 35–45 percent;
+		average words per session near 8–10. 
+		
+
+
+
+
+Phase 15 — Release Candidate
+
+
+
+
+Finalize icons, app metadata, and
+		basic branding. 
+		
+
+
+Sanity regression pass across all
+		phases. 
+		
+
+
+Exit criteria: Ready‑to‑ship client‑side
+		MVP with Quick Start, Settings, Help, and About. 
+		
+
+
+
+
+
+
+Visual Sequence
+
+
+
+
+
+
+
+
+
+
+
+
+9. 🛠️ Implementation Plan
+
+
+🛠️ Implementation Plan
+
+
+A sequenced, engineering‑ready plan to deliver the offline,
+client‑side MVP of LetterFall. It aligns 1:1 with the Roadmap
+phases and the User Stories TD‑001 to TD‑019. No server,
+no accounts, no tracking.
+
+
+🎯 Objectives and Constraints
+
+
+
+
+Objectives: Ship a smooth, fair,
+	2–4 minute falling‑letters loop with one‑tap Quick
+	Start and clear win/lose. 
+	
+
+
+Constraints: 100 percent
+	client‑side; English only; offline by default; accessibility
+	AA; minimal footprint; deterministic testing hooks. 
+	
+
+
+Success: Users complete 8–10 words per session on average
+	with a 35–45 percent loss rate on Standard. 
+	
+
+
+
+
+🧱 Core Components
+
+
+
+
+UI Shell: Opening screen, Pause,
+	End screens, Settings, Help, About. 
+	
+
+
+Game Loop: Timestep control, spawn
+	cadence, motion updates, collision with bottom, pause/resume. 
+	
+
+
+Entities: Letter instances with
+	glyph, position, velocity, lifecycle state. 
+	
+
+
+Input: Tap or click resolution to
+	the topmost letter under pointer. 
+	
+
+
+State: Round state, selected word,
+	per‑word progress, credits, difficulty, settings, mute,
+	accessibility flags. 
+	
+
+
+Content: Topic packs with
+	approximately 50‑word pools per topic minimum 40; per‑round
+	sampler that selects 10 unique words without replacement; recency
+	avoidance across consecutive rounds on the same topic. 
+	
+
+
+Spawn Engine: Weighted selection
+	from letters belonging to the round’s 10 sampled words plus
+	configurable noise; fairness guard; flood caps; duplicate glyph
+	handling. 
+	
+
+
+HUD: Credits, current word
+	indicator, next required letter hint, word list states. 
+	
+
+
+Audio: SFX for collect, miss,
+	cross‑off, win, lose; global mute. 
+	
+
+
+Persistence: Local storage of settings only. 
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+🗂️ Workstreams and Deliverables
+
+
+1. Project Scaffold and UI Shell
+
+
+
+
+Deliverables: App bootstrap,
+		basic scene routing, minimal theme, Start Settings Mute on opening
+		screen. 
+		
+
+
+DoD: Boots reliably; UI buttons visible and tappable across
+		phone and tablet sizes. 
+		
+
+
+
+
+2. Core Loop and Entities
+
+
+
+
+Deliverables: Fixed update or
+		frame‑based loop; falling letter entity with spawn, update,
+		render, despawn; bottom boundary detection. 
+		
+
+
+DoD: Letters fall, can be paused, and despawn on bottom hit;
+		no credit logic yet. 
+		
+
+
+
+
+3. Topics, Word List, and Selection
+
+
+
+
+Deliverables: In‑app topic
+		definitions with ~50‑word pools per topic; per‑round
+		random sampler that selects 10 unique words; right sidebar shows
+		those 10 and states; selection highlight; auto‑select first
+		incomplete. 
+		
+
+
+DoD: Tapping a list item changes active target; state
+		persists during round; no duplicate words within the round’s
+		10‑word list; consecutive rounds on the same topic apply
+		recency avoidance so immediate repeats are uncommon. 
+		
+
+
+
+
+4. Spelling Rules and Progress
+
+
+
+
+Deliverables:
+		Next‑required‑letter matching; construction tray with
+		built substring and next‑letter marker; per‑word
+		partial progress; cross‑off on completion; auto‑advance
+		toggle. 
+		
+
+
+DoD: A word can be fully completed only via correct order;
+		completed words non‑selectable. 
+		
+
+
+
+
+5. Credits, Win and Lose States
+
+
+
+
+Deliverables: Credits HUD
+		starting at 100; decrement on bottom hits; Win when 10 words done;
+		Lose at 0; end screen with Restart and Change Topic. 
+		
+
+
+DoD: Round reliably terminates in win or lose; 
+end
+		screen persists with no auto‑restart on Win;
+ Restart
+		resets round state. 
+		
+
+
+
+
+6. Spawn Engine and Fairness Guard
+
+
+
+
+Deliverables: Weighted letter
+		distribution from the round’s 10 sampled words plus configurable
+		noise; dynamic favoring of needed letters; fairness guard to
+		prevent droughts; flood caps; duplicate glyph handling. 
+		
+
+
+DoD: Observed play shows useful letters appear at reasonable
+		cadence; long droughts are rare. 
+		
+
+
+
+
+7. UX Feedback, Audio, and Readability
+
+
+
+
+Deliverables: Visual cues for
+		collect, miss, cross‑off; subtle negative feedback on wrong
+		taps; SFX and global mute; ensure topmost‑letter hit testing.
+				
+
+
+DoD: Input‑to‑feedback under 100 ms on target
+		devices; mute persists across rounds. 
+		
+
+
+
+
+8. Difficulty Presets and Speed Ramp
+
+
+
+
+Deliverables: Easy Standard Hard
+		affecting base speed, max speed, noise, concurrent letters; gentle
+		ramp over time with caps; 
+noise defaults for Standard and
+		Hard to be finalized during the tuning phase once the game is
+		playable
+. 
+		
+
+
+DoD: Standard produces target tension; Easy remains
+		family‑friendly; Hard is challenging. 
+		
+
+
+
+
+9. Settings and Persistence
+
+
+
+
+Deliverables: Settings for
+		difficulty, speed, noise, topic preference, audio volume,
+		colorblind mode, reduce motion; local persistence. 
+		
+
+
+DoD: Settings changes apply next round; persist survives app
+		restarts; Quick Start respects preferences. 
+		
+
+
+
+
+10. Onboarding, Help, About
+
+
+
+
+Deliverables: First‑launch
+		1–3 card overlay; Help with How to Play, Tips, FAQ,
+		Accessibility; About with version and privacy note; Replay
+		Onboarding. 
+		
+
+
+DoD: New players understand UI in under 10 seconds; all
+		content available offline. 
+		
+
+
+
+
+11. Pause, Summary, Accessibility Polish
+
+
+
+
+Deliverables: Pause halts motion
+		and spawns; end‑of‑round summary; AA color contrast; 44
+		px taps; colorblind mode; reduce motion; text size scaling. 
+		
+
+
+DoD: Accessibility checklist passes; UI scales on small
+		phones and tablets; no scroll in word list on common devices. 
+		
+
+
+
+
+12. Offline Packaging, Stability, Performance
+
+
+
+
+Deliverables: Bundle content and
+		assets; offline operation validated; performance tuning to sustain
+		smooth input and motion; cap concurrent letters per difficulty. 
+		
+
+
+DoD: Identical behavior offline; no soft‑locks; smooth
+		feel on low‑ to mid‑range hardware. 
+		
+
+
+
+
+✅ Acceptance and Test Strategy
+
+
+
+
+Deterministic Spawns: Add debug
+		seed input to RNG to reproduce sequences for fairness tests. 
+		
+
+
+Sampling and Recency Tests:
+		Verify 10 unique words per round; across 3 consecutive rounds on
+		the same topic, repeats stay below an agreed threshold via recency
+		avoidance; confirm no duplicates within a single round’s list. 
+		
+
+
+Scenario Scripts: Fixed topics
+		and settings to validate TD‑001 to TD‑019 end‑to‑end.
+				
+
+
+Edge Cases: Duplicate letters in
+		words, simultaneous bottom hits, overlapping taps, rapid word
+		switching, last‑letter completes word. 
+		
+
+
+Fairness Guard Tests: Simulate
+		prolonged absence of next required letter and verify weight
+		increase resolves within bounds. 
+		
+
+
+Performance Budget: Start tap to
+		first letter under 800 ms; tap feedback under 100 ms; steady motion
+		without hitches. 
+		
+
+
+Accessibility Checklist:
+		Contrast, tap size, text scale, colorblind verification,
+		reduce‑motion audit. 
+		
+
+
+Offline Tests: Airplane mode cold
+		start; mid‑round connectivity drop; Help/About availability. 
+		
+
+
+Device Matrix: Small phone, large phone, tablet, low‑end
+		device profile. 
+		
+
+
+
+
+📦 Content Guidelines for v1
+
+
+
+
+10 curated topics
+;
+		each with approximately 50 clear, age‑appropriate words per
+		topic; each round samples 10 unique words without replacement;
+		avoid rare proper nouns. 
+		
+
+
+Label topics with difficulty and
+		length profile; balance letter frequency variance across topics. 
+		
+
+
+Avoid ambiguous homographs; prefer American English spelling
+		for v1. 
+		
+
+
+
+
+⚠️ Risks and Mitigations
+
+
+
+
+RNG Frustration: Fairness guard
+		plus spawn weighting; cap noise at safe default; telemetry is
+		offline, so rely on playtests and session heuristics. 
+		
+
+
+Visual Clutter: Limit concurrent
+		letters; ensure outlines and spacing; reduce motion option. 
+		
+
+
+Overlong Sessions: Speed ramp tuning; gentle, capped
+		acceleration; credits drain provides ceiling. 
+		
+
+
+
+
+🔁 Build Order Tie‑In to Roadmap
+
+
+
+
+Phase 0–1: Scaffold and core
+		loop. 
+		
+
+
+Phase 2–4: Topics, spelling,
+		credits and end states. 
+		
+
+
+Phase 5–7: Spawn fairness,
+		feedback, difficulty and ramp. 
+		
+
+
+Phase 8–10: Settings,
+		onboarding, help, about, accessibility. 
+		
+
+
+Phase 11–13: Pause, summary,
+		offline packaging, performance. 
+		
+
+
+Phase 14–15: Playtesting, tuning, release. 
+		
+
+
+
+
+📋 Definition of Ready and Done
+
+
+
+
+DoR: Story has user value,
+		acceptance criteria, UI snapshot or description, test notes, and
+		dependencies resolved. 
+		
+
+
+DoD: Feature meets acceptance criteria, passes device
+		matrix, accessibility checks, offline tests, and has rollback/retry
+		paths where relevant. 
+		
+
+
+
+
+✅ Resolved Decisions
+
+
+
+
+V1 content lock
+		2025‑09‑29:
+ 10 launch topics and their draft
+		50‑word pools approved. 
+		
+
+
+MVP topic count:
+
+		10 curated topics at launch. 
+		
+
+
+Content pools:
+
+		Each topic uses a ≈50‑word pool minimum 40; each round
+		samples 10 unique words; recency avoidance reduces repeats across
+		back‑to‑back rounds on the same topic. 
+		
+
+
+Noise defaults:
+
+		Set during the tuning phase once the game is playable; provisional
+		internal values are acceptable pre‑tuning. 
+		
+
+
+Win restart behavior:
+ Require a tap to
+		restart; no auto‑restart on Win. 
+		
+
+
+
+
+🧰 Stack Selection Criteria for Tech Handoff
+	(Product‑Side)
+
+
+
+
+Offline‑First: No runtime
+		network calls; all code and assets bundled; Help and About fully
+		offline; zero trackers or analytics. 
+		
+
+
+Performance Budgets: Sustain 60
+		fps feel; input‑to‑feedback under 100 ms; Start tap to
+		first falling letter under 800 ms on target low‑ to mid‑range
+		devices; stable timing for fairness. 
+		
+
+
+Small Footprint: Prefer lean
+		runtime and bundles; avoid heavyweight engines that jeopardize load
+		time or device compatibility. 
+		
+
+
+Cross‑Device Input:
+		Reliable touch and mouse support; accurate topmost‑letter hit
+		testing; high‑DPI rendering; landscape layout. 
+		
+
+
+Accessibility Support: Text
+		scaling, AA contrast, colorblind mode hooks, reduce‑motion;
+		semantic structure where applicable. 
+		
+
+
+Determinism Hooks: Seedable RNG,
+		fixed‑step simulation option, and record‑and‑replay
+		harness capability for fairness testing. 
+		
+
+
+Content Pipeline: Human‑editable
+		embedded resources for per‑topic word pools; validation at
+		build time; safe character set; future localization path. 
+		
+
+
+Packaging and Installability:
+		Installable offline experience for mobile and desktop; no elevated
+		permissions; predictable cold‑start behavior. 
+		
+
+
+Audio Constraints: Immediate SFX
+		with global mute; respect platform audio policies without blocking
+		gameplay. 
+		
+
+
+Tooling and DX: Fast local
+		iteration, simple build steps, and portable project structure. 
+		
+
+
+Security and Privacy: No data egress; sandboxed runtime; no
+		external script loading at runtime. 
+		
+
+
+
+
+🚀 Sprint 0: Stack‑Selection Spike &
+	Deliverables
+
+
+
+
+Goals: De‑risk stack choice
+		against offline, performance, accessibility, and determinism
+		requirements. 
+		
+
+
+Deliverables:
+
+
+
+
+Micro‑prototype: Falling
+			letters, click‑to‑collect, basic word list panel;
+			measure input latency and frame stability on a low‑end
+			profile. 
+			
+
+
+Offline Package: Produce an
+			installable offline build and validate airplane‑mode cold
+			start and mid‑round behavior. 
+			
+
+
+Determinism Harness: Seed input
+			UI, record‑and‑replay of a 60‑second scenario;
+			document reproducibility. 
+			
+
+
+Accessibility Proof: Text scale,
+			color contrast sample screens, reduce‑motion toggle impact. 
+			
+
+
+Content Ingestion Demo: Load one
+			topic with a ~50‑word pool and sample 10 unique words; show
+			recency avoidance across 3 rounds. 
+			
+
+
+Decision Record: Compare
+			candidate stacks against criteria; risks, mitigations, and a
+			recommended path with evidence and perf numbers. 
+			
+
+
+
+
+Go/No‑Go Criteria:
+
+
+
+
+Meets performance budgets on
+			target devices with representative load. 
+			
+
+
+Fully offline with zero network
+			calls; Help/About available. 
+			
+
+
+Deterministic replay reproduces
+			key fairness tests. 
+			
+
+
+Accessibility checks pass for
+			text scaling and contrast; reduce‑motion degrades
+			gracefully. 
+			
+
+
+Build and packaging steps are reliable and under 10 minutes
+			on a standard dev machine. 
+			
+
+
+
+
+
+
+
+
+
+	10. 📚 Launch Topics and Draft 50‑Word Pools
+
+
+📚 Launch Topics and Draft 50‑Word Pools
+
+
+These are proposed launch topics with draft pools of 50 unique,
+	single‑word entries each. Principles applied:
+
+
+
+
+American English spelling;
+		family‑friendly; no spaces or hyphens; avoid rare proper
+		nouns 
+		
+
+
+Mix of short and medium lengths
+		for pacing; clear nouns to reduce ambiguity 
+		
+
+
+Each round samples 10 unique words from the chosen topic;
+		recency avoidance reduces back‑to‑back repeats across
+		rounds 
+		
+
+
+
+
+
+
+1) Fruits
+
+
+Length profile: 4–10 letters. Difficulty: Easy to Standard.
+
+
+
+
+apple 
+		
+
+
+banana 
+		
+
+
+orange 
+		
+
+
+grape 
+		
+
+
+mango 
+		
+
+
+peach 
+		
+
+
+pear 
+		
+
+
+plum 
+		
+
+
+cherry 
+		
+
+
+apricot 
+		
+
+
+kiwi 
+		
+
+
+lemon 
+		
+
+
+lime 
+		
+
+
+cantaloupe 
+		
+
+
+honeydew 
+		
+
+
+papaya 
+		
+
+
+guava 
+		
+
+
+fig 
+		
+
+
+date 
+		
+
+
+coconut 
+		
+
+
+pineapple 
+		
+
+
+blueberry 
+		
+
+
+blackberry 
+		
+
+
+strawberry 
+		
+
+
+raspberry 
+		
+
+
+cranberry 
+		
+
+
+tangerine 
+		
+
+
+clementine 
+		
+
+
+grapefruit 
+		
+
+
+pomegranate 
+		
+
+
+nectarine 
+		
+
+
+persimmon 
+		
+
+
+avocado 
+		
+
+
+currant 
+		
+
+
+lychee 
+		
+
+
+mulberry 
+		
+
+
+boysenberry 
+		
+
+
+gooseberry 
+		
+
+
+passionfruit 
+		
+
+
+starfruit 
+		
+
+
+dragonfruit 
+		
+
+
+jackfruit 
+		
+
+
+durian 
+		
+
+
+soursop 
+		
+
+
+plantain 
+		
+
+
+kumquat 
+		
+
+
+quince 
+		
+
+
+feijoa 
+		
+
+
+tamarind 
+		
+
+
+longan 
+		
+
+
+
+
+
+
+2) Vegetables
+
+
+Length profile: 3–12 letters. Difficulty: Easy to Standard.
+
+
+
+
+carrot 
+		
+
+
+potato 
+		
+
+
+tomato 
+		
+
+
+onion 
+		
+
+
+garlic 
+		
+
+
+pepper 
+		
+
+
+cucumber 
+		
+
+
+lettuce 
+		
+
+
+spinach 
+		
+
+
+kale 
+		
+
+
+cabbage 
+		
+
+
+broccoli 
+		
+
+
+cauliflower 
+		
+
+
+celery 
+		
+
+
+beet 
+		
+
+
+turnip 
+		
+
+
+radish 
+		
+
+
+yam 
+		
+
+
+squash 
+		
+
+
+pumpkin 
+		
+
+
+zucchini 
+		
+
+
+eggplant 
+		
+
+
+okra 
+		
+
+
+asparagus 
+		
+
+
+artichoke 
+		
+
+
+leek 
+		
+
+
+chive 
+		
+
+
+scallion 
+		
+
+
+shallot 
+		
+
+
+parsley 
+		
+
+
+cilantro 
+		
+
+
+dill 
+		
+
+
+basil 
+		
+
+
+pea 
+		
+
+
+bean 
+		
+
+
+lentil 
+		
+
+
+chickpea 
+		
+
+
+corn 
+		
+
+
+ginger 
+		
+
+
+horseradish 
+		
+
+
+rutabaga 
+		
+
+
+parsnip 
+		
+
+
+endive 
+		
+
+
+arugula 
+		
+
+
+fennel 
+		
+
+
+radicchio 
+		
+
+
+watercress 
+		
+
+
+mushroom 
+		
+
+
+cassava 
+		
+
+
+taro 
+		
+
+
+
+
+
+
+3) Animals
+
+
+Length profile: 3–10 letters. Difficulty: Easy to Standard.
+
+
+
+
+dog 
+		
+
+
+cat 
+		
+
+
+horse 
+		
+
+
+cow 
+		
+
+
+pig 
+		
+
+
+sheep 
+		
+
+
+goat 
+		
+
+
+chicken 
+		
+
+
+duck 
+		
+
+
+goose 
+		
+
+
+turkey 
+		
+
+
+rabbit 
+		
+
+
+deer 
+		
+
+
+lion 
+		
+
+
+tiger 
+		
+
+
+bear 
+		
+
+
+wolf 
+		
+
+
+fox 
+		
+
+
+zebra 
+		
+
+
+giraffe 
+		
+
+
+elephant 
+		
+
+
+rhino 
+		
+
+
+hippo 
+		
+
+
+kangaroo 
+		
+
+
+koala 
+		
+
+
+panda 
+		
+
+
+monkey 
+		
+
+
+gorilla 
+		
+
+
+chimpanzee 
+		
+
+
+lemur 
+		
+
+
+otter 
+		
+
+
+beaver 
+		
+
+
+raccoon 
+		
+
+
+skunk 
+		
+
+
+squirrel 
+		
+
+
+mouse 
+		
+
+
+rat 
+		
+
+
+hamster 
+		
+
+
+hedgehog 
+		
+
+
+camel 
+		
+
+
+bison 
+		
+
+
+donkey 
+		
+
+
+mule 
+		
+
+
+leopard 
+		
+
+
+cheetah 
+		
+
+
+jaguar 
+		
+
+
+dolphin 
+		
+
+
+whale 
+		
+
+
+shark 
+		
+
+
+seal 
+		
+
+
+
+
+
+
+4) Birds
+
+
+Length profile: 3–12 letters. Difficulty: Easy to Standard.
+
+
+
+
+robin 
+		
+
+
+sparrow 
+		
+
+
+finch 
+		
+
+
+canary 
+		
+
+
+pigeon 
+		
+
+
+dove 
+		
+
+
+crow 
+		
+
+
+raven 
+		
+
+
+jay 
+		
+
+
+magpie 
+		
+
+
+lark 
+		
+
+
+wren 
+		
+
+
+swallow 
+		
+
+
+swift 
+		
+
+
+owl 
+		
+
+
+hawk 
+		
+
+
+eagle 
+		
+
+
+falcon 
+		
+
+
+vulture 
+		
+
+
+heron 
+		
+
+
+crane 
+		
+
+
+stork 
+		
+
+
+ibis 
+		
+
+
+pelican 
+		
+
+
+cormorant 
+		
+
+
+duck 
+		
+
+
+goose 
+		
+
+
+swan 
+		
+
+
+turkey 
+		
+
+
+quail 
+		
+
+
+pheasant 
+		
+
+
+grouse 
+		
+
+
+parrot 
+		
+
+
+macaw 
+		
+
+
+cockatoo 
+		
+
+
+toucan 
+		
+
+
+flamingo 
+		
+
+
+gull 
+		
+
+
+penguin 
+		
+
+
+ostrich 
+		
+
+
+emu 
+		
+
+
+auk 
+		
+
+
+woodpecker 
+		
+
+
+kingfisher 
+		
+
+
+hummingbird 
+		
+
+
+nightjar 
+		
+
+
+sandpiper 
+		
+
+
+plover 
+		
+
+
+tern 
+		
+
+
+egret 
+		
+
+
+
+
+
+
+5) Sea Life
+
+
+Length profile: 3–12 letters. Difficulty: Standard.
+
+
+
+
+shark 
+		
+
+
+whale 
+		
+
+
+dolphin 
+		
+
+
+porpoise 
+		
+
+
+manatee 
+		
+
+
+dugong 
+		
+
+
+seal 
+		
+
+
+walrus 
+		
+
+
+octopus 
+		
+
+
+squid 
+		
+
+
+cuttlefish 
+		
+
+
+nautilus 
+		
+
+
+jellyfish 
+		
+
+
+seahorse 
+		
+
+
+starfish 
+		
+
+
+barnacle 
+		
+
+
+coral 
+		
+
+
+anemone 
+		
+
+
+sponge 
+		
+
+
+urchin 
+		
+
+
+clam 
+		
+
+
+oyster 
+		
+
+
+mussel 
+		
+
+
+scallop 
+		
+
+
+lobster 
+		
+
+
+crab 
+		
+
+
+shrimp 
+		
+
+
+prawn 
+		
+
+
+krill 
+		
+
+
+eel 
+		
+
+
+flounder 
+		
+
+
+halibut 
+		
+
+
+salmon 
+		
+
+
+tuna 
+		
+
+
+mackerel 
+		
+
+
+sardine 
+		
+
+
+anchovy 
+		
+
+
+swordfish 
+		
+
+
+marlin 
+		
+
+
+cod 
+		
+
+
+haddock 
+		
+
+
+grouper 
+		
+
+
+snapper 
+		
+
+
+barracuda 
+		
+
+
+stingray 
+		
+
+
+manta 
+		
+
+
+kelp 
+		
+
+
+plankton 
+		
+
+
+seaweed 
+		
+
+
+bonito 
+		
+
+
+
+
+
+
+6) Clothing
+
+
+Length profile: 3–10 letters. Difficulty: Easy.
+
+
+
+
+shirt 
+		
+
+
+pants 
+		
+
+
+jeans 
+		
+
+
+shorts 
+		
+
+
+skirt 
+		
+
+
+dress 
+		
+
+
+blouse 
+		
+
+
+sweater 
+		
+
+
+hoodie 
+		
+
+
+jacket 
+		
+
+
+coat 
+		
+
+
+vest 
+		
+
+
+blazer 
+		
+
+
+suit 
+		
+
+
+tie 
+		
+
+
+belt 
+		
+
+
+scarf 
+		
+
+
+hat 
+		
+
+
+cap 
+		
+
+
+beanie 
+		
+
+
+gloves 
+		
+
+
+mittens 
+		
+
+
+socks 
+		
+
+
+stockings 
+		
+
+
+boots 
+		
+
+
+shoes 
+		
+
+
+sandals 
+		
+
+
+sneakers 
+		
+
+
+loafers 
+		
+
+
+slippers 
+		
+
+
+pajamas 
+		
+
+
+robe 
+		
+
+
+underwear 
+		
+
+
+bra 
+		
+
+
+briefs 
+		
+
+
+boxers 
+		
+
+
+leggings 
+		
+
+
+tights 
+		
+
+
+cardigan 
+		
+
+
+parka 
+		
+
+
+raincoat 
+		
+
+
+poncho 
+		
+
+
+overalls 
+		
+
+
+jumpsuit 
+		
+
+
+swimsuit 
+		
+
+
+bikini 
+		
+
+
+trunks 
+		
+
+
+shawl 
+		
+
+
+kimono 
+		
+
+
+sari 
+		
+
+
+
+
+
+
+7) Household Items
+
+
+Length profile: 3–10 letters. Difficulty: Easy.
+
+
+
+
+chair 
+		
+
+
+table 
+		
+
+
+sofa 
+		
+
+
+couch 
+		
+
+
+ottoman 
+		
+
+
+stool 
+		
+
+
+bench 
+		
+
+
+bed 
+		
+
+
+mattress 
+		
+
+
+pillow 
+		
+
+
+blanket 
+		
+
+
+quilt 
+		
+
+
+sheet 
+		
+
+
+lamp 
+		
+
+
+lantern 
+		
+
+
+bulb 
+		
+
+
+switch 
+		
+
+
+outlet 
+		
+
+
+clock 
+		
+
+
+mirror 
+		
+
+
+rug 
+		
+
+
+carpet 
+		
+
+
+curtain 
+		
+
+
+drape 
+		
+
+
+blind 
+		
+
+
+shutter 
+		
+
+
+cabinet 
+		
+
+
+drawer 
+		
+
+
+dresser 
+		
+
+
+wardrobe 
+		
+
+
+closet 
+		
+
+
+shelf 
+		
+
+
+bookcase 
+		
+
+
+desk 
+		
+
+
+counter 
+		
+
+
+faucet 
+		
+
+
+sink 
+		
+
+
+toilet 
+		
+
+
+shower 
+		
+
+
+bathtub 
+		
+
+
+towel 
+		
+
+
+soap 
+		
+
+
+sponge 
+		
+
+
+bucket 
+		
+
+
+broom 
+		
+
+
+mop 
+		
+
+
+vacuum 
+		
+
+
+trashcan 
+		
+
+
+bin 
+		
+
+
+basket 
+		
+
+
+
+
+
+
+8) Sports
+
+
+Length profile: 4–12 letters. Difficulty: Standard.
+
+
+
+
+soccer 
+		
+
+
+football 
+		
+
+
+baseball 
+		
+
+
+basketball 
+		
+
+
+tennis 
+		
+
+
+golf 
+		
+
+
+hockey 
+		
+
+
+cricket 
+		
+
+
+rugby 
+		
+
+
+volleyball 
+		
+
+
+badminton 
+		
+
+
+pingpong 
+		
+
+
+handball 
+		
+
+
+softball 
+		
+
+
+lacrosse 
+		
+
+
+gymnastics 
+		
+
+
+wrestling 
+		
+
+
+boxing 
+		
+
+
+karate 
+		
+
+
+judo 
+		
+
+
+taekwondo 
+		
+
+
+fencing 
+		
+
+
+archery 
+		
+
+
+skating 
+		
+
+
+surfing 
+		
+
+
+sailing 
+		
+
+
+rowing 
+		
+
+
+kayaking 
+		
+
+
+canoeing 
+		
+
+
+diving 
+		
+
+
+swimming 
+		
+
+
+skiing 
+		
+
+
+snowboarding 
+		
+
+
+biathlon 
+		
+
+
+curling 
+		
+
+
+bobsled 
+		
+
+
+luge 
+		
+
+
+shotput 
+		
+
+
+marathon 
+		
+
+
+sprint 
+		
+
+
+hurdles 
+		
+
+
+cycling 
+		
+
+
+triathlon 
+		
+
+
+decathlon 
+		
+
+
+equestrian 
+		
+
+
+polo 
+		
+
+
+skateboarding 
+		
+
+
+climbing 
+		
+
+
+parkour 
+		
+
+
+yoga 
+		
+
+
+
+
+
+
+9) Body Parts
+
+
+Length profile: 3–10 letters. Difficulty: Easy.
+
+
+
+
+head 
+		
+
+
+hair 
+		
+
+
+face 
+		
+
+
+forehead 
+		
+
+
+eyebrow 
+		
+
+
+eyelash 
+		
+
+
+eye 
+		
+
+
+ear 
+		
+
+
+nose 
+		
+
+
+mouth 
+		
+
+
+lip 
+		
+
+
+tooth 
+		
+
+
+tongue 
+		
+
+
+chin 
+		
+
+
+neck 
+		
+
+
+throat 
+		
+
+
+shoulder 
+		
+
+
+arm 
+		
+
+
+elbow 
+		
+
+
+wrist 
+		
+
+
+hand 
+		
+
+
+palm 
+		
+
+
+finger 
+		
+
+
+thumb 
+		
+
+
+chest 
+		
+
+
+back 
+		
+
+
+waist 
+		
+
+
+hip 
+		
+
+
+belly 
+		
+
+
+stomach 
+		
+
+
+leg 
+		
+
+
+thigh 
+		
+
+
+knee 
+		
+
+
+shin 
+		
+
+
+calf 
+		
+
+
+ankle 
+		
+
+
+foot 
+		
+
+
+heel 
+		
+
+
+toe 
+		
+
+
+brain 
+		
+
+
+heart 
+		
+
+
+lung 
+		
+
+
+liver 
+		
+
+
+kidney 
+		
+
+
+muscle 
+		
+
+
+bone 
+		
+
+
+skull 
+		
+
+
+spine 
+		
+
+
+rib 
+		
+
+
+vein 
+		
+
+
+
+
+
+
+10) Transportation
+
+
+Length profile: 3–12 letters. Difficulty: Easy to Standard.
+
+
+
+
+car 
+		
+
+
+truck 
+		
+
+
+bus 
+		
+
+
+van 
+		
+
+
+taxi 
+		
+
+
+train 
+		
+
+
+subway 
+		
+
+
+metro 
+		
+
+
+tram 
+		
+
+
+trolley 
+		
+
+
+monorail 
+		
+
+
+ferry 
+		
+
+
+boat 
+		
+
+
+ship 
+		
+
+
+canoe 
+		
+
+
+kayak 
+		
+
+
+raft 
+		
+
+
+yacht 
+		
+
+
+sailboat 
+		
+
+
+submarine 
+		
+
+
+airplane 
+		
+
+
+jet 
+		
+
+
+helicopter 
+		
+
+
+glider 
+		
+
+
+balloon 
+		
+
+
+blimp 
+		
+
+
+zeppelin 
+		
+
+
+rocket 
+		
+
+
+spaceship 
+		
+
+
+scooter 
+		
+
+
+moped 
+		
+
+
+motorcycle 
+		
+
+
+bicycle 
+		
+
+
+skateboard 
+		
+
+
+skates 
+		
+
+
+unicycle 
+		
+
+
+snowmobile 
+		
+
+
+bulldozer 
+		
+
+
+tractor 
+		
+
+
+ambulance 
+		
+
+
+carriage 
+		
+
+
+rickshaw 
+		
+
+
+wagon 
+		
+
+
+sled 
+		
+
+
+gondola 
+		
+
+
+funicular 
+		
+
+
+hovercraft 
+		
+
+
+jetski 
+		
+
+
+motorboat 
+		
+
+
+streetcar 
+		
+
+
+
+
+
+
+Notes
+
+
+
+
+Words can be pruned or swapped
+		during tuning for difficulty balance, letter frequency coverage,
+		and age appropriateness. 
+		
+
+
+We intentionally avoided spaces
+		and hyphens to keep spelling mechanics simple in v1. 
+		
+
+
+If you’d like, we can add regional variants later as
+		optional packs. 
+		
+
+
+
+
+
+
+
+	11. 🏗️ Architecture Overview
+
+
+🏗️ Architecture Overview
+
+
+System Purpose
+
+
+Deliver a frictionless, client‑only word action game where
+	players tap falling letters to complete 10 randomly sampled words
+	from a topic, managing a shared credit pool.
+
+
+Scope and Context
+
+
+
+
+Single‑page, client‑only
+		web app (desktop and mobile). No server required for gameplay. 
+		
+
+
+Static assets (HTML/CSS/JS,
+		images, word pools as JSON) hosted on a CDN or static site host. 
+		
+
+
+Preferences and lightweight
+		session state persisted in browser storage. 
+		
+
+
+Optional PWA support (installable, offline cache) as a
+		near‑term evolution. 
+		
+
+
+
+
+Context Diagram
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Key Responsibilities (Client)
+
+
+
+
+Game loop and letter spawn
+		scheduler with difficulty presets. 
+		
+
+
+Physics/animation of falling
+		letters (60 fps target) and collision with bottom boundary. 
+		
+
+
+Input handling for touch/mouse;
+		no keyboard required. 
+		
+
+
+Word construction tray logic and
+		validation against current target word. 
+		
+
+
+Topic/word selection: choose
+		random topic → sample 10 words from a larger pool (e.g., 50+
+		entries) per session. 
+		
+
+
+Credit management: start 100;
+		decrement by 1 when a letter reaches bottom; end conditions. 
+		
+
+
+UI layout: main playfield, right
+		word list (progress), bottom construction tray, HUD (credits,
+		pause, settings, help, about). 
+		
+
+
+Persistence: store settings
+		(difficulty, speed, accessibility toggles) locally. 
+		
+
+
+Audio/visual feedback and accessibility options (reduced
+		motion, color‑safe indicators). 
+		
+
+
+
+
+Constraints and Assumptions
+
+
+
+
+Client‑only MVP; no
+		authentication, no backend APIs. 
+		
+
+
+Family‑friendly content; no
+		PII collected; analytics (if any) deferred or opt‑in,
+		client‑side only. 
+		
+
+
+Performance: smooth animation on
+		mid‑range mobile; target < 16ms/frame; avoid layout
+		thrash. 
+		
+
+
+Bundle size budget: aim <
+		300KB gzipped initial, lazy‑load heavy assets. 
+		
+
+
+Determinism: random seeds per
+		session for reproducibility when debugging. 
+		
+
+
+Internationalization later; MVP
+		English only. 
+		
+
+
+Win flow requires user tap to restart (no auto‑restart).
+				
+
+
+
+
+External Interfaces
+
+
+
+
+Web Platform APIs:
+		requestAnimationFrame, CSS transforms, Pointer Events, Web Audio
+		(optional), Web Storage/IndexedDB, Resize Observer. 
+		
+
+
+Optional PWA: Service Worker, Cache Storage, Manifest. 
+		
+
+
+
+
+Open Items (tracked)
+
+
+
+
+Noise letter percentage defaults
+		per difficulty will be tuned post‑MVP based on playtests. 
+		
+
+
+Potential lightweight telemetry (client‑only) to tune
+		difficulty—out of scope for MVP unless explicitly enabled. 
+		
+
+
+
+
+
+
+
+	12. 🧱 Architecture Views
+
+
+🧱 Architecture Views
+
+
+This section details the deployable containers, internal
+	components, and key runtime flows for LetterFall’s client‑only
+	MVP.
+
+
+1) Container View
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2) Component View (Inside the Client App)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Component Responsibilities
+
+
+
+
+App Shell/Router: lightweight
+	navigation; no full page reloads. 
+	
+
+
+Game State Machine (FSM):
+	transitions Home, LoadingTopic, Playing, Paused, Win, Lose. 
+	
+
+
+Game Loop: requestAnimationFrame
+	with delta‑time and a fixed step for game logic if needed. 
+	
+
+
+RNG + Seed: deterministic sessions
+	for QA; new seed per Start unless overridden in debug. 
+	
+
+
+Spawn Scheduler: determines next
+	letters using target words frequency + noise percentage; difficulty
+	affects spawn cadence and fall speed. 
+	
+
+
+Physics/Animation: positions
+	letters; detects bottom boundary; triggers miss events. 
+	
+
+
+Pointer Input: hit‑test
+	falling letters; forward captures to Word Manager. 
+	
+
+
+Word Manager: manages current
+	construction tray; validates against active 10‑word set; marks
+	completion, updates list. 
+	
+
+
+Credits Manager: 100 start; −1
+	per bottom collision; triggers Lose at 0. 
+	
+
+
+HUD Controller: credits, topic
+	label, pause button, settings/help/about access. 
+	
+
+
+Settings Manager: difficulty,
+	noise, speed, audio, reduced motion, color palette; persisted
+	locally. 
+	
+
+
+Persistence Adapter: abstracts Web
+	Storage/IndexedDB as needed. 
+	
+
+
+Content Loader: loads topic JSON;
+	samples 10 unique words per session. 
+	
+
+
+Audio Manager: non‑blocking
+	sound cues with global toggle. 
+	
+
+
+Accessibility Options: reduced motion and color‑blind
+	safe palette hooks to UI. 
+	
+
+
+
+
+3) Key Runtime Flows
+
+
+3.1 Quick Start → Playing
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3.2 Per‑Frame Tick (Playing)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3.3 Capture Letter → Construct Word
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3.4 Bottom Collision → Credits
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3.5 Pause/Resume and Win/Lose
+
+
+
+
+Pause: freezes loop and spawns; no
+	credit changes. 
+	
+
+
+Win: when all 10 words complete;
+	show summary; require explicit tap to restart. 
+	
+
+
+Lose: when credits reach 0; show summary; restart allowed via
+	tap. 
+	
+
+
+
+
+4) Game State Machine
+
+
+
+
+
+
+
+
+
+
+Start
+
+
+topic loaded + sample 10
+
+
+Pause
+
+
+Resume
+
+
+all 10 complete
+
+
+credits == 0
+
+
+Tap to restart
+
+
+Tap to restart
+
+
+Home
+
+
+LoadingTopic
+
+
+Playing
+
+
+Paused
+
+
+Win
+
+
+
+
+
+
+
+
+
+		Lose
+
+
+
+
+5) Data Model (tech‑agnostic,
+	illustrative)
+
+
+// Configuration & prefs
+
+
+interface DifficultyPreset { name: string; fallSpeed: number; spawnRate: number; noisePct: number; }
+
+
+interface Preferences { difficulty: string; sound: boolean; reducedMotion: boolean; colorBlindSafe: boolean; }
+
+
+
+// Content
+
+
+interface TopicPool { topicId: string; name: string; words: string[]; }
+
+
+interface SessionWords { topicId: string; selected: string[]; }
+
+
+
+// Runtime state
+
+
+type GameState = 'Home'|'LoadingTopic'|'Playing'|'Paused'|'Win'|'Lose';
+
+
+interface LetterEntity { id: string; char: string; x: number; y: number; vy: number; spawnedAt: number; }
+
+
+interface HUDState { credits: number; topicName: string; completed: Set<string>; constructing: string; }
+
+	6) Algorithms (sketches)
+
+
+
+
+Spawn Biasing:
+
+
+
+
+Build frequency map from active
+			10 words (e.g., counts per letter). 
+			
+
+
+Compute in‑topic
+			distribution D_topic from frequencies; mix with uniform alphabet
+			distribution D_noise at noisePct: D = (1−p)
+D_topic +
+			p
+D_noise. 
+			
+
+
+Sample letters from D at spawn
+			events; optionally apply small pity bias to letters needed for the
+			currently shortest‑to‑complete word to avoid stalls. 
+			
+
+
+
+
+Sampling 10 Words:
+
+
+
+
+From topic words (50+), sample
+			10 unique without replacement; sort list alphabetically for right
+			sidebar legibility. 
+			
+
+
+
+
+Validation:
+
+
+
+
+Maintain activeSet; when
+			construction string equals any remaining word, mark complete and
+			clear tray. Case‑insensitive; ASCII only MVP. 
+			
+
+
+
+
+Credits:
+
+
+
+
+On bottom collision, decrement
+			by 1; clamp at [0,1000); emit lose when 0. 
+			
+
+
+
+
+Determinism:
+
+
+
+
+Initialize RNG with session seed; record seed in local
+			storage for QA replays. 
+			
+
+
+
+
+
+
+7) Rendering & Performance Notes
+
+
+
+
+Prefer GPU‑friendly
+		transforms (translate3d) or canvas batch draws; avoid layout
+		thrash. 
+		
+
+
+Cap maximum on‑screen
+		letters to a safe threshold per device; scale spawn if FPS dips
+		(adaptive mode optional). 
+		
+
+
+Avoid creating garbage in the inner loop; object pools for
+		LetterEntity if needed. 
+		
+
+
+
+
+8) Accessibility Hooks (MVP)
+
+
+
+
+Reduced motion disables certain
+		animations; keep essential cues via color/shape. 
+		
+
+
+Color‑blind safe palette
+		for success/miss; ensure contrast ratios are readable. 
+		
+
+
+Large tap targets for falling letters on mobile; hitboxes
+		can be slightly inflated. 
+		
+
+
+
+
+
+
+
+	13. 📘 Architecture Decision Records (ADRs)
+
+
+📘 Architecture Decision Records (ADRs)
+
+
+Lightweight decisions that shape LetterFall’s MVP. Each ADR
+	includes context, decision, and consequences.
+
+
+ADR‑001: Client‑Only Architecture
+
+
+
+
+Context: Game can run entirely in
+		the browser with static assets; avoids back‑end complexity. 
+		
+
+
+Decision: Ship as a static SPA;
+		no server runtime required. 
+		
+
+
+Consequences: Simple hosting and ops; offline‑friendly;
+		any analytics/leaderboards deferred or must be client‑only or
+		third‑party optional. 
+		
+
+
+
+
+ADR‑002: Topic Pools with Session Sampling
+
+
+
+
+Context: Replayability requires
+		variety; user shouldn’t pick topics up front. 
+		
+
+
+Decision: Maintain ~50‑word
+		pool per topic in JSON; on Start, randomly sample 10 unique words. 
+		
+
+
+Consequences: Low repetition; content QA needed; JSON size
+		management and possible lazy‑loading per topic. 
+		
+
+
+
+
+ADR‑003: One‑Tap Start with Random
+	Topic
+
+
+
+
+Context: Minimize FTUE friction. 
+		
+
+
+Decision: Start immediately
+		selects a random topic and begins play; Settings optional. 
+		
+
+
+Consequences: Faster time‑to‑fun; players
+		discover Settings after initial sessions. 
+		
+
+
+
+
+ADR‑004: No Keyboard Dependency
+
+
+
+
+Context: Mobile‑first play;
+		accessibility. 
+		
+
+
+Decision: All interactions via
+		touch/mouse; on‑screen Undo in tray. 
+		
+
+
+Consequences: Wider device coverage; slightly more UI work. 
+		
+
+
+
+
+ADR‑005: Deterministic RNG for QA
+
+
+
+
+Context: Need reproducible
+		sessions to tune noise and difficulty. 
+		
+
+
+Decision: Seeded RNG per session;
+		seed stored for debug. 
+		
+
+
+Consequences: Easier testing and telemetry correlation;
+		ensure seeds don’t leak PII. 
+		
+
+
+
+
+ADR‑006: Performance Budget &
+	Rendering Path
+
+
+
+
+Context: 60 fps on mid‑range
+		devices is critical. 
+		
+
+
+Decision: Prefer GPU‑accelerated
+		CSS transforms or a single canvas layer; avoid heavy DOM. 
+		
+
+
+Consequences: Simpler draw path; test hit‑boxes and
+		accessibility overlays accordingly. 
+		
+
+
+
+
+ADR‑007: Tap‑to‑Restart on Win
+
+
+
+
+Context: Player intent and
+		summary review. 
+		
+
+
+Decision: Do not auto‑restart;
+		require explicit tap. 
+		
+
+
+Consequences: Clear closure; slightly longer loop between
+		sessions. 
+		
+
+
+
+
+ADR‑008: Noise % Tuned Post‑MVP
+
+
+
+
+Context: Optimal challenge is
+		unknown. 
+		
+
+
+Decision: Ship with conservative
+		defaults; make percentages configurable; plan to adjust after
+		playtesting. 
+		
+
+
+Consequences: Fewer debates now; commit to a tuning pass
+		later. 
+		
+
+
+
+
+ADR‑009: Local Persistence Only
+
+
+
+
+Context: Privacy and simplicity
+		for MVP. 
+		
+
+
+Decision: Use Web
+		Storage/IndexedDB; no cloud saves. 
+		
+
+
+Consequences: Device‑local preferences; players
+		switching devices won’t carry settings (acceptable for MVP). 
+		
+
+
+
+
+
+
+
+	14. ✅ Quality Attributes & Targets
+
+
+✅ Quality Attributes & Targets
+
+
+Measurable non‑functional requirements that the design must
+	satisfy. Targets are for MVP on mid‑range mobile and desktop.
+
+
+
+
+
+
+
+
+Attribute
+
+
+
+
+Metric
+
+
+
+
+Target
+
+
+
+
+Design Strategies
+
+
+
+
+
+
+
+
+
+
+
+
+Performance
+
+
+
+
+Frame time
+
+
+
+
+< 16 ms avg; < 32
+					ms P95
+
+
+
+
+rAF loop, CSS
+					transforms/canvas, object pooling, avoid layout thrash
+
+
+
+
+
+
+
+
+Input latency
+
+
+
+
+Tap‑to‑feedback
+
+
+
+
+< 50 ms
+
+
+
+
+Passive listeners,
+					pointer events, batching UI updates
+
+
+
+
+
+
+
+
+Bundle size
+
+
+
+
+Initial gzipped
+
+
+
+
+< 300 KB
+
+
+
+
+Code‑split, defer
+					heavy assets, compress JSON pools
+
+
+
+
+
+
+
+
+Availability
+
+
+
+
+Offline behavior
+
+
+
+
+Works after first load
+					(assets cached)
+
+
+
+
+Optional SW caching,
+					graceful fetch fallback
+
+
+
+
+
+
+
+
+Usability
+
+
+
+
+FTUE to first
+					completion
+
+
+
+
+> 80% reach 1st word
+
+
+
+
+One‑tap Start,
+					gentle defaults, clear HUD
+
+
+
+
+
+
+
+
+Accessibility
+
+
+
+
+Contrast & motion
+
+
+
+
+WCAG‑inspired;
+					reduced motion
+
+
+
+
+Color‑blind
+					palette, reduced motion toggle
+
+
+
+
+
+
+
+
+Security/Privacy
+
+
+
+
+Data collection
+
+
+
+
+0 PII; no tracking by
+					default
+
+
+
+
+Local storage only;
+					explicit opt‑in for telemetry if added
+
+
+
+
+
+
+
+
+Testability
+
+
+
+
+Determinism
+
+
+
+
+Reproducible sessions
+
+
+
+
+Seeded RNG; debug
+					overlay shows seed
+
+
+
+
+
+
+
+
+Maintainability
+
+
+
+
+Module boundaries
+
+
+
+
+Clear components
+
+
+
+
+Separation: UI, Engine,
+					Content, Persistence
+
+
+
+
+
+
+
+
+Portability
+
+
+
+
+Platforms
+
+
+
+
+Mobile + Desktop modern
+					browsers
+
+
+
+
+Standards‑based
+					APIs only
+
+
+
+
+
+
+
+
+
+
+SLOs (Internal)
+
+
+
+
+Cold start to playable: < 1.5
+		s on 4G mid‑range device after caching. 
+		
+
+
+Topic load + sample: < 200 ms
+		for 50‑word pools. 
+		
+
+
+Memory footprint: avoid sustained growth; no leaks in
+		10‑minute session. 
+		
+
+
+
+
+Verification Plan
+
+
+
+
+Performance profiling on
+		mid‑range Android and iOS devices plus desktop. 
+		
+
+
+Automated tests for spawn bias,
+		word sampling uniqueness, and end‑condition correctness. 
+		
+
+
+Accessibility checks for color contrast and reduced motion. 
+		
+
+
+
+
+
+
+
+	15. 🧰 Technology Stack Selection
+
+
+🎯 Goals & Constraints
+
+
+
+
+Client-side only (no backend) and
+		offline-capable (PWA) 
+		
+
+
+Smooth 60 FPS on mid‑range
+		mobile and desktops 
+		
+
+
+Fast startup (<2s on 4G),
+		small bundle, tree‑shaken 
+		
+
+
+Simple to maintain; clear
+		separation: rendering vs game state 
+		
+
+
+Accessibility and responsive layout 
+		
+
+
+
+
+Core Decisions
+
+
+
+
+UI Framework: React + TypeScript 
+		
+
+
+
+
+
+
+Why: Mature ecosystem, strong
+		component model for UI (HUD, menus, settings), and fast dev flow
+		with Vite. 
+		
+
+
+Tradeoffs: React reconciliation
+		shouldn’t drive the animation loop; keep render loop in a game
+		lib. 
+		
+
+
+Alternatives: Svelte/Solid (lighter, fast) or Vue
+		(ergonomic), but team familiarity and tooling favor React. 
+		
+
+
+
+
+
+
+Rendering & Game Loop: PixiJS (WebGL with Canvas
+		fallback) 
+		
+
+
+
+
+
+
+Why: High‑perf 2D
+		rendering, sprites, textures, filters, text; control over ticker;
+		small and flexible versus full game engines. 
+		
+
+
+Alternatives: Canvas 2D (simpler,
+		but manual batching/perf), Phaser (feature‑rich engine,
+		heavier than needed), Three.js (3D‑first). 
+		
+
+
+Approach: Drive animations via PixiJS ticker; React owns UI,
+		not the animation frames. 
+		
+
+
+
+
+
+
+State Management: Zustand (app state) + XState (game flow) 
+		
+
+
+
+
+
+
+Zustand: Lightweight, simple
+		selectors, persist middleware (localStorage), ideal for settings,
+		credits, topic/word pools, word progress. 
+		
+
+
+XState: Explicit finite states
+		(Loading → Ready → Playing → Paused → Win/Lose). Easier
+		testing and fewer edge cases. 
+		
+
+
+Alternatives: Redux Toolkit (solid but heavier),
+		Recoil/Jotai (fine, less explicit for FSM), pure context (OK but
+		can entangle concerns). 
+		
+
+
+
+
+
+
+Build & Tooling: Vite + TypeScript + ESLint/Prettier 
+		
+
+
+
+
+
+
+Vite: fast HMR, code‑splitting,
+		PWA support via plugin, excellent DX. 
+		
+
+
+TS: safer refactors and API contracts. 
+		
+
+
+
+
+
+
+PWA & Offline: vite‑plugin‑pwa + Workbox 
+		
+
+
+
+
+
+
+Cache shell, assets, and topic JSON; offline replay; update
+		via SW with in‑app prompt. 
+		
+
+
+
+
+
+
+Audio: Howler.js (simple, cross‑browser) 
+		
+
+
+
+
+
+
+Clicks, success, fail, background subtle loop with user mute
+		toggle. 
+		
+
+
+
+
+
+
+Testing: Vitest + Testing Library + Playwright 
+		
+
+
+
+
+
+
+Unit/store tests, component tests, and E2E for core loops
+		(start, collect letters, win/lose). 
+		
+
+
+
+
+
+
+Deployment: Static hosting (Vercel/Netlify/GitHub Pages) 
+		
+
+
+
+
+Note: Keyboard gameplay is intentionally not part of MVP, per
+	requirement; mouse/touch only.
+
+
+
+
+Package List (initial)
+
+
+
+
+react, react-dom, typescript 
+		
+
+
+pixi.js 
+		
+
+
+zustand 
+		
+
+
+xstate, @xstate/react 
+		
+
+
+howler 
+		
+
+
+vite, vite-plugin-pwa 
+		
+
+
+eslint,
+		@typescript-eslint/eslint-plugin, @typescript-eslint/parser,
+		prettier 
+		
+
+
+vitest, @testing-library/react,
+		@testing-library/user-event, jsdom 
+		
+
+
+playwright (dev) 
+		
+
+
+
+
+Optional utilities: nanoid (IDs), zod (settings schema),
+	seedrandom (deterministic RNG if needed)
+
+
+
+
+Project Structure
+
+
+letterfall/
+
+
+  
+src/
+
+
+    
+app/
+
+
+      
+App.tsx
+
+
+      
+routes.tsx
+
+
+      
+store.ts (Zustand)
+
+
+      
+machine.ts (XState game FSM)
+
+
+    
+game/
+
+
+      
+engine/
+
+
+        
+Game.ts (Pixi app bootstrap)
+
+
+        
+LetterSpawner.ts
+
+
+        
+Systems.ts (collision/tick systems)
+
+
+        
+rng.ts
+
+
+      
+components/
+
+
+        
+GameCanvas.tsx (wraps Pixi stage)
+
+
+        
+HUD.tsx (credits, topic, timer)
+
+
+        
+WordList.tsx
+
+
+        
+ConstructionBar.tsx
+
+
+      
+assets/
+
+
+        
+sprites/ ...
+
+
+        
+sounds/ ...
+
+
+    
+ui/
+
+
+      
+StartScreen.tsx
+
+
+      
+Settings.tsx
+
+
+      
+Help.tsx
+
+
+      
+About.tsx
+
+
+      
+Modal.tsx
+
+
+    
+data/
+
+
+      
+topics/
+
+
+        
+animals.json
+
+
+        
+fruit.json
+
+
+        
+...
+
+
+    
+styles/
+
+
+      
+globals.css
+
+
+    
+sw/ (service worker customizations if needed)
+
+
+    
+main.tsx
+
+
+    
+vite-env.d.ts
+
+
+  
+index.html
+
+
+  
+vite.config.ts
+
+
+  
+tsconfig.json
+
+
+  
+public/manifest.webmanifest
+
+
+
+
+Minimal Starter Snippets
+
+
+
+
+PixiJS bootstrap (game/engine/Game.ts) 
+		
+
+
+
+
+import { Application } from 'pixi.js';
+
+
+
+export type GameCtx = {
+
+
+  
+app: Application;
+
+
+};
+
+
+
+export async function createGame(canvas: HTMLCanvasElement): Promise<GameCtx> {
+
+
+  
+const app = new Application({
+
+
+    
+view: canvas,
+
+
+    
+resizeTo: window,
+
+
+    
+antialias: true,
+
+
+    
+backgroundAlpha: 0,
+
+
+  
+});
+
+
+
+  
+// Fixed timestep logic (clamped) via ticker
+
+
+  
+let last = performance.now();
+
+
+  
+const FIXED_DT = 1000 / 60;
+
+
+  
+let acc = 0;
+
+
+
+  
+app.ticker.add((now) => {
+
+
+    
+const dt = now - last; last = now;
+
+
+    
+acc += dt;
+
+
+    
+while (acc >= FIXED_DT) {
+
+
+      
+update(FIXED_DT / 1000);
+
+
+      
+acc -= FIXED_DT;
+
+
+    
+}
+
+
+    
+render();
+
+
+  
+});
+
+
+
+  
+function update(dt: number) {
+
+
+    
+// advance letters, collisions, credit drain, etc.
+
+
+  
+}
+
+
+
+  
+function render() {
+
+
+    
+// Pixi handles rendering at ticker cadence
+
+
+  
+}
+
+
+
+  
+return { app };
+
+
+}
+
+
+
+
+React Canvas wrapper (game/components/GameCanvas.tsx) 
+		
+
+
+
+
+import { useEffect, useRef } from 'react';
+
+
+import { createGame } from '../engine/Game';
+
+
+
+export default function GameCanvas() {
+
+
+  
+const ref = useRef<HTMLCanvasElement | null>(null);
+
+
+  
+useEffect(() => {
+
+
+    
+if (!ref.current) return;
+
+
+    
+let disposed = false;
+
+
+    
+(async () => {
+
+
+      
+const { app } = await createGame(ref.current!);
+
+
+      
+if (disposed) app.destroy(true);
+
+
+      
+return () => app.destroy(true);
+
+
+    
+})();
+
+
+    
+return () => { disposed = true; };
+
+
+  
+}, []);
+
+
+  
+return <canvas className="game-canvas" ref={ref} />;
+
+
+}
+
+
+
+
+Zustand store (app/store.ts) 
+		
+
+
+
+
+import { create } from 'zustand';
+
+
+import { persist } from 'zustand/middleware';
+
+
+
+export type Difficulty = 'Easy' | 'Standard' | 'Hard';
+
+
+
+type WordProgress = {
+
+
+  
+word: string;
+
+
+  
+found: boolean;
+
+
+};
+
+
+
+type AppState = {
+
+
+  
+credits: number;
+
+
+  
+topic: string | null;
+
+
+  
+words: WordProgress[];
+
+
+  
+construction: string;
+
+
+  
+difficulty: Difficulty;
+
+
+  
+speed: 'Slow' | 'Normal' | 'Fast';
+
+
+  
+setTopic: (t: string, words: string[]) => void;
+
+
+  
+pushLetter: (ch: string) => void;
+
+
+  
+completeWord: (w: string) => void;
+
+
+  
+tickCredit: () => void;
+
+
+  
+reset: () => void;
+
+
+};
+
+
+
+export const useApp = create<AppState>()(
+
+
+  
+persist(
+
+
+    
+(set, get) => ({
+
+
+      
+credits: 100,
+
+
+      
+topic: null,
+
+
+      
+words: [],
+
+
+      
+construction: '',
+
+
+      
+difficulty: 'Standard',
+
+
+      
+speed: 'Normal',
+
+
+      
+setTopic: (t, ws) => set({ topic: t, words: ws.map(w => ({ word: w, found: false })) }),
+
+
+      
+pushLetter: (ch) => set({ construction: get().construction + ch }),
+
+
+      
+completeWord: (w) => set({
+
+
+        
+words: get().words.map(x => x.word === w ? { ...x, found: true } : x),
+
+
+        
+construction: ''
+
+
+      
+}),
+
+
+      
+tickCredit: () => set({ credits: Math.max(0, get().credits - 1) }),
+
+
+      
+reset: () => set({ credits: 100, construction: '', words: get().words.map(w => ({...w, found:false})) })
+
+
+    
+}),
+
+
+    
+{ name: 'letterfall' }
+
+
+  
+)
+
+
+);
+
+
+
+
+XState game machine (app/machine.ts) 
+		
+
+
+
+
+import { createMachine } from 'xstate';
+
+
+
+export const gameMachine = createMachine({
+
+
+  
+id: 'game',
+
+
+  
+initial: 'loading',
+
+
+  
+states: {
+
+
+    
+loading: { on: { READY: 'ready' } },
+
+
+    
+ready: { on: { START: 'playing' } },
+
+
+    
+playing: { on: { PAUSE: 'paused', WIN: 'win', LOSE: 'lose' } },
+
+
+    
+paused: { on: { RESUME: 'playing', QUIT: 'ready' } },
+
+
+    
+win: { on: { ACK: 'ready' } },
+
+
+    
+lose: { on: { ACK: 'ready' } }
+
+
+  
+}
+
+
+});
+
+
+
+
+PWA manifest (public/manifest.webmanifest) 
+		
+
+
+
+
+{
+
+
+  
+"name": "LetterFall",
+
+
+  
+"short_name": "LetterFall",
+
+
+  
+"start_url": ".",
+
+
+  
+"display": "standalone",
+
+
+  
+"background_color": "#0b0b0f",
+
+
+  
+"theme_color": "#4f46e5",
+
+
+  
+"icons": [
+
+
+    
+{ "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+
+
+    
+{ "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png" }
+
+
+  
+]
+
+
+}
+
+
+
+
+Vite PWA plugin (vite.config.ts) 
+		
+
+
+
+
+import { defineConfig } from 'vite';
+
+
+import react from '@vitejs/plugin-react';
+
+
+import { VitePWA } from 'vite-plugin-pwa';
+
+
+
+export default defineConfig({
+
+
+  
+plugins: [
+
+
+    
+react(),
+
+
+    
+VitePWA({ registerType: 'autoUpdate', includeAssets: ['icons/*'], manifest: true })
+
+
+  
+],
+
+
+});
+
+
+
+
+Deterministic RNG (game/engine/rng.ts) – optional 
+		
+
+
+
+
+export function mulberry32(seed: number) {
+
+
+  
+return function() {
+
+
+    
+let t = seed += 0x6D2B79F5;
+
+
+    
+t = Math.imul(t ^ (t >>> 15), t | 1);
+
+
+    
+t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+
+
+    
+return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+
+
+  
+};
+
+
+}
+
+
+
+
+Rationale & Tradeoffs Summary
+
+
+
+
+React keeps UI composable; PixiJS
+		owns the render loop → avoids jank from React re-renders. 
+		
+
+
+Zustand is minimal for app data;
+		XState formalizes game flow and win/lose transitions. 
+		
+
+
+Vite + PWA plugin delivers
+		instant dev feedback and easy offline. 
+		
+
+
+Howler simplifies audio across
+		platforms. 
+		
+
+
+Testing is layered: logic (Vitest), UI (Testing Library),
+		flows (Playwright). 
+		
+
+
+
+
+
+
+References
+
+
+
+
+React Docs: 
+https://react.dev
+
+
+
+
+Vite: 
+https://vitejs.dev
+
+
+
+
+PixiJS Guides:
+		
+https://pixijs.io/guides/
+
+
+
+
+Zustand:
+		
+https://github.com/pmndrs/zustand
+
+
+
+
+XState:
+		
+https://stately.ai/docs/xstate
+
+
+
+
+Howler.js: 
+https://howlerjs.com
+
+
+
+
+Vitest: 
+https://vitest.dev
+
+
+
+
+Testing Library:
+		
+https://testing-library.com
+
+
+
+
+PWA Overview (MDN):
+		
+https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps
+
+
+
+
+Workbox:
+		
+https://developer.chrome.com/docs/workbox/
+
+
+
+
+Web Audio API (MDN):
+		
+https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API
+
+
+
+
+
+
+
+
+
+
+
+
+
