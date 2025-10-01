@@ -7,12 +7,12 @@
   "license": "PolyForm-Noncommercial-1.0.0",
   "repository": {
     "type": "git",
-    "url": "https://example.com/letterfall.git"
+    "url": "git+https://github.com/noam-r/letterfall.git"
   },
   "bugs": {
-    "url": "https://example.com/letterfall/issues"
+    "url": "https://github.com/noam-r/letterfall/issues"
   },
-  "homepage": "https://example.com/letterfall#readme",
+  "homepage": "https://noam-r.github.io/letterfall/",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
