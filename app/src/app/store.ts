@@ -3,6 +3,8 @@ import { persist } from 'zustand/middleware';
 
 import { APP_VIEW, type AppView } from './routes';
 import { audioBus } from '@shared/audio';
+import { getTopicById } from '@data/topics';
+import type { Language } from '@shared/i18n';
 
 audioBus.setMuted(true);
 
@@ -55,6 +57,7 @@ type AppState = {
   reducedMotion: boolean;
   muted: boolean;
   selectedTopicId: string | null;
+  language: Language;
   fairnessPulse: number | null;
   showOnboarding: boolean;
   feedbackFlash: { type: 'hit' | 'miss' | 'fairness'; timestamp: number } | null;
@@ -70,6 +73,7 @@ type AppState = {
   setSpeed: (value: SpeedSetting) => void;
   setNoiseLevel: (value: number) => void;
   setSelectedTopic: (topicId: string | null) => void;
+  setLanguage: (language: Language) => void;
   startRound: (topic: RoundTopicInput) => void;
   restartRound: () => void;
   selectWord: (word: string) => void;
@@ -212,8 +216,9 @@ export const useAppStore = create<AppState>()(
       reducedMotion: false,
       muted: true,
       selectedTopicId: null,
+      language: 'en',
       fairnessPulse: null,
-      showOnboarding: true,
+      showOnboarding: false,
       feedbackFlash: null,
       roundsPlayed: 0,
       wins: 0,
@@ -232,6 +237,25 @@ export const useAppStore = create<AppState>()(
       setSpeed: (value) => set({ speed: value }),
       setNoiseLevel: (value) => set({ noiseLevel: value }),
       setSelectedTopic: (topicId) => set({ selectedTopicId: topicId }),
+      setLanguage: (language) =>
+        set((state) => {
+          const updates: Partial<AppState> = { language };
+          if (state.topicId) {
+            const topic = getTopicById(state.topicId, language);
+            if (topic) {
+              updates.topicName = topic.name;
+              updates.wordPool = [...topic.words];
+              updates.words = [];
+              updates.activeWord = null;
+              updates.construction = '';
+              updates.roundPhase = 'idle';
+              updates.credits = INITIAL_CREDITS;
+              updates.fairnessPulse = null;
+              updates.feedbackFlash = null;
+            }
+          }
+          return updates;
+        }),
       setFairnessPulse: (timestamp) => set({ fairnessPulse: timestamp }),
       setFeedbackFlash: (flash) => set({ feedbackFlash: flash }),
       pauseRound: () => set((state) => (state.roundPhase === 'playing' ? { roundPhase: 'paused' } : state)),
@@ -412,6 +436,7 @@ export const useAppStore = create<AppState>()(
         reducedMotion: state.reducedMotion,
         muted: state.muted,
         selectedTopicId: state.selectedTopicId,
+        language: state.language,
         showOnboarding: state.showOnboarding,
         roundsPlayed: state.roundsPlayed,
         wins: state.wins,

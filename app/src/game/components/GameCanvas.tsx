@@ -13,6 +13,7 @@ function selectRuntimeState() {
     difficulty: state.difficulty,
     speed: state.speed,
     noiseLevel: state.noiseLevel,
+    language: state.language,
   };
 }
 
@@ -36,6 +37,8 @@ export function GameCanvas() {
           disposeGame(gameCtx);
           return;
         }
+
+        console.log('Game initialized successfully');
         ctx = gameCtx;
         runtime = new GameRuntime(gameCtx, {
           onLetterCollected: (letter) => useAppStore.getState().collectLetter(letter),
@@ -61,6 +64,7 @@ export function GameCanvas() {
             difficulty: state.difficulty,
             speed: state.speed,
             noiseLevel: state.noiseLevel,
+            language: state.language,
           };
           const previous = {
             roundPhase: previousState.roundPhase,
@@ -69,6 +73,7 @@ export function GameCanvas() {
             difficulty: previousState.difficulty,
             speed: previousState.speed,
             noiseLevel: previousState.noiseLevel,
+            language: previousState.language,
           };
           runtime.updateState(current, previous);
         });
@@ -76,7 +81,20 @@ export function GameCanvas() {
         teardownCallbacks.push(unsubscribe);
       })
       .catch((error) => {
-        console.error('Failed to initialise game', error);
+        console.error('Failed to initialise game:', error);
+        console.error('This might be a graphics/WebGL issue. The game cannot start.');
+        
+        // Show error in the canvas
+        const ctx2d = canvas.getContext('2d');
+        if (ctx2d) {
+          ctx2d.fillStyle = '#0b0b0f';
+          ctx2d.fillRect(0, 0, canvas.width, canvas.height);
+          ctx2d.fillStyle = '#ffffff';
+          ctx2d.font = '16px monospace';
+          ctx2d.textAlign = 'center';
+          ctx2d.fillText('Graphics Error: Game cannot start', canvas.width / 2, canvas.height / 2);
+          ctx2d.fillText('Check browser console for details', canvas.width / 2, canvas.height / 2 + 20);
+        }
       });
 
     return () => {

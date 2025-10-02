@@ -1,6 +1,9 @@
-import { BUILT_IN_TOPICS } from '@data/topics';
+import { useMemo } from 'react';
+
+import { listTopics } from '@data/topics';
 import { useAppStore } from '@app/store';
 import type { Difficulty, SpeedSetting } from '@app/store';
+import { useI18n, useTranslations, type Language } from '@shared/i18n';
 
 export function SettingsPanel() {
   const difficulty = useAppStore((state) => state.difficulty);
@@ -13,31 +16,54 @@ export function SettingsPanel() {
   const setReducedMotion = useAppStore((state) => state.setReducedMotion);
   const selectedTopicId = useAppStore((state) => state.selectedTopicId);
   const setSelectedTopic = useAppStore((state) => state.setSelectedTopic);
+  const language = useAppStore((state) => state.language);
+  const setLanguage = useAppStore((state) => state.setLanguage);
+  const t = useTranslations();
+  const { isRTL } = useI18n();
 
   const difficultyOptions: Difficulty[] = ['Easy', 'Standard', 'Hard'];
   const speedOptions: SpeedSetting[] = ['Slow', 'Normal', 'Fast'];
+  const languageOptions: { value: Language; label: string }[] = [
+    { value: 'en', label: 'English' },
+    { value: 'he', label: 'עברית' },
+  ];
+  const topics = useMemo(() => listTopics(language), [language]);
 
   return (
-    <div className="settings-panel">
-      <h2>Settings</h2>
+    <div className="settings-panel" dir={isRTL ? 'rtl' : 'ltr'}>
+      <h2>{t.settings}</h2>
       <div className="settings-panel__group">
-        <label htmlFor="topic">Topic preference</label>
+        <label htmlFor="language">{t.language}</label>
+        <select
+          id="language"
+          value={language}
+          onChange={(event) => setLanguage(event.target.value as Language)}
+        >
+          {languageOptions.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </select>
+      </div>
+      <div className="settings-panel__group">
+        <label htmlFor="topic">{t.topicPreference}</label>
         <select
           id="topic"
           value={selectedTopicId ?? ''}
           onChange={(event) => setSelectedTopic(event.target.value || null)}
         >
-          <option value="">Random (recommended)</option>
-          {BUILT_IN_TOPICS.map((topic) => (
+          <option value="">{t.randomRecommended}</option>
+          {topics.map((topic) => (
             <option key={topic.id} value={topic.id}>
               {topic.name}
             </option>
           ))}
         </select>
-        <p className="settings-panel__hint">Quick Start uses this topic when set. Leave on Random for surprise rounds.</p>
+        <p className="settings-panel__hint">{t.quickStartHint}</p>
       </div>
       <div className="settings-panel__group">
-        <label htmlFor="difficulty">Difficulty</label>
+        <label htmlFor="difficulty">{t.difficulty}</label>
         <select
           id="difficulty"
           value={difficulty}
@@ -45,13 +71,13 @@ export function SettingsPanel() {
         >
           {difficultyOptions.map((option) => (
             <option key={option} value={option}>
-              {option}
+              {option === 'Easy' ? t.easy : option === 'Standard' ? t.standard : t.hard}
             </option>
           ))}
         </select>
       </div>
       <div className="settings-panel__group">
-        <label htmlFor="speed">Drop speed</label>
+        <label htmlFor="speed">{t.dropSpeed}</label>
         <select
           id="speed"
           value={speed}
@@ -59,13 +85,13 @@ export function SettingsPanel() {
         >
           {speedOptions.map((option) => (
             <option key={option} value={option}>
-              {option}
+              {option === 'Slow' ? t.slow : option === 'Normal' ? t.normal : t.fast}
             </option>
           ))}
         </select>
       </div>
       <div className="settings-panel__group">
-        <label htmlFor="noise">Noise letters</label>
+        <label htmlFor="noise">{t.noiseLetters}</label>
         <input
           id="noise"
           type="range"
@@ -85,7 +111,7 @@ export function SettingsPanel() {
             checked={reducedMotion}
             onChange={(event) => setReducedMotion(event.target.checked)}
           />
-          Reduced motion
+          {t.reducedMotion}
         </label>
       </div>
     </div>

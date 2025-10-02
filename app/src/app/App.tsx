@@ -5,25 +5,26 @@ import { GameView } from '@ui/GameView';
 import { HelpView } from '@ui/HelpView';
 import { SettingsPanel } from '@ui/SettingsPanel';
 import { StartScreen } from '@ui/StartScreen';
+import { I18nProvider, useTranslations } from '@shared/i18n';
 
 import { APP_VIEW, type AppView } from './routes';
 import { useAppStore } from './store';
 
-const VIEW_TITLES: Record<AppView, string> = {
-  [APP_VIEW.Start]: 'LetterFall',
-  [APP_VIEW.Playing]: 'LetterFall — Playing',
-  [APP_VIEW.Settings]: 'LetterFall — Settings',
-  [APP_VIEW.Help]: 'LetterFall — Help',
-  [APP_VIEW.About]: 'LetterFall — About',
-};
-
-export function App() {
+function AppContent() {
   const view = useAppStore((state) => state.view);
   const setView = useAppStore((state) => state.setView);
+  const t = useTranslations();
 
   useEffect(() => {
+    const VIEW_TITLES: Record<AppView, string> = {
+      [APP_VIEW.Start]: t.appTitle,
+      [APP_VIEW.Playing]: `${t.appTitle} — ${t.playing}`,
+      [APP_VIEW.Settings]: `${t.appTitle} — ${t.settings}`,
+      [APP_VIEW.Help]: `${t.appTitle} — ${t.help}`,
+      [APP_VIEW.About]: `${t.appTitle} — ${t.about}`,
+    };
     document.title = VIEW_TITLES[view];
-  }, [view]);
+  }, [view, t]);
 
   return (
     <div className={`app app--${view}`}>
@@ -32,7 +33,7 @@ export function App() {
       {view === APP_VIEW.Settings && (
         <section className="overlay">
           <button className="overlay__close" type="button" onClick={() => setView(APP_VIEW.Start)}>
-            Close
+            {t.close}
           </button>
           <SettingsPanel />
         </section>
@@ -40,7 +41,7 @@ export function App() {
       {view === APP_VIEW.Help && (
         <section className="overlay">
           <button className="overlay__close" type="button" onClick={() => setView(APP_VIEW.Start)}>
-            Close
+            {t.close}
           </button>
           <HelpView />
         </section>
@@ -48,11 +49,28 @@ export function App() {
       {view === APP_VIEW.About && (
         <section className="overlay">
           <button className="overlay__close" type="button" onClick={() => setView(APP_VIEW.Start)}>
-            Close
+            {t.close}
           </button>
           <AboutView />
         </section>
       )}
     </div>
+  );
+}
+
+export function App() {
+  const language = useAppStore((state) => state.language);
+  const setLanguage = useAppStore((state) => state.setLanguage);
+
+  useEffect(() => {
+    // Update HTML dir attribute for RTL support
+    document.documentElement.dir = language === 'he' ? 'rtl' : 'ltr';
+    document.documentElement.lang = language;
+  }, [language]);
+
+  return (
+    <I18nProvider language={language} onLanguageChange={setLanguage}>
+      <AppContent />
+    </I18nProvider>
   );
 }

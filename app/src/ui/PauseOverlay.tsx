@@ -1,5 +1,6 @@
 import { APP_VIEW } from '@app/routes';
 import { useAppStore } from '@app/store';
+import { useI18n, useTranslations } from '@shared/i18n';
 
 export function PauseOverlay() {
   const roundPhase = useAppStore((state) => state.roundPhase);
@@ -10,6 +11,8 @@ export function PauseOverlay() {
   const winStreak = useAppStore((state) => state.winStreak);
   const wins = useAppStore((state) => state.wins);
   const roundsPlayed = useAppStore((state) => state.roundsPlayed);
+  const t = useTranslations();
+  const { isRTL } = useI18n();
 
   if (roundPhase !== 'paused') {
     return null;
@@ -29,33 +32,38 @@ export function PauseOverlay() {
   };
 
   return (
-    <section className="overlay pause-overlay" role="dialog" aria-modal="true" aria-label="Pause menu">
-      <div className="pause-overlay__panel">
-        <h2>Game Paused</h2>
-        <p>Take a breather. Credits stay frozen while you’re paused.</p>
+    <section
+      className="overlay pause-overlay"
+      role="dialog"
+      aria-modal="true"
+      aria-label={t.gamePaused}
+    >
+      <div className="pause-overlay__panel" dir={isRTL ? 'rtl' : 'ltr'}>
+        <h2>{t.gamePaused}</h2>
+        <p>{t.pauseMessage}</p>
         <div className="pause-overlay__stats">
           <div>
-            <span className="label">Current streak</span>
+            <span className="label">{t.currentStreak}</span>
             <strong>{winStreak}</strong>
           </div>
           <div>
-            <span className="label">Lifetime wins</span>
+            <span className="label">{t.lifetimeWins}</span>
             <strong>{wins}</strong>
           </div>
           <div>
-            <span className="label">Rounds played</span>
+            <span className="label">{t.roundsPlayed}</span>
             <strong>{roundsPlayed}</strong>
           </div>
         </div>
         <div className="pause-overlay__actions">
           <button type="button" onClick={handleResume}>
-            Resume
+            {t.resume}
           </button>
           <button type="button" onClick={handleRestart}>
-            Restart Round
+            {t.restartRound}
           </button>
           <button type="button" className="ghost" onClick={handleChangeTopic}>
-            Change Topic
+            {t.changeTopic}
           </button>
         </div>
       </div>

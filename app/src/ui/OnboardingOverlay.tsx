@@ -1,33 +1,36 @@
 import { useAppStore } from '@app/store';
-
-const steps = [
-  {
-    title: 'Falling Letters',
-    body: 'Catch letters in the main arena. Missed letters drain credits, so move fast!',
-  },
-  {
-    title: 'Word List',
-    body: 'Tap a word on the right to target it. Progress bars show how close you are.',
-  },
-  {
-    title: 'Construction Tray',
-    body: 'The tray at the bottom shows your in-order progress and the next required letter.',
-  },
-];
+import { useI18n, useTranslations } from '@shared/i18n';
 
 export function OnboardingOverlay() {
   const showOnboarding = useAppStore((state) => state.showOnboarding);
   const dismissOnboarding = useAppStore((state) => state.dismissOnboarding);
+  const t = useTranslations();
+  const { isRTL } = useI18n();
+
+  const steps = [
+    {
+      title: t.onboardingTitle1,
+      body: t.onboardingBody1,
+    },
+    {
+      title: t.onboardingTitle2,
+      body: t.onboardingBody2,
+    },
+    {
+      title: t.onboardingTitle3,
+      body: t.onboardingBody3,
+    },
+  ];
 
   if (!showOnboarding) {
     return null;
   }
 
   return (
-    <section className="overlay onboarding-overlay" role="dialog" aria-modal="true" aria-label="How LetterFall works">
-      <div className="onboarding-overlay__panel">
-        <h2>Welcome to LetterFall</h2>
-        <p>Here’s a 10-second tour of the three key areas.</p>
+    <section className="overlay onboarding-overlay" role="dialog" aria-modal="true" aria-label={t.howToPlay}>
+      <div className="onboarding-overlay__panel" dir={isRTL ? 'rtl' : 'ltr'}>
+        <h2>{t.welcomeTo} {t.appTitle}</h2>
+        <p>{t.tenSecondTour}</p>
         <ol>
           {steps.map((step) => (
             <li key={step.title}>
@@ -37,7 +40,7 @@ export function OnboardingOverlay() {
           ))}
         </ol>
         <button type="button" onClick={dismissOnboarding}>
-          Let’s Play
+          {t.letsPlay}
         </button>
       </div>
     </section>

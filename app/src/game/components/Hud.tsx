@@ -1,5 +1,6 @@
 import { APP_VIEW } from '@app/routes';
 import { LOW_CREDIT_THRESHOLD, useAppStore } from '@app/store';
+import { useTranslations } from '@shared/i18n';
 
 export function GameHud() {
   const topicName = useAppStore((state) => state.topicName);
@@ -11,6 +12,7 @@ export function GameHud() {
   const pauseRound = useAppStore((state) => state.pauseRound);
   const resumeRound = useAppStore((state) => state.resumeRound);
   const setView = useAppStore((state) => state.setView);
+  const t = useTranslations();
 
   const handleBack = () => {
     resetRoundState();
@@ -21,34 +23,37 @@ export function GameHud() {
   const canPause = roundPhase === 'playing';
   const canResume = roundPhase === 'paused';
 
+  const difficultyLabel =
+    difficulty === 'Easy' ? t.easy : difficulty === 'Standard' ? t.standard : t.hard;
+
   return (
     <header className={`game-hud${lowCredit ? ' game-hud--danger' : ''}`}>
       <div className="game-hud__left">
         <button type="button" className="ghost" onClick={handleBack}>
-          Back
+          {t.back}
         </button>
         <div className="game-hud__topic">
-          <span className="label">Topic</span>
-          <strong>{topicName ?? 'Pick a topic'}</strong>
+          <span className="label">{t.topic}</span>
+          <strong>{topicName ?? t.pickTopic}</strong>
         </div>
       </div>
       <div className="game-hud__center">
         <div>
-          <span className="label">Credits</span>
+          <span className="label">{t.credits}</span>
           <strong>{credits}</strong>
-          {lowCredit ? <span className="badge badge--warning">Low</span> : null}
+          {lowCredit ? <span className="badge badge--warning">{t.low}</span> : null}
         </div>
         {fairnessPulse && Date.now() - fairnessPulse < 3000 ? (
-          <div className="game-hud__fairness">Nudging needed letter…</div>
+          <div className="game-hud__fairness">{t.nudgingNeededLetter}</div>
         ) : null}
         <div>
-          <span className="label">Difficulty</span>
-          <strong>{difficulty}</strong>
+          <span className="label">{t.difficulty}</span>
+          <strong>{difficultyLabel}</strong>
         </div>
         {roundPhase !== 'playing' && roundPhase !== 'idle' ? (
           <div>
-            <span className="label">Status</span>
-            <strong>{roundPhase === 'won' ? 'Victory' : 'Credits depleted'}</strong>
+            <span className="label">{t.status}</span>
+            <strong>{roundPhase === 'won' ? t.victory : t.creditsDepleted}</strong>
           </div>
         ) : null}
       </div>
@@ -59,7 +64,7 @@ export function GameHud() {
           onClick={canPause ? pauseRound : canResume ? resumeRound : undefined}
           disabled={!canPause && !canResume}
         >
-          {canResume ? 'Resume' : 'Pause'}
+          {canResume ? t.resume : t.pause}
         </button>
       </div>
     </header>

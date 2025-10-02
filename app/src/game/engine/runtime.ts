@@ -6,6 +6,7 @@ import type {
   SpeedSetting,
   WordProgress,
 } from '@app/store';
+import type { Language } from '@shared/i18n';
 import type { GameContext } from './Game';
 
 type CollectCallback = (letter: string) => {
@@ -27,6 +28,7 @@ type RuntimeState = {
   difficulty: Difficulty;
   speed: SpeedSetting;
   noiseLevel: number;
+  language: Language;
 };
 
 type LetterEntity = {
@@ -36,8 +38,6 @@ type LetterEntity = {
   velocity: number;
   age: number;
 };
-
-const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
 const SPAWN_INTERVAL_BASE: Record<Difficulty, number> = {
   Easy: 1_100,
@@ -76,11 +76,17 @@ const MIN_BURST = 3;
 const MAX_BURST = 4;
 
 const LETTER_STYLE = new TextStyle({
-  fontFamily: 'IBM Plex Mono, Fira Mono, ui-monospace, SFMono-Regular, Menlo, monospace',
+  fontFamily:
+    'IBM Plex Mono, Fira Mono, ui-monospace, SFMono-Regular, Menlo, monospace, Rubik, "Assistant", "Open Sans Hebrew", "Segoe UI", sans-serif',
   fontSize: 48,
   fontWeight: '600',
   fill: 0xffffff,
 });
+
+const NOISE_ALPHABETS: Record<Language, string> = {
+  en: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+  he: 'אבגדהוזחטיכלמנסעפצקרשתםןףךץ',
+};
 
 export class GameRuntime {
   private readonly app: GameContext['app'];
@@ -112,6 +118,7 @@ export class GameRuntime {
       difficulty: 'Standard',
       speed: 'Normal',
       noiseLevel: 0.2,
+      language: 'en',
     };
 
     this.app.ticker.add(this.tick);
@@ -223,7 +230,10 @@ export class GameRuntime {
     }
 
     const glyph = this.pickGlyph();
-    const text = new Text(glyph.toUpperCase(), LETTER_STYLE);
+    const text = new Text({
+      text: this.formatGlyph(glyph),
+      style: LETTER_STYLE,
+    });
     text.anchor.set(0.5);
     text.alpha = 0.95;
     text.eventMode = 'static';
@@ -287,7 +297,9 @@ export class GameRuntime {
     if (!useNoise) {
       return fairnessWeighted[Math.floor(Math.random() * fairnessWeighted.length)] ?? 'a';
     }
-    return ALPHABET[Math.floor(Math.random() * ALPHABET.length)] ?? 'A';
+    const alphabet = NOISE_ALPHABETS[this.state.language] ?? NOISE_ALPHABETS.en;
+    const index = Math.floor(Math.random() * alphabet.length);
+    return alphabet[index] ?? alphabet[0] ?? 'A';
   }
 
   private applyFairnessWeight(letters: string[]) {
@@ -389,5 +401,9 @@ export class GameRuntime {
       this.fairnessBoost = Math.min(3, this.fairnessBoost + 0.5);
       this.callbacks.onFairnessNudge();
     }
+  }
+
+  private formatGlyph(letter: string) {
+    return this.state.language === 'en' ? letter.toUpperCase() : letter;
   }
 }

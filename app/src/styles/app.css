@@ -722,3 +722,64 @@ button.ghost:focus-visible {
 .label + strong {
   margin-left: 0.35rem;
 }
+
+/* RTL Support for Hebrew */
+[dir="rtl"] .label + strong {
+  margin-left: 0;
+  margin-right: 0.35rem;
+}
+
+[dir="rtl"] .info-field strong {
+  margin-left: 0;
+  margin-right: 0.35rem;
+}
+
+[dir="rtl"] .round-summary__stat-meta {
+  margin-left: 0;
+  margin-right: 0.4rem;
+}
+
+[dir="rtl"] .badge {
+  margin-left: 0;
+  margin-right: 0.4rem;
+}
+
+[dir="rtl"] .game-hud {
+  direction: rtl;
+}
+
+[dir="rtl"] .game-hud__left,
+[dir="rtl"] .game-hud__center,
+[dir="rtl"] .game-hud__right {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .game-view__body {
+  direction: rtl;
+}
+
+[dir="rtl"] .word-list {
+  text-align: right;
+}
+
+/* Adjust word layout for RTL */
+[dir="rtl"] .word-list__letters {
+  direction: rtl;
+  display: inline-block;
+}
+
+[dir="rtl"] .construction-bar {
+  direction: rtl;
+}
+
+[dir="rtl"] .construction-bar__content {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .start-screen__secondary {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .settings-panel__checkbox label {
+  flex-direction: row-reverse;
+}
