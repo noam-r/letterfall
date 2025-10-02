@@ -1,6 +1,7 @@
 import clsx from 'clsx';
 
 import { useAppStore } from '@app/store';
+import { useI18n, useTranslations } from '@shared/i18n';
 
 export function WordList() {
   const words = useAppStore((state) => state.words);
@@ -8,19 +9,21 @@ export function WordList() {
   const selectWord = useAppStore((state) => state.selectWord);
   const roundPhase = useAppStore((state) => state.roundPhase);
   const disabled = roundPhase !== 'playing';
+  const t = useTranslations();
+  const { isRTL } = useI18n();
 
   if (words.length === 0) {
     return (
-      <aside className="word-list">
-        <h2>Word List</h2>
-        <p>Words will appear here once a round starts.</p>
+      <aside className="word-list" dir={isRTL ? 'rtl' : 'ltr'}>
+        <h2>{t.wordList}</h2>
+        <p>{t.wordsWillAppear}</p>
       </aside>
     );
   }
 
   return (
-    <aside className="word-list">
-      <h2>Word List</h2>
+    <aside className="word-list" dir={isRTL ? 'rtl' : 'ltr'}>
+      <h2>{t.wordList}</h2>
       <ul>
         {words.map((entry) => {
           const isActive = entry.word === activeWord;
@@ -39,7 +42,7 @@ export function WordList() {
                 disabled={entry.found || disabled}
               >
                 <div className="word-list__row">
-                  <span className="word-list__letters">
+                  <span className="word-list__letters" dir={isRTL ? 'rtl' : 'ltr'}>
                     {entry.word.split('').map((letter, index) => (
                       <span
                         key={index}

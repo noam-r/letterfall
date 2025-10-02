@@ -1,29 +1,31 @@
 import { APP_VIEW } from '@app/routes';
 import { useAppStore } from '@app/store';
+import { useI18n, useTranslations } from '@shared/i18n';
 
 export function HelpView() {
   const requestOnboarding = useAppStore((state) => state.requestOnboarding);
   const setView = useAppStore((state) => state.setView);
+  const t = useTranslations();
+  const { isRTL } = useI18n();
 
   return (
-    <div className="help-view">
-      <h2>How to Play</h2>
+    <div className="help-view" dir={isRTL ? 'rtl' : 'ltr'}>
+      <h2>{t.howToPlay}</h2>
       <ol>
-        <li>Tap Start to jump into a random topic.</li>
-        <li>Choose a word in the sidebar to target it.</li>
-        <li>Catch matching letters in order; missed letters drain credits.</li>
-        <li>Finish five words before credits reach zero to win.</li>
+        <li>{t.helpStep1}</li>
+        <li>{t.helpStep2}</li>
+        <li>{t.helpStep3}</li>
+        <li>{t.helpStep4}</li>
       </ol>
-      <p>Need a refresher?</p>
+      <p>{t.needRefresher}</p>
       <button type="button" className="ghost" onClick={() => { requestOnboarding(); setView(APP_VIEW.Playing); }}>
-        Replay onboarding
+        {t.replayOnboarding}
       </button>
       <p>
-        This milestone focuses on the UI shell and layout. Gameplay systems, fairness guard, audio, and
-        onboarding overlays will ship in later phases described in the spec.
+        {t.milestoneNote}
       </p>
       <button type="button" className="ghost" onClick={() => setView(APP_VIEW.About)}>
-        Read About LetterFall
+        {t.readAbout}
       </button>
     </div>
   );

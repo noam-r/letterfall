@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { APP_VIEW } from '@app/routes';
 import { useAppStore } from '@app/store';
 import { audioBus } from '@shared/audio';
+import { useI18n, useTranslations } from '@shared/i18n';
 
 export function RoundSummary() {
   const roundPhase = useAppStore((state) => state.roundPhase);
@@ -16,6 +17,8 @@ export function RoundSummary() {
   const restartRound = useAppStore((state) => state.restartRound);
   const resetRoundState = useAppStore((state) => state.resetRoundState);
   const setView = useAppStore((state) => state.setView);
+  const t = useTranslations();
+  const { isRTL } = useI18n();
 
   useEffect(() => {
     if (roundPhase === 'won' || roundPhase === 'lost') {
@@ -27,10 +30,9 @@ export function RoundSummary() {
     return null;
   }
 
-  const heading = roundPhase === 'won' ? 'Victory!' : 'Out of credits';
-  const summaryText = roundPhase === 'won'
-    ? 'All five words completed before the credit meter emptied.'
-    : 'The credit meter hit zero. Try again with a fresh round.';
+  const heading = roundPhase === 'won' ? `${t.victory}!` : t.outOfCredits;
+  const summaryText = roundPhase === 'won' ? t.victoryMessage : t.lossMessage;
+  const badgeLabel = roundPhase === 'won' ? t.victory : t.outOfCredits;
   const winRate = roundsPlayed > 0 ? Math.round((wins / roundsPlayed) * 100) : null;
 
   const handleRestart = () => {
@@ -44,19 +46,19 @@ export function RoundSummary() {
 
   return (
     <section className="overlay round-summary">
-      <div className="round-summary__panel">
+      <div className="round-summary__panel" dir={isRTL ? 'rtl' : 'ltr'}>
         <header className="round-summary__header">
-          <span className="round-summary__badge">{roundPhase === 'won' ? 'Win' : 'Lose'}</span>
+          <span className="round-summary__badge">{badgeLabel}</span>
           <h2>{heading}</h2>
           <p>{summaryText}</p>
         </header>
         <div className="round-summary__meta">
           <div>
-            <span className="label">Topic</span>
-            <strong>{topicName ?? 'Random topic'}</strong>
+            <span className="label">{t.topic}</span>
+            <strong>{topicName ?? t.randomTopic}</strong>
           </div>
           <div>
-            <span className="label">Credits remaining</span>
+            <span className="label">{t.credits}</span>
             <strong>{credits}</strong>
           </div>
         </div>
@@ -73,31 +75,31 @@ export function RoundSummary() {
         </div>
         <div className="round-summary__stats">
           <div>
-            <span className="label">Rounds played</span>
+            <span className="label">{t.roundsPlayed}</span>
             <strong>{roundsPlayed}</strong>
           </div>
           <div>
-            <span className="label">Wins</span>
+            <span className="label">{t.wins}</span>
             <strong>
               {wins}
               {winRate !== null ? <span className="round-summary__stat-meta">{winRate}%</span> : null}
             </strong>
           </div>
           <div>
-            <span className="label">Current streak</span>
+            <span className="label">{t.currentStreak}</span>
             <strong>{winStreak}</strong>
           </div>
           <div>
-            <span className="label">Best credits remaining</span>
+            <span className="label">{t.bestCreditsRemaining}</span>
             <strong>{bestCredits}</strong>
           </div>
         </div>
         <div className="round-summary__actions">
           <button type="button" onClick={handleRestart}>
-            Restart Round
+            {t.restartRound}
           </button>
           <button type="button" className="ghost" onClick={handleChangeTopic}>
-            Change Topic
+            {t.changeTopic}
           </button>
         </div>
       </div>
