@@ -1,4 +1,4 @@
-import { Container, Text, TextStyle } from 'pixi.js';
+import { Container, TextStyle } from 'pixi.js';
 
 import type {
   Difficulty,
@@ -8,6 +8,8 @@ import type {
 } from '@app/store';
 import type { Language } from '@shared/i18n';
 import type { GameContext } from './Game';
+import { usePerformanceStore } from '@shared/performance';
+import { LetterEntityPool, type PooledLetterEntity } from './LetterEntityPool';
 
 type CollectCallback = (letter: string) => {
   matched: boolean;
@@ -31,13 +33,7 @@ type RuntimeState = {
   language: Language;
 };
 
-type LetterEntity = {
-  id: number;
-  char: string;
-  display: Text;
-  velocity: number;
-  age: number;
-};
+// Using PooledLetterEntity from LetterEntityPool instead of local type
 
 const SPAWN_INTERVAL_BASE: Record<Difficulty, number> = {
   Easy: 1_100,
@@ -74,6 +70,7 @@ const FAIRNESS_DROUGHT_MS = 6_000;
 const FAIRNESS_NUDGE_DECAY = 0.9;
 const MIN_BURST = 3;
 const MAX_BURST = 4;
+const CLEANUP_INTERVAL = 10_000; // Cleanup every 10 seconds
 
 const LETTER_STYLE = new TextStyle({
   fontFamily:
@@ -92,17 +89,18 @@ export class GameRuntime {
   private readonly app: GameContext['app'];
   private readonly callbacks: RuntimeCallbacks;
   private readonly letterLayer: Container;
-  private letters: LetterEntity[] = [];
+  private readonly letterPool: LetterEntityPool;
+  private letters: PooledLetterEntity[] = [];
   private spawnTimer = 0;
   private spawnInterval = 900;
   private dropSpeed = 240;
   private maxLetters = 12;
   private state: RuntimeState;
   private running = false;
-  private nextLetterId = 0;
   private neededLetterTimer = 0;
   private fairnessTimer = 0;
   private fairnessBoost = 1;
+  private cleanupTimer = 0;
 
   constructor(ctx: GameContext, callbacks: RuntimeCallbacks) {
     this.app = ctx.app;
@@ -110,6 +108,13 @@ export class GameRuntime {
     this.letterLayer = new Container();
     this.letterLayer.sortableChildren = false;
     this.app.stage.addChild(this.letterLayer);
+
+    // Initialize the letter entity pool
+    this.letterPool = new LetterEntityPool({
+      initialSize: 20, // Pre-allocate 20 letter objects
+      maxSize: 50,     // Maximum of 50 letter objects
+      textStyle: LETTER_STYLE,
+    });
 
     this.state = {
       roundPhase: 'idle',
@@ -155,6 +160,7 @@ export class GameRuntime {
     this.haltLoop();
     this.clearLetters();
     this.app.ticker.remove(this.tick);
+    this.letterPool.destroy();
     this.letterLayer.destroy({ children: true });
   }
 
@@ -165,6 +171,7 @@ export class GameRuntime {
     this.neededLetterTimer = 0;
     this.fairnessTimer = 0;
     this.fairnessBoost = 1;
+    this.cleanupTimer = 0;
   }
 
   private haltLoop() {
@@ -182,6 +189,10 @@ export class GameRuntime {
     this.spawnTimer += deltaMS;
     this.neededLetterTimer += deltaMS;
     this.fairnessTimer += deltaMS;
+    this.cleanupTimer += deltaMS;
+
+    // Update entity count for performance monitoring
+    usePerformanceStore.getState().setEntityCount(this.letters.length);
 
     if (this.spawnTimer >= this.spawnInterval) {
       this.spawnTimer = 0;
@@ -216,6 +227,11 @@ export class GameRuntime {
       this.fairnessTimer = 0;
       this.evaluateFairness();
     }
+
+    if (this.cleanupTimer >= CLEANUP_INTERVAL) {
+      this.cleanupTimer = 0;
+      this.performCleanup();
+    }
   };
 
   private spawnBurst(count: number) {
@@ -230,62 +246,66 @@ export class GameRuntime {
     }
 
     const glyph = this.pickGlyph();
-    const text = new Text({
-      text: this.formatGlyph(glyph),
-      style: LETTER_STYLE,
-    });
-    text.anchor.set(0.5);
-    text.alpha = 0.95;
-    text.eventMode = 'static';
-    text.cursor = 'pointer';
+    const formattedGlyph = this.formatGlyph(glyph);
 
     const { width } = this.app.renderer;
     const margin = 32;
-    text.x = margin + Math.random() * Math.max(1, width - margin * 2);
-    text.y = -margin;
-
+    const x = margin + Math.random() * Math.max(1, width - margin * 2);
+    const y = -margin;
     const speedJitter = 0.8 + Math.random() * 0.6;
-    const entity: LetterEntity = {
-      id: this.nextLetterId++,
-      char: glyph,
-      display: text,
-      velocity: this.dropSpeed * speedJitter,
-      age: 0,
-    };
+    const velocity = this.dropSpeed * speedJitter;
 
-    text.on('pointerdown', () => {
-      const outcome = this.callbacks.onLetterCollected(entity.char);
-      if (outcome.matched) {
-        const removalIndex = this.letters.findIndex((item) => item.id === entity.id);
-        if (removalIndex >= 0) {
-          this.removeLetter(removalIndex);
+    try {
+      // Get a pooled entity
+      const entity = this.letterPool.acquire(formattedGlyph, x, y, velocity);
+      const text = entity.display;
+
+      // Set up event handler
+      text.on('pointerdown', () => {
+        const outcome = this.callbacks.onLetterCollected(entity.char);
+        if (outcome.matched) {
+          const removalIndex = this.letters.findIndex((item) => item.id === entity.id);
+          if (removalIndex >= 0) {
+            this.removeLetter(removalIndex);
+          }
+          this.neededLetterTimer = 0;
+          this.fairnessBoost = 1;
+        } else {
+          text.scale.set(0.85);
+          setTimeout(() => {
+            if (entity.isActive) {
+              text.scale.set(1);
+            }
+          }, 120);
         }
-        this.neededLetterTimer = 0;
-        this.fairnessBoost = 1;
-      } else {
-        text.scale.set(0.85);
-        setTimeout(() => {
-          text.scale.set(1);
-        }, 120);
-      }
-    });
+      });
 
-    this.letterLayer.addChild(text);
-    this.letters.push(entity);
+      this.letterLayer.addChild(text);
+      this.letters.push(entity);
+    } catch (error) {
+      console.warn('Failed to spawn letter from pool:', error);
+      // Could implement fallback to direct creation if needed
+    }
   }
 
   private removeLetter(index: number) {
     const [entity] = this.letters.splice(index, 1);
     if (entity) {
-      entity.display.removeAllListeners();
-      entity.display.destroy();
+      // Remove from display layer
+      this.letterLayer.removeChild(entity.display);
+      
+      // Return entity to pool for reuse
+      this.letterPool.release(entity);
     }
   }
 
   private clearLetters() {
     for (const entity of this.letters) {
-      entity.display.removeAllListeners();
-      entity.display.destroy();
+      // Remove from display layer
+      this.letterLayer.removeChild(entity.display);
+      
+      // Return entity to pool for reuse
+      this.letterPool.release(entity);
     }
     this.letters = [];
   }
@@ -405,5 +425,19 @@ export class GameRuntime {
 
   private formatGlyph(letter: string) {
     return this.state.language === 'en' ? letter.toUpperCase() : letter;
+  }
+
+  /**
+   * Perform automatic cleanup of the object pool
+   */
+  private performCleanup() {
+    this.letterPool.performCleanup();
+  }
+
+  /**
+   * Get object pool statistics for monitoring
+   */
+  getPoolStats() {
+    return this.letterPool.getStats();
   }
 }

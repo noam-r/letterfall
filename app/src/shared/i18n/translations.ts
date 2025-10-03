@@ -125,6 +125,22 @@ export interface Translations {
   tray: string;
   autoSelectingNext: string;
   tapLettersToBuild: string;
+  
+  // Error Boundary
+  errorBoundary?: {
+    title: string;
+    message: string;
+    technicalDetails: string;
+    retry: string;
+    reload: string;
+  };
+  
+  // Game Errors
+  gameError?: {
+    canvasTitle: string;
+    canvasMessage: string;
+    reload: string;
+  };
 }
 
 export const translations: Record<Language, Translations> = {
@@ -253,6 +269,22 @@ export const translations: Record<Language, Translations> = {
     tray: 'Tray',
     autoSelectingNext: 'Auto-selecting next word',
     tapLettersToBuild: 'Tap letters to build',
+    
+    // Error Boundary
+    errorBoundary: {
+      title: 'Something went wrong',
+      message: 'An unexpected error occurred. Please try refreshing the page or contact support if the problem persists.',
+      technicalDetails: 'Technical Details',
+      retry: 'Try Again',
+      reload: 'Reload Page',
+    },
+    
+    // Game Errors
+    gameError: {
+      canvasTitle: 'Game Rendering Error',
+      canvasMessage: 'Unable to initialize the game renderer. This may be due to browser compatibility issues or graphics driver problems.',
+      reload: 'Reload Game',
+    },
   },
   
   he: {
@@ -380,5 +412,21 @@ export const translations: Record<Language, Translations> = {
     tray: 'מגש',
     autoSelectingNext: 'בחירה אוטומטית של המילה הבאה',
     tapLettersToBuild: 'הקישו על אותיות לבנייה',
+    
+    // Error Boundary
+    errorBoundary: {
+      title: 'משהו השתבש',
+      message: 'אירעה שגיאה בלתי צפויה. אנא נסו לרענן את הדף או פנו לתמיכה אם הבעיה נמשכת.',
+      technicalDetails: 'פרטים טכניים',
+      retry: 'נסו שוב',
+      reload: 'רעננו דף',
+    },
+    
+    // Game Errors
+    gameError: {
+      canvasTitle: 'שגיאת עיבוד משחק',
+      canvasMessage: 'לא ניתן לאתחל את מעבד המשחק. זה עלול להיות בגלל בעיות תאימות דפדפן או בעיות מנהל התקן גרפי.',
+      reload: 'רעננו משחק',
+    },
   }
 };

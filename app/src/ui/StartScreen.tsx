@@ -4,6 +4,7 @@ import { APP_VIEW } from '@app/routes';
 import { useAppStore } from '@app/store';
 import { getTopicById, listTopics } from '@data/topics';
 import { useI18n, useTranslations } from '@shared/i18n';
+import { useFocusManagement, useKeyboardHandler } from '@shared/accessibility';
 
 export function StartScreen() {
   const setView = useAppStore((state) => state.setView);
@@ -54,6 +55,12 @@ export function StartScreen() {
   const startLabel = selectedTopic ? t.startWithTopic(selectedTopic.name) : t.start;
   const topicDescription = selectedTopic ? selectedTopic.name : t.random;
 
+  // Enable focus management
+  useFocusManagement();
+
+  // Add keyboard shortcut for starting the game
+  useKeyboardHandler('Enter', handleStart, [handleStart]);
+
   return (
     <div className="start-screen">
       <div className="start-screen__panel" dir={isRTL ? 'rtl' : 'ltr'}>
@@ -61,48 +68,68 @@ export function StartScreen() {
           <h1>{t.appTitle}</h1>
           <p>{t.appSubtitle}</p>
         </header>
-        <div className="start-screen__actions">
-          <button type="button" className="start-screen__primary" onClick={handleStart}>
+        <main className="start-screen__actions">
+          <button 
+            type="button" 
+            className="start-screen__primary" 
+            onClick={handleStart}
+            aria-label={`${startLabel} (Enter)`}
+            aria-keyshortcuts="Enter"
+          >
             {startLabel}
           </button>
-          <div className="start-screen__meta" aria-live="polite">
+          <div className="start-screen__meta" aria-live="polite" role="status">
             <span>{t.selectedTopic}: {topicDescription}</span>
           </div>
-          <div className="start-screen__secondary">
-            <button type="button" onClick={openSettings}>
+          <nav className="start-screen__secondary" aria-label="Main navigation">
+            <button type="button" onClick={openSettings} aria-label={`Open ${t.settings}`}>
               {t.settings}
             </button>
-            <button type="button" onClick={openHelp}>
+            <button type="button" onClick={openHelp} aria-label={`Open ${t.help}`}>
               {t.help}
             </button>
-            <button type="button" onClick={openAbout}>
+            <button type="button" onClick={openAbout} aria-label={`Open ${t.about}`}>
               {t.about}
             </button>
-          </div>
-        </div>
+          </nav>
+        </main>
         <div className="start-screen__footer">
-          <button type="button" className="start-screen__mute" onClick={toggleMute}>
+          <button 
+            type="button" 
+            className="start-screen__mute" 
+            onClick={toggleMute}
+            aria-label={muted ? `${t.unmute} audio` : `${t.mute} audio`}
+            aria-pressed={muted}
+          >
             {muted ? t.unmute : t.mute}
           </button>
         </div>
         {recentSessions.length > 0 && (
-          <section className="start-screen__history" aria-label={t.recentSessions}>
-            <h2>{t.recentSessions}</h2>
-            <ul className="start-screen__history-list">
+          <section className="start-screen__history" aria-labelledby="recent-sessions-heading">
+            <h2 id="recent-sessions-heading">{t.recentSessions}</h2>
+            <ul className="start-screen__history-list" role="list">
               {recentSessions.map((session) => {
                 const label = session.topicName ?? t.randomTopic;
                 const resultLabel = session.result === 'won' ? t.won : t.lost;
                 const timestamp = new Date(session.completedAt).toLocaleString();
+                const sessionDescription = `${label}, ${resultLabel}, ${session.creditsRemaining} credits remaining, completed ${timestamp}`;
+                
                 return (
-                  <li key={session.id}>
-                    <div className={`start-screen__history-pill start-screen__history-pill--${session.result}`}>
+                  <li key={session.id} role="listitem">
+                    <div 
+                      className={`start-screen__history-pill start-screen__history-pill--${session.result}`}
+                      aria-label={sessionDescription}
+                      role="article"
+                    >
                       <div className="start-screen__history-topic">
                         <strong>{label}</strong>
-                        <span>{resultLabel}</span>
+                        <span aria-label={`Result: ${resultLabel}`}>{resultLabel}</span>
                       </div>
                       <div className="start-screen__history-meta">
-                        <span>{session.creditsRemaining} {t.creditsLeft}</span>
-                        <span>{timestamp}</span>
+                        <span aria-label={`Credits remaining: ${session.creditsRemaining}`}>
+                          {session.creditsRemaining} {t.creditsLeft}
+                        </span>
+                        <span aria-label={`Completed: ${timestamp}`}>{timestamp}</span>
                       </div>
                     </div>
                   </li>

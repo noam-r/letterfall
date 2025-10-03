@@ -1,6 +1,7 @@
 import { APP_VIEW } from '@app/routes';
 import { LOW_CREDIT_THRESHOLD, useAppStore } from '@app/store';
 import { useTranslations } from '@shared/i18n';
+import { useGameKeyboardControls, useAudioCues } from '@shared/accessibility';
 
 export function GameHud() {
   const topicName = useAppStore((state) => state.topicName);
@@ -13,6 +14,7 @@ export function GameHud() {
   const resumeRound = useAppStore((state) => state.resumeRound);
   const setView = useAppStore((state) => state.setView);
   const t = useTranslations();
+  const playAudioCue = useAudioCues();
 
   const handleBack = () => {
     resetRoundState();
@@ -23,37 +25,66 @@ export function GameHud() {
   const canPause = roundPhase === 'playing';
   const canResume = roundPhase === 'paused';
 
+  const handlePause = () => {
+    pauseRound();
+    playAudioCue({ type: 'game_paused' });
+  };
+
+  const handleResume = () => {
+    resumeRound();
+    playAudioCue({ type: 'game_resumed' });
+  };
+
+  // Set up keyboard controls for pause/resume
+  useGameKeyboardControls(
+    canPause ? handlePause : undefined,
+    canResume ? handleResume : undefined
+  );
+
   const difficultyLabel =
     difficulty === 'Easy' ? t.easy : difficulty === 'Standard' ? t.standard : t.hard;
 
   return (
-    <header className={`game-hud${lowCredit ? ' game-hud--danger' : ''}`}>
+    <header className={`game-hud${lowCredit ? ' game-hud--danger' : ''}`} role="banner">
       <div className="game-hud__left">
-        <button type="button" className="ghost" onClick={handleBack}>
+        <button 
+          type="button" 
+          className="ghost" 
+          onClick={handleBack}
+          aria-label={`${t.back} to main menu`}
+        >
           {t.back}
         </button>
-        <div className="game-hud__topic">
-          <span className="label">{t.topic}</span>
-          <strong>{topicName ?? t.pickTopic}</strong>
+        <div className="game-hud__topic" role="status" aria-live="polite">
+          <span className="label" id="topic-label">{t.topic}</span>
+          <strong aria-labelledby="topic-label">{topicName ?? t.pickTopic}</strong>
         </div>
       </div>
       <div className="game-hud__center">
-        <div>
-          <span className="label">{t.credits}</span>
-          <strong>{credits}</strong>
-          {lowCredit ? <span className="badge badge--warning">{t.low}</span> : null}
+        <div role="status" aria-live="polite">
+          <span className="label" id="credits-label">{t.credits}</span>
+          <strong aria-labelledby="credits-label">{credits}</strong>
+          {lowCredit ? (
+            <span className="badge badge--warning" role="alert" aria-label="Low credits warning">
+              {t.low}
+            </span>
+          ) : null}
         </div>
         {fairnessPulse && Date.now() - fairnessPulse < 3000 ? (
-          <div className="game-hud__fairness">{t.nudgingNeededLetter}</div>
+          <div className="game-hud__fairness" role="alert" aria-live="assertive">
+            {t.nudgingNeededLetter}
+          </div>
         ) : null}
         <div>
-          <span className="label">{t.difficulty}</span>
-          <strong>{difficultyLabel}</strong>
+          <span className="label" id="difficulty-label">{t.difficulty}</span>
+          <strong aria-labelledby="difficulty-label">{difficultyLabel}</strong>
         </div>
         {roundPhase !== 'playing' && roundPhase !== 'idle' ? (
-          <div>
-            <span className="label">{t.status}</span>
-            <strong>{roundPhase === 'won' ? t.victory : t.creditsDepleted}</strong>
+          <div role="status" aria-live="polite">
+            <span className="label" id="status-label">{t.status}</span>
+            <strong aria-labelledby="status-label">
+              {roundPhase === 'won' ? t.victory : t.creditsDepleted}
+            </strong>
           </div>
         ) : null}
       </div>
@@ -61,8 +92,10 @@ export function GameHud() {
         <button
           type="button"
           className="ghost"
-          onClick={canPause ? pauseRound : canResume ? resumeRound : undefined}
+          onClick={canPause ? handlePause : canResume ? handleResume : undefined}
           disabled={!canPause && !canResume}
+          aria-label={canResume ? `${t.resume} game (Space)` : `${t.pause} game (Space)`}
+          aria-keyshortcuts="Space"
         >
           {canResume ? t.resume : t.pause}
         </button>

@@ -14,7 +14,8 @@
       "@ui/*": ["ui/*"],
       "@data/*": ["data/*"],
       "@styles/*": ["styles/*"],
-      "@shared/*": ["shared/*"]
+      "@shared/*": ["shared/*"],
+      "@stores/*": ["stores/*"]
     },
 
     /* Bundler mode */
@@ -33,5 +34,6 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src"]
+  "include": ["src"],
+  "exclude": ["src/**/*.test.ts", "src/**/*.test.tsx", "src/**/tests/**", "src/**/__tests__/**"]
 }

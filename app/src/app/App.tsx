@@ -3,9 +3,11 @@ import { useEffect } from 'react';
 import { AboutView } from '@ui/AboutView';
 import { GameView } from '@ui/GameView';
 import { HelpView } from '@ui/HelpView';
-import { SettingsPanel } from '@ui/SettingsPanel';
 import { StartScreen } from '@ui/StartScreen';
+import { LazySettingsPanel } from '@ui/lazy';
 import { I18nProvider, useTranslations } from '@shared/i18n';
+import { AccessibilityProvider } from '@shared/accessibility';
+import { registerServiceWorker } from '@shared/resources';
 
 import { APP_VIEW, type AppView } from './routes';
 import { useAppStore } from './store';
@@ -35,7 +37,7 @@ function AppContent() {
           <button className="overlay__close" type="button" onClick={() => setView(APP_VIEW.Start)}>
             {t.close}
           </button>
-          <SettingsPanel />
+          <LazySettingsPanel />
         </section>
       )}
       {view === APP_VIEW.Help && (
@@ -68,9 +70,27 @@ export function App() {
     document.documentElement.lang = language;
   }, [language]);
 
+  useEffect(() => {
+    // Register service worker for caching
+    registerServiceWorker({
+      onUpdate: (_registration) => {
+        console.log('New app version available');
+        // Could show update notification to user
+      },
+      onSuccess: (_registration) => {
+        console.log('App is ready for offline use');
+      },
+      onError: (error) => {
+        console.warn('Service worker registration failed:', error);
+      },
+    });
+  }, []);
+
   return (
     <I18nProvider language={language} onLanguageChange={setLanguage}>
-      <AppContent />
+      <AccessibilityProvider>
+        <AppContent />
+      </AccessibilityProvider>
     </I18nProvider>
   );
 }

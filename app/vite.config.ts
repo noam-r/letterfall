@@ -17,6 +17,25 @@ export default defineConfig({
       '@data': path.resolve(rootDir, 'src/data'),
       '@styles': path.resolve(rootDir, 'src/styles'),
       '@shared': path.resolve(rootDir, 'src/shared'),
+      '@stores': path.resolve(rootDir, 'src/stores'),
     },
+  },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          // Vendor chunk for third-party libraries
+          vendor: ['react', 'react-dom', 'zustand', 'xstate'],
+          // PixiJS engine in its own chunk
+          pixi: ['pixi.js'],
+          // Audio library in its own chunk
+          audio: ['howler'],
+        },
+      },
+    },
+    // Enable code splitting
+    chunkSizeWarningLimit: 1000,
+    // Enable source maps for production debugging
+    sourcemap: true,
   },
 });
